@@ -16,5 +16,5 @@ jobs:
       - name: Check Broken Links
         uses: ruzickap/action-my-broken-link-checker@v2
         with:
-          url: https://tinylog.org/v2
-          cmd_params: "--exclude=(tinylog.org/v2/xmlrpc.php) --max-connections-per-host=5 --rate-limit=5 --header=User-Agent:Mozilla/5.0 --color=always"
+          url: https://tinylog.org/
+          cmd_params: "--max-connections-per-host=5 --rate-limit=5 --header=User-Agent:Mozilla/5.0 --color=always"
