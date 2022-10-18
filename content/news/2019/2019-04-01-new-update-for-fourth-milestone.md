@@ -1,0 +1,6 @@
+---
+title: New update for fourth milestone
+date: 2019-04-01
+---
+
+tinylog 2.0.0-M4.2 renames the property `tag` of the logcat writer into `tagname` to avoid conflicts between tinylog tags and logcat tags. Thanks to mailz for [identifying](https://github.com/tinylog-org/tinylog/issues/99) the collision of both types of tags.

@@ -1,0 +1,89 @@
+---
+title: First release candidate of tinylog 2.2 is out
+date: 2020-09-11
+---
+
+After five month of development, more than 110 commits, and many pull requests from the community, I'm proud to announce the first release candidate of tinylog 2.2 with many new features and improvements.
+
+Since Java 6 has been outdated for some time, Java 6 is no longer officially supported by tinylog 2.2. However, the bytecode target is still Java 6 for Android support (API level 1 or higher).
+
+All new features and improvements are ready for use. Further release candidates will only contain bug fixes. As usual, the first release candidate, for which no bugs are reported, will be released unchanged as the final version 2.2.0.
+
+### Modules
+
+Already since version 2.0, all tinylog JARs are modules, which can be used by the Java Platform Module System that was introduced with Java 9. However, tinylog 2.2 uses now real "module-info.java" files instead of the automatic module feature. This has the advantage that the tinylog JARs are now also jlink compatible and can be used in custom Java runtime images.
+
+### Configuration
+
+The tinylog configuration becomes frozen as soon as the first log entry is issued. In previous versions, tinylog silently ignored all future configuration changes. Now, tinylog provides the getter `Configuration.isFrozen()` to check whether the configuration is already frozen, and throws an `UnsupportedOperationException` when trying to change a frozen configuration.
+
+By default, tinylog outputs log entries via all logging providers, which are available in the classpath. Besides the logging provider `tinylog` from tinylog's native logging back-end `tinylog-impl.jar`, there are also logging providers for using the logging backends of web and application servers. These are `jul` from `tinylog-jul.jar` for `java.util.logging` based servers and `jboss` from `tinylog-jboss.jar` for JBoss Logging based servers. With tinylog 2.2, it is finally possible to configure multiple active logging providers in the configuration file. Until now, only one logging provider could be activated via configuration files.
+
+```properties
+tinylog.provider = tinylog, jboss
+```
+
+Already since tinylog 2.0, it is possible to tag log entries and to bind a tag to a writer. Now, even several tags can be bound to the same writer. If tags are bound to a writer, only log entries with the configured tags are output via this writer.
+
+```properties
+writer     = console
+writer.tag = SYSTEM, BACKEND, FRONTEND
+```
+
+### Format Pattern
+
+With version 2.2, tinylog introduces two new placeholders for formatting log entries: `{uptime}` and `{level-code}`. The placeholder `{uptime}` outputs the uptime of the application when a log entry was issued. The application’s uptime is the current time minus the time when the application was started.
+
+```properties
+writer        = console
+writer.format = {uptime: HH:mm} - {message}
+```
+
+```text
+00:01 - Hello World!
+24:33 - Goodbye!
+```
+
+The other new placeholder `{level-code}` outputs the severity level of a log entry as integer. The range starts with "1" for errors and ends with "5" for trace log entries.
+
+```properties
+writer        = console
+writer.format = {level-code} - {message}
+```
+
+```text
+3 - Hello World!
+1 - Oops, something went wrong!
+```
+
+### Rolling File Writer
+
+Now, the rolling file writer can create a link to the latest log file and update this link on each rollover. This makes it easier to handle multiple log files, since only the path of the link needs to be remembered or to be configured for monitoring tools. The link can be configured via the new property `writer.latest`. This feature is only available on standard Java, but not on Android.
+
+```properties
+writer        = rolling file
+writer.latest = latest.log
+writer.file   = myapp_{count}.log
+```
+
+Another new feature for the rolling file writer is GZIP compression of backup log files. GZIP compression can be enabled by setting `writer.convert = gzip`. If activated, tinylog will compress a log file when closing it on shutdown or starting another one due to a policy. The current log file is always kept uncompressed.
+
+```properties
+writer         = rolling file
+writer.file    = myapp_{count}.log
+writer.convert = gzip
+```
+
+It is also possible to implement [custom converters](extending#custom-file-converter) for additional compression algorithms or any other type of encoding like encryption.
+
+### Bug Fixes
+
+In previous versions of tinylog, file based writers created an empty log file when the severity level was set to `off`. Now, no log files will be created anymore, if the global severity level or the severity level of the writer is set to `off`.
+
+In tinylog, custom writer implementations have to declare which fields of log entries must be set. However, if a custom writer lied about these fields and tried to use a token for a log entry field, it hasn't declared as required, a `NullPointerException` was thrown in some cases. Now, tinylog can handle such cases.
+
+### Committers
+
+Special thanks to [Git5000](https://github.com/Git5000), [sezinkarli](https://github.com/sezinkarli), and [pabl0rg](https://github.com/pabl0rg) for their great pull requests! Without them, such a big release wouldn't have been possible.
+
+Pull requests are welcome! In the [tinylog project](https://github.com/tinylog-org/tinylog) on GitHub, all approved but not yet assigned [issues](https://github.com/tinylog-org/tinylog/issues) are tagged as "help wanted". Easy to fix and beginner-friendly issues have additionally a "good first issue" tag. Also, your own ideas for tinylog are always welcome!

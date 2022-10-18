@@ -1,0 +1,109 @@
+@import "variables";
+@import "../../node_modules/bootstrap/scss/mixins";
+@import "../../node_modules/bootstrap/scss/variables";
+
+.home .page {
+  max-width: unset;
+  padding-top: 0;
+  padding-bottom: 0;
+
+  h1 {
+    padding: calc(2rem + 3vw) 0;
+    margin: 0;
+
+    @include media-breakpoint-up(xl) {
+      padding: calc(2rem + 36px) 0;
+    }
+  }
+
+  h2 {
+    color: $primary;
+    font-weight: 300;
+  }
+
+  pre {
+    margin: 0;
+    background-color: $body-bg;
+    line-height: var(--bs-body-line-height);
+    text-align: left;
+  }
+
+  .btn {
+    min-width: 12rem;
+  }
+
+  .display-3 {
+    color: $primary;
+    font-size: 4rem;
+  }
+
+  .lead {
+    @include media-breakpoint-up(lg) {
+      font-size: 1.5rem;
+    }
+  }
+
+  .introduction {
+    @extend .container;
+
+    max-width: map-get($container-max-widths, md);
+    padding: 0 1.5rem;
+    text-align: center;
+
+    > :not(h1) {
+      margin-bottom: 3rem;
+    }
+  }
+
+  .details {
+    margin-top: 5rem;
+  }
+
+  .detail {
+    display: flex;
+    flex-direction: column;
+    padding: 3rem 1.5rem;
+    gap: 3rem;
+
+    &:nth-child(odd) {
+      background-color: $light;
+    }
+
+    &:nth-child(even) {
+      .icon {
+        color: $primary;
+      }
+    }
+
+    @include media-breakpoint-up(lg) {
+      flex-direction: row;
+      justify-content: center;
+      padding-top: 5rem;
+      padding-bottom: 5rem;
+
+      &:nth-child(even) {
+        flex-direction: row-reverse;
+      }
+    }
+  }
+
+  .text,
+  .sample {
+    @include media-breakpoint-up(lg) {
+      width: 50%;
+      max-width: calc(#{$main-max-width} / 2 - 3rem);
+    }
+
+    > :last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .sample {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    line-height: 1;
+    text-align: center;
+  }
+}

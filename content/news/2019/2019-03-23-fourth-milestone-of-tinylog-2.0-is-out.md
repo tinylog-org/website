@@ -1,0 +1,36 @@
+---
+title: Fourth milestone of tinylog 2.0 is out
+date: 2019-03-23
+---
+
+tinylog 2.0.0-M4 brings dedicated logging APIs for Scala and Kotlin. If you use one of both languages, you can add the [matching artifact](download) to your project and use the new logger object. This avoids unnecessary casts, which was required in Scala and Kotlin using the 'normal' logger class, and brings native support for lambdas and higher-ordered functions. Lazy interpolation of strings with embedded variables is quite easy now.
+
+Lazy message passed as lambda in Kotlin:
+
+```kotlin
+Logger.info { "Hello $name!" }
+```
+
+Lazy message in Scala thanks to the use of macros:
+
+```scala
+Logger.info(s"Hello $name!")
+```
+
+Until now, it was impossible to use pipes in format patterns. The reason is that the pipe is reserved as separator between placeholders and style options. Thus, tinylog 2.0.0-M4 introduces `{pipe}` as placeholder for pipes.
+
+For example:
+
+```properties
+writer        = console
+writer.format = {level|min-size=5} {pipe} {thread|min-size=8} {pipe} {message}
+```
+
+Possible output:
+
+```text
+DEBUG | main     | Hello World!
+INFO  | thread-1 | Goodbye
+```
+
+The new milestone of tinylog 2 contains also several bugfixes. Now it is possible to use tinylog 2 in a Java Web Start application. In the previous milestones, tinylog 2 used a wrong class loader for loading services. Under some rare conditions, the rolling file writer could find files as log files that doesn't match the defined log file pattern. This is fixed in the new milestone. Also, nested format patterns with style options do work again. Many thanks to [gabrielnasser](https://github.com/gabrielnasser), [adolgiy](https://github.com/adolgiy), and [scott-rc](https://github.com/scott-rc) for reporting the issues and supporting the analyses.

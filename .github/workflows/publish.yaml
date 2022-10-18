@@ -1,0 +1,75 @@
+name: Publish
+
+on:
+  - workflow_dispatch
+
+jobs:
+
+  publish:
+
+    name: Publish Website
+    runs-on: ubuntu-20.04
+
+    steps:
+
+      - name: Checkout Website Repository
+        uses: actions/checkout@v3
+
+      - name: Resolve tinylog Version
+        run: |
+          pip3 install yq
+          echo "TINYLOG_VERSION=$(yq -r '.params.stableVersion' config.yaml)" >> $GITHUB_ENV
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Install Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: 8
+          distribution: zulu
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build Website
+        run: npm run build:prod
+
+      - name: Checkout tinylog Repository
+        uses: actions/checkout@v3
+        with:
+          repository: tinylog-org/tinylog
+          ref: ${{ env.TINYLOG_VERSION }}
+          path: tinylog
+
+      - name: Generate API documentation
+        run: |
+          cd tinylog/tinylog-api
+          mvn -P release --no-transfer-progress --batch-mode javadoc:javadoc
+
+      - name: Copy API documentation
+        run: |
+          rm -r public/v2/javadoc/*
+          cp -R tinylog/tinylog-api/target/site/apidocs/* public/v2/javadoc
+
+      - name: Upload Assets
+        uses: kevinpainchaud/simple-ftp-deploy-action@v1.2.1
+        with:
+          ftp_host: tinylog.org
+          ftp_username: tinylog2-website@tinylog.org
+          ftp_password: ${{ secrets.FTP_PASSWORD_TINYLOG2_WEBSITE }}
+          local_source_dir: public/v2/assets/
+          dist_target_dir: assets/
+          other_flags: --only-missing
+
+      - name: Sync Website
+        uses: SamKirkland/FTP-Deploy-Action@4.3.2
+        with:
+          server: tinylog.org
+          username: tinylog2-website@tinylog.org
+          password: ${{ secrets.FTP_PASSWORD_TINYLOG2_WEBSITE }}
+          protocol: ftps
+          local-dir: public/v2/
+          exclude: "assets/*"

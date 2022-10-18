@@ -1,0 +1,2 @@
+DirectoryIndex index.html
+ErrorDocument 404 /v2/404.html

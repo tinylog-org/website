@@ -1,0 +1,12 @@
+---
+title: First release candidate of tinylog 2.0 is out
+date: 2019-07-07
+---
+
+With the release of tinylog 2.0.0-RC1, tinylog 2 is feature complete. From now on, there will only be bug fixes. The first release candidate, for which no bugs are reported, will be released unchanged as the final version 2.0.0.
+
+With the new version, tinylog brings support for the logging back-ends of all common web and application servers. The new artifact `tinylog-jul` can output log entries on Tomcat, Glassfish, and all other servers that use `java.util.logging` (JUL) as logging back-end. The second new artifact `tinylog-jboss` can output log entries on Wildfly, JBoss EAP, and all other servers that use JBoss Logging as logging back-end.
+
+Both new artifacts can be used instead of `tinylog-impl`. It is also possible to use these server adapters together with `tinylog-impl` concurrently, if log entries should be output by tinylog as well as by the logging back-end of a server.
+
+There is a new placeholder `{timestamp}` for outputting the UNIX timestamp of log entries. By default, the timestamp will be output in seconds. However, this placeholder is configurable and `{timestamp: milliseconds}` will output the timestamp in milliseconds. The new placeholder has been developed by [ryanthon](https://github.com/ryanthon) (thank you very much for the pull request!) and can be used like all other placeholders in a format pattern.

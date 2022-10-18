@@ -1,0 +1,40 @@
+---
+title: First milestone of tinylog 2.5 is out
+date: 2022-03-03
+---
+
+tinylog 2.5 has a new binding for `System.Logger`. Java introduced `System.Logger` as a generic logging API with version 9. The optional binding can be found on the [download page](download-preview#java-system-logger) and outputs all log entries that are issued via `System.Logger` via the logging back-end of tinylog. Special thanks to [Trig](https://github.com/Trigtrig), who has developed the new binding.
+
+For the rolling file writer, there is a new dynamic placeholder and a new dynamic policy. The dynamic placeholder can be used for setting and changing a part of the path to the log file dynamically in Java by calling the static method `DynamicSegment.setText()`. The initial text can be set as `{dynamic: initial text}`. Setting a new text triggers a rollover event for the dynamic policy. Additionally, a rollover event can be triggered directly by calling the static method `DynamicPolicy.setReset()`.
+
+Example rolling file writer configuration:
+
+```properties
+writer          = rolling file
+writer.file     = logs/{dynamic: foo}/log_{count}.txt
+writer.policies = startup, dynamic
+```
+
+Many thanks to [Simon Legner](https://github.com/simon04), who has developed the placeholder and policy.
+
+Already with tinylog 2.4, a JSON writer was introduced for outputting log entries as JSON. With tinylog 2.5, the writer sets correct array brackets after each flush and not only when closing the JSON log file. This improvement makes it easier to parse the JSON log file while tinylog is still writing log entries into it.
+
+By default, tinylog's JDBC writer inserts log entries into the configured table in the database's default schema. Thanks to [Sollder1](https://github.com/Sollder1), it is now possible to configure a specific schema:
+
+```properties
+writer        = jdbc
+writer.url    = jdbc:mysql://localhost:3306/example
+writer.schema = public
+writer.table  = LOG_TABLE
+```
+
+With the new tinylog version, it is also possible to define and resolve JNDI values in configuration files. The format for JNDI value placeholders is `@{value}`, which resolves the JNDI value from `java:comp/env/value`.
+
+Example for resolving the path from `java:comp/env/log/path`:
+
+```properties
+writer      = file
+writer.file = @{log/path}/log.txt
+```
+
+Furthermore, tinylog 2.5 brings many bug fixes and new minor features such as support for Scala 2.13 and the ability to extend the `TinylogLoggingProvider` for using another `ContextProvider`.

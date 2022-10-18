@@ -1,0 +1,7 @@
+{{ $version := .version }}
+
+```xml
+{{ range .artifacts -}}
+<dependency org="org.tinylog" name="{{ . }}" rev="{{ $version }}" />
+{{ end }}
+```

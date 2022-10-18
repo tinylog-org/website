@@ -1,0 +1,27 @@
+languageCode: en-us
+title: tinylog 2
+baseURL: https://tinylog.org/v2/
+timeZone: Europe/Berlin
+disableHugoGeneratorInject: true
+publishDir: ./public/v2
+
+params:
+  stableVersion: 2.5.0
+  previewVersion: 2.6.0-M1
+  size: 187965
+
+permalinks:
+  /documentation: /:filename
+  /news: /:year/:month/:title
+
+disableKinds:
+  - taxonomy
+  - term
+  - RSS
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+  highlight:
+    noClasses: false

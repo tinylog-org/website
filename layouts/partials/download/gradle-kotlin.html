@@ -1,0 +1,7 @@
+{{ $version := .version }}
+
+```kotlin
+{{ range .artifacts -}}
+implementation("org.tinylog:{{ . }}:{{ $version }}")
+{{ end }}
+```

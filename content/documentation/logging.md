@@ -1,0 +1,227 @@
+---
+title: Logging
+description: Overview of all logging methods
+tableOfContents: true
+menu:
+  main:
+    parent: documentation
+    weight: 2
+---
+
+Unlike other logging frameworks, tinylog has a static logger. Thus, the logger class can be used directly without creating an instance of the logger. tinylog supports five different severity levels: trace, debug, info, warn, and error. The logging methods are named according to the severity levels (for example, `Logger.trace()` for trace). Which severity levels should be output is [configurable](configuration#severity-level).
+
+The class name of tinylog's static logger is `org.tinylog.Logger`. Additionally, there are `org.tinylog.kotlin.Logger` for Kotlin and `org.tinylog.scala.Logger` for Scala respectively. Both loggers are re-implementations of `org.tinylog.Logger` for supporting enhanced features of both languages.
+
+## Plain Text
+
+The most common logging method is probably the plain text output:
+
+```java
+Logger.trace("Hello World!");
+Logger.debug("Hello World!");
+Logger.info("Hello World!");
+Logger.warn("Hello World!");
+Logger.error("Hello World!");
+```
+
+## Text with Arguments
+
+Texts can be assembled at runtime by using "{}" placeholders. For performance reasons, "{}" placeholders should be used instead of manual concatenation of strings by using the "+" operator.
+
+```java
+Logger.trace("Divide {} by {}", a, b);
+Logger.debug("Divide {} by {}", a, b);
+Logger.info("Divide {} by {}", a, b);
+Logger.warn("Divide {} by {}", a, b);
+Logger.error("Divide {} by {}", a, b);
+```
+
+In Kotlin, string templates can be passed as lambda to ensure lazy evaluation.
+
+```kotlin
+Logger.trace { "Divide $a by $b" }
+Logger.debug { "Divide $a by $b" }
+Logger.info { "Divide $a by $b" }
+Logger.warn { "Divide $a by $b" }
+Logger.error { "Divide $a by $b" }
+```
+
+In Scala, tinylog uses macros to ensure lazy string interpolation. Thus, strings with embedded variables can be passed like static strings.
+
+```scala
+Logger.trace(s"Divide $a by $b")
+Logger.debug(s"Divide $a by $b")
+Logger.info(s"Divide $a by $b")
+Logger.warn(s"Divide $a by $b")
+Logger.error(s"Divide $a by $b")
+```
+
+Numbers can be formatted by using a [DecimalFormat-compatible pattern]({{% javadoc "java.text.DecimalFormat" %}}) within the curly brackets of a placeholder.
+
+```java
+Logger.trace("Income: {0.00} EUR", amount);
+Logger.debug("Income: {0.00} EUR", amount);
+Logger.info("Income: {0.00} EUR", amount);
+Logger.warn("Income: {0.00} EUR", amount);
+Logger.error("Income: {0.00} EUR", amount);
+```
+
+Conditional formatting of numbers is possible by using a [ChoiceFormat-compatible pattern]({{% javadoc "java.text.ChoiceFormat" %}}) within the curly brackets of a placeholder.
+
+```java
+Logger.trace("There {0#are no files|1#is one file|1<are {} files}", count);
+Logger.debug("There {0#are no files|1#is one file|1<are {} files}", count);
+Logger.info("There {0#are no files|1#is one file|1<are {} files}", count);
+Logger.warn("There {0#are no files|1#is one file|1<are {} files}", count);
+Logger.error("There {0#are no files|1#is one file|1<are {} files}", count);
+```
+
+Since tinylog 2.1, it is possible to escape curly brackets or entire phrases by using single quotes. However, this feature has to be [explicitly enabled](configuration#escaping) in the configuration file for compatibility reasons. Escaping in tinylog works exactly as for [MessageFormat]({{% javadoc "java.text.MessageFormat" %}}) and doubled single quotes will be output as one single quote.
+
+```java
+Logger.trace("Curly brackets as placeholder {} or escaped '{}'", value);
+Logger.debug("Curly brackets as placeholder {} or escaped '{}'", value);
+Logger.info("Curly brackets as placeholder {} or escaped '{}'", value);
+Logger.warn("Curly brackets as placeholder {} or escaped '{}'", value);
+Logger.error("Curly brackets as placeholder {} or escaped '{}'", value);
+```
+
+## Objects
+
+For performance reasons, objects should never be logged by calling the `toString()` method directly. tinylog has its own method for logging objects, which only calls the `toString()` method if a log entry is actually output.
+
+```java
+Logger.trace(LocalDate.now());
+Logger.debug(LocalDate.now());
+Logger.info(LocalDate.now());
+Logger.warn(LocalDate.now());
+Logger.error(LocalDate.now());
+```
+
+## Exceptions
+
+Exceptions and other throwables can be directly passed to a logging method. An additional textual message is optional.
+
+```java
+Logger.trace(ex);
+Logger.debug(ex);
+Logger.info(ex);
+Logger.warn(ex);
+Logger.error(ex);
+```
+
+In tinylog, exceptions are always the first argument and are passed before a message or other arguments.
+
+```java
+Logger.trace(ex, "Cannot divide {} by {}", a, b);
+Logger.debug(ex, "Cannot divide {} by {}", a, b);
+Logger.info(ex, "Cannot divide {} by {}", a, b);
+Logger.warn(ex, "Cannot divide {} by {}", a, b);
+Logger.error(ex, "Cannot divide {} by {}", a, b);
+```
+
+## Lazy Logging
+
+Sometimes a message or an argument must be computed specifically for logging. For expensive computations, lazy logging with lambda expressions is recommended, as these will only be evaluated if a log entry is actually output.
+
+```java
+Logger.trace(() -> compute());
+Logger.debug(() -> compute());
+Logger.info(() -> compute());
+Logger.warn(() -> compute());
+Logger.error(() -> compute());
+```
+
+Lazy messages in Kotlin:
+
+```kotlin
+Logger.trace { compute() }
+Logger.debug { compute() }
+Logger.info { compute() }
+Logger.warn { compute() }
+Logger.error { compute() }
+```
+
+Lazy messages in Scala:
+
+```scala
+Logger.trace(() => compute())
+Logger.debug(() => compute())
+Logger.info(() => compute())
+Logger.warn(() => compute())
+Logger.error(() => compute())
+```
+
+Lambda expressions can also be passed as arguments for a text with "{}" placeholders:
+
+```java
+Logger.trace("Expensive computation: {}", () -> compute());
+Logger.debug("Expensive computation: {}", () -> compute());
+Logger.info("Expensive computation: {}", () -> compute());
+Logger.warn("Expensive computation: {}", () -> compute());
+Logger.error("Expensive computation: {}", () -> compute());
+```
+
+Lazy expressions in Kotlin:
+
+```kotlin
+Logger.trace("Expensive computation: {}", { compute() })
+Logger.debug("Expensive computation: {}", { compute() })
+Logger.info("Expensive computation: {}", { compute() })
+Logger.warn("Expensive computation: {}", { compute() })
+Logger.error("Expensive computation: {}", { compute() })
+```
+
+Lazy expressions in Scala:
+
+```scala
+Logger.trace("Expensive computation: {}", () => compute())
+Logger.debug("Expensive computation: {}", () => compute())
+Logger.info("Expensive computation: {}", () => compute())
+Logger.warn("Expensive computation: {}", () => compute())
+Logger.error("Expensive computation: {}", () => compute())
+```
+
+## Tags
+
+tinylog supports tags for categorizing log entries. For example, tags can be output as part of the [format pattern](configuration#format-pattern), or used to forward log entries to [different writers](configuration#tags).
+
+```java
+Logger.tag("SYSTEM").trace("Hello World!");
+Logger.tag("SYSTEM").debug("Hello World!");
+Logger.tag("SYSTEM").info("Hello World!");
+Logger.tag("SYSTEM").warn("Hello World!");
+Logger.tag("SYSTEM").error("Hello World!");
+```
+
+If a tag is used extensively, an instance of a tagged logger can be held:
+
+```java
+TaggedLogger logger = Logger.tag("SYSTEM");
+```
+
+Since tinylog 2.4, it is even possible to create a logger with multiple tags that issues each log entry to all defined tags:
+
+```java
+TaggedLogger logger = Logger.tags("FOO", "BAR", "BAZ");
+```
+
+Usually, the static logger is used for issuing untagged log entries. However, it is also possible to obtain an untagged logger instance that works exactly like the static logger:
+
+```java
+TaggedLogger logger = Logger.tag(null);
+```
+
+## Context Values
+
+tinylog has a thread-based context for enriching log entries with additional values. Context values can be output as part of the [format pattern](configuration#format-pattern). Stored values are only visible for the thread in which a value has been set, and its child threads.
+
+ ```java
+ThreadContext.put("user", name);
+```
+
+Stored values are present until they are explicitly removed. Therefore, the thread context should be cleared before a thread is returned to a thread pool. This is not necessary for threads that are not reused.
+
+ ```java
+ThreadContext.clear();
+```

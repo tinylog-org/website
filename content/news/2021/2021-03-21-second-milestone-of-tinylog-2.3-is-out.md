@@ -1,0 +1,20 @@
+---
+title: Second milestone of tinylog 2.3 is out
+date: 2021-03-21
+---
+
+The monthly policy for the [rolling file writer](configuration#rolling-file-writer) is back! With this policy, it is possible to start a new log file on the first day of each month. As for the daily policy, the rollover time can be configured and is midnight by default. The monthly policy was part of tinylog 1, but was never migrated to tinylog 2 until now.
+
+If a count placeholder is used after a date or PID placeholder in log file names, the count is never restarted during runtime rollovers in previous tinylog versions. Now, tinylog restarts the count correctly, if the file path in front of the count placeholder is changed. For example, let's assume that `{date: yyyy}_{count}.log` has been set as the file name. Before tinylog 2.3, the log files "2020\_0.log" and "2020\_1.log" were followed by the log file "2021\_2.log" at the turn of the year. In the new version, the log file "2021\_0.log" would follow instead.
+
+During the development of tinylog 2.3, the benchmarks were rewritten to test the performance of outputting log entries with different location information:
+
+1. Class name with method name
+
+2. Class name (tinylog 1 and 2) or category (all other logging frameworks) only
+
+3. No location information at all
+
+The results of the benchmarks will be published on the tinylog website together with the release of tinylog 2.3. However, I can already reveal that tinylog 2.3 will be twice as fast as tinylog 2.2, if no location information is to be output.
+
+Furthermore, the second milestone of tinylog 2.3 contains two bug fixes. tinylog now issues an error log entry, if the file writer cannot create a compressed log file due to missing write permissions. The second bug fix is related to tinylog's SLF4J adapter. Before version 2.3, tinylog throws an exception, if a LocationAwareLogger for SLF4J contains an invalid logger class name that does not exist in the stack trace. Now, tinylog only issues an error log entry instead of throwing an exception.

@@ -1,0 +1,20 @@
+name: Checks
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+jobs:
+  checks:
+
+    name: Periodic Checks
+    runs-on: ubuntu-20.04
+
+    steps:
+
+      - name: Check Broken Links
+        uses: ruzickap/action-my-broken-link-checker@v2
+        with:
+          url: https://tinylog.org/v2
+          cmd_params: "--exclude=(tinylog.org/v2/xmlrpc.php) --max-connections-per-host=5 --rate-limit=5 --header=User-Agent:Mozilla/5.0 --color=always"

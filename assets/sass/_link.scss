@@ -1,0 +1,12 @@
+a[tabindex]:not([tabindex^="-"]) {
+  cursor: pointer;
+}
+
+a:hover {
+  color: var(--bs-link-color);
+  text-decoration: none;
+}
+
+.text-secondary a {
+  @extend .text-secondary;
+}

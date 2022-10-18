@@ -1,0 +1,20 @@
+@import "variables";
+@import "../../node_modules/bootstrap/scss/mixins";
+@import "../../node_modules/bootstrap/scss/variables";
+
+.dropdown-item {
+  padding-right: 4rem;
+
+  &.active {
+    background: inherit;
+    color: inherit;
+    font-weight: $font-weight-semibold;
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    background: $light;
+    color: $primary;
+  }
+}
