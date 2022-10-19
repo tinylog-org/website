@@ -6,7 +6,7 @@ function showSuccess(button: HTMLElement) {
     Tooltip.getInstance(button).setContent({'.tooltip-inner': 'Copied successfully'})
 }
 
-function showError(button: HTMLElement, reason: Error|string) {
+function showError(button: HTMLElement, reason: Error | string) {
     button.classList.remove('success')
     button.classList.add('failed')
 
@@ -45,4 +45,4 @@ function registerCopyButtons() {
         })
 }
 
-registerCopyButtons()
+export { registerCopyButtons as init }

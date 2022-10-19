@@ -88,7 +88,7 @@ function onClick(event: PointerEvent) {
 }
 
 function onKeyPress(event: KeyboardEvent) {
-    if (event.key === 'Enter' || event.key === ' ')  {
+    if (event.key === 'Enter' || event.key === ' ') {
         handleTabEvent(event)
     }
 }
@@ -109,5 +109,7 @@ function initializeTabs() {
     }
 }
 
-registerTabs()
-initializeTabs()
+export const init = () => {
+    registerTabs()
+    initializeTabs()
+}

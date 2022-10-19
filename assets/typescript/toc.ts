@@ -60,11 +60,13 @@ function registerOffcanvasClosing() {
     })
 }
 
-if (tocLinks.length > 0 && headings.length > 0) {
-    window.addEventListener('scroll', updateTocLinks)
-    updateTocLinks()
-}
+export const init = () => {
+    if (tocLinks.length > 0 && headings.length > 0) {
+        window.addEventListener('scroll', updateTocLinks)
+        updateTocLinks()
+    }
 
-if (tocLinks.length > 0) {
-    registerOffcanvasClosing()
+    if (tocLinks.length > 0) {
+        registerOffcanvasClosing()
+    }
 }

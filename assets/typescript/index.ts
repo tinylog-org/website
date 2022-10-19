@@ -1,5 +1,11 @@
-import './bootstrap'
-import './copy'
+import * as bootstrap from './bootstrap'
+import * as copy from './copy'
+import * as tabs from './tabs'
+import * as toc from './toc'
+
 import './matomo'
-import './tabs'
-import './toc'
+
+bootstrap.init()
+copy.init()
+tabs.init()
+toc.init()
