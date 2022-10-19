@@ -1,4 +1,5 @@
 {
+    "name": "website",
     "scripts": {
         "build:dev": "hugo --cleanDestinationDir  --buildDrafts --environment development",
         "build:prod": "hugo --cleanDestinationDir --minify --environment production",
