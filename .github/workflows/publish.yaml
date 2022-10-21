@@ -62,7 +62,6 @@ jobs:
           ftp_password: ${{ secrets.FTP_PASSWORD_TINYLOG2_WEBSITE }}
           local_source_dir: public/v2/assets/
           dist_target_dir: assets/
-          other_flags: --only-missing
 
       - name: Sync Website
         uses: SamKirkland/FTP-Deploy-Action@4.3.2
