@@ -114,7 +114,6 @@ Despite downward compatibility with Java 6, tinylog provides modern techniques s
 The logging framework can be used on the JVM, on GraalVM, on Android, in native images, in Java SE projects, in Java EE projects, in JPMS projects, on OSGi platforms, and in many other environments.
 Example projects can be found on the [external resources page](external-resources#example-projects)</a>.
 
-
 Besides the generic logging API for Java and other JVM languages, there are also special logging APIs for Kotlin and Scala.
 tinylog has several adapters for processing log entries from third-party logging APIs like SLF4J.
 All of them can be found on the [download page](download).

@@ -1,11 +1,10 @@
 default: true
 
-# MD013/line-length
+# MD013/line-length Line length
 MD013: false
 
 # MD033/no-inline-html Inline HTML
-MD033:
-  allowed_elements:
-    - br
-    - div
-    - p
+MD033: false
+
+# MD042/no-empty-links No empty links
+MD042: false
