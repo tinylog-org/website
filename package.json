@@ -21,8 +21,8 @@
     "devDependencies": {
         "@cspell/dict-de-de": "3.0.0",
         "@types/bootstrap": "5.2.5",
-        "@typescript-eslint/eslint-plugin": "5.40.1",
-        "@typescript-eslint/parser": "5.40.1",
+        "@typescript-eslint/eslint-plugin": "5.41.0",
+        "@typescript-eslint/parser": "5.41.0",
         "cspell": "6.12.0",
         "eslint": "8.26.0",
         "hugo-extended": "0.104.3",
