@@ -1,0 +1,68 @@
+@import "variables";
+@import "../../node_modules/bootstrap/scss/mixins";
+@import "../../node_modules/bootstrap/scss/variables";
+
+header.navbar {
+  box-shadow: $box-shadow;
+
+  > nav {
+    @extend .container-xl;
+
+    max-width: $main-max-width;
+  }
+}
+
+.navbar-brand {
+  padding: 0;
+  margin: 0;
+
+  @include media-breakpoint-up(lg) {
+    margin-right: var(--bs-navbar-brand-margin-end);
+  }
+
+  .logo {
+    height: $navbar-content-height;
+  }
+
+  .logo-rectangle,
+  .logo-text {
+    fill: $light;
+    font-size: 1em;
+    transition: fill $transition-time ease-in-out;
+  }
+
+  .logo-text-invert {
+    fill: $dark;
+    font-size: 1.5em;
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    .logo-rectangle,
+    .logo-text {
+      fill: $white;
+    }
+  }
+}
+
+.navbar-toggler {
+  border: 0;
+}
+
+.navbar.bg-dark .vr {
+  margin: 0.25em var(--bs-navbar-brand-margin-end);
+  opacity: 1;
+}
+
+.nav-link.active {
+  font-weight: $font-weight-semibold;
+}
+
+.nav-item.social {
+  margin-top: 0.25rem;
+
+  @include media-breakpoint-up(lg) {
+    margin: 10px 0 0 8px;
+  }
+}

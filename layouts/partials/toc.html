@@ -1,0 +1,13 @@
+{{- $currentPage := . -}}
+{{- range .Site.Menus.main -}}
+    {{- $parentPage := . -}}
+    {{- if or ($currentPage.IsMenuCurrent "main" .) (and ($currentPage.HasMenuCurrent "main" .) (eq $parentPage.Page.Params.showMenuChildren false)) -}}
+        {{ partial "toc-configurable.html" (dict "title" $parentPage.Name "allPages" nil "actualPage" $currentPage) }}
+    {{- else -}}
+        {{- range .Children -}}
+            {{- if $currentPage.IsMenuCurrent "main" . -}}
+                {{ partial "toc-configurable.html" (dict "title" $parentPage.Name "allPages" $parentPage.Children "actualPage" $currentPage) }}
+            {{- end -}}
+        {{- end -}}
+    {{- end -}}
+{{- end -}}

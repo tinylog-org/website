@@ -1,0 +1,15 @@
+@import "variables";
+
+.btn-close-white {
+  opacity: $navbar-dark-opacity;
+
+  &:hover,
+  &:focus {
+    opacity: $navbar-dark-hover-opacity;
+  }
+}
+
+.btn-outline-dark {
+  --bs-btn-hover-color: #{$white};
+  --bs-btn-active-color: #{$white};
+}

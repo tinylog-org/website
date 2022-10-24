@@ -1,0 +1,4 @@
+.*
+*.iml
+/assets/jsconfig.json
+/node_modules/

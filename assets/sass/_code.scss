@@ -1,0 +1,113 @@
+@import "variables";
+@import "../../node_modules/bootstrap/scss/variables";
+
+code {
+  color: var(--bs-link-color);
+}
+
+pre {
+  position: relative;
+  display: block;
+  padding: 1rem 1.5rem 0.75rem;
+  border: $border-width $border-style $dark;
+  border-radius: $border-radius;
+  background-color: $light;
+
+  > code {
+    display: block;
+    overflow: auto;
+    padding-bottom: 0.25rem;
+
+    > .line:first-child {
+      padding-right: 2rem;
+    }
+  }
+
+  > .copy-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    border: 0;
+    margin: 0.5rem 1.5rem;
+    background-color: inherit;
+    background-image: url("{{ partial `bootstrap-icon.url` (dict `file` `clipboard` `color` `#{$body-color}`) }}");
+    background-position: center;
+    background-repeat: no-repeat;
+
+    &:hover {
+      background-image: url("{{ partial `bootstrap-icon.url` (dict `file` `clipboard` `color` `#{$primary}`) }}");
+    }
+
+    &.success {
+      background-image: url("{{ partial `bootstrap-icon.url` (dict `file` `clipboard-check` `color` `#{$body-color}`) }}");
+
+      &:hover {
+        background-image: url("{{ partial `bootstrap-icon.url` (dict `file` `clipboard-check` `color` `#{$primary}`) }}");
+      }
+    }
+
+    &.failed {
+      background-image: url("{{ partial `bootstrap-icon.url` (dict `file` `clipboard-x` `color` `#{$body-color}`) }}");
+
+      &:hover {
+        background-image: url("{{ partial `bootstrap-icon.url` (dict `file` `clipboard-x` `color` `#{$primary}`) }}");
+      }
+    }
+  }
+}
+
+code.language-java,
+code.language-json,
+code.language-groovy,
+code.language-kotlin,
+code.language-scala,
+code.language-xml {
+  .c1 {
+    color: $gray-600;
+  }
+
+  .k,
+  .kd,
+  .kc,
+  .kn,
+  .kt {
+    color: $primary;
+    font-weight: $font-weight-bold;
+  }
+
+  &:not(.language-java) .n,
+  &:not(.language-xml) .na {
+    font-style: italic;
+  }
+
+  .nd,
+  .nt, {
+    color: $primary;
+  }
+
+  .s,
+  .s1,
+  .s2 {
+    color: $primary;
+  }
+
+  .si {
+    color: $primary;
+    font-weight: $font-weight-bold;
+  }
+}
+
+code.language-properties {
+  .c1 {
+    color: $gray-600;
+  }
+
+  .na,
+  .o {
+    color: $primary;
+  }
+}

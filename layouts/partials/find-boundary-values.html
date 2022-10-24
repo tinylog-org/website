@@ -1,0 +1,30 @@
+{{- $data    := .data      -}}
+{{- $column  := .column    -}}
+{{- $filters := .filters   -}}
+{{- $scratch := newScratch -}}
+
+{{- $scratch.Set `min` nil -}}
+{{- $scratch.Set `max` nil -}}
+
+{{- range $index, $row := $data -}}
+    {{- if gt $index 0 -}}
+        {{- $result := newScratch -}}
+        {{- $result.Set `match` true -}}
+        {{- range $column, $pattern := $filters -}}
+            {{- $input := index $row (int $column) -}}
+            {{- $result.Set `match` (and ($result.Get `match`) (gt (len (findRE $pattern $input)) 0)) -}}
+        {{- end -}}
+        {{- if eq ($result.Get `match`) true -}}
+            {{- $value := index $row $column -}}
+            {{- if ne $value `` -}}
+                {{- $number := float $value -}}
+                {{- $min := $scratch.Get `min` -}}
+                {{- $scratch.Set `min` (cond (eq $min nil) ($number) (math.Min $number $min)) -}}
+                {{- $max := $scratch.Get `max` -}}
+                {{- $scratch.Set `max` (cond (eq $max nil) ($number) (math.Max $number $max)) -}}
+            {{- end -}}
+        {{- end -}}
+    {{- end -}}
+{{- end -}}
+
+{{- return dict `min` ($scratch.Get `min`) `max` ($scratch.Get `max`) -}}

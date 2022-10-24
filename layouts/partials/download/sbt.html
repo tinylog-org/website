@@ -1,0 +1,7 @@
+{{ $version := .version }}
+
+```scala
+{{ range .artifacts -}}
+libraryDependencies += "org.tinylog" {{ cond (in . `-scala_`) `%%` `%` }} "{{ replaceRE `-scala_.*` `-scala` . }}" % "{{ $version }}"
+{{ end }}
+```
