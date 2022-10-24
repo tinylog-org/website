@@ -112,7 +112,7 @@ tinylog can be your logging framework wherever Java 6 or newer is used.
 Despite downward compatibility with Java 6, tinylog provides modern techniques such as support for lambdas and lazy logging.
 
 The logging framework can be used on the JVM, on GraalVM, on Android, in native images, in Java SE projects, in Java EE projects, in JPMS projects, on OSGi platforms, and in many other environments.
-Example projects can be found on the [external resources page](external-resources#example-projects)</a>.
+Example projects can be found on the [external resources page](external-resources#example-projects).
 
 Besides the generic logging API for Java and other JVM languages, there are also special logging APIs for Kotlin and Scala.
 tinylog has several adapters for processing log entries from third-party logging APIs like SLF4J.
@@ -170,7 +170,7 @@ With tinylog, log methods for disabled severity levels even literally become a n
 tinylog is open source and licensed under [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0).
 This means that the logging framework can be used free of charge and without any restrictions, even in commercial software.
 
-The source code can be found on [GitHub](https://github.com/tinylog-org/tinylog)</a>.
+The source code can be found on [GitHub](https://github.com/tinylog-org/tinylog).
 Pull requests and issues are welcome.
 
 </div>
