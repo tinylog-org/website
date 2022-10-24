@@ -10,7 +10,7 @@
         "stylelint:fix": "stylelint \"assets/sass/**/*.scss\" --fix",
         "eslint:check": "eslint \"assets/typescript/**/*.ts\"",
         "eslint:fix": "eslint \"assets/typescript/**/*.ts\" --fix",
-        "cspell:check": "cspell \"*.md\" \"content/**/*.md\" \"layouts/**/*.html\" --no-progress --no-summary --config \".cspell.yaml\"",
+        "cspell:check": "cspell \"*.md\" \"content/**/*.md\" --no-progress --no-summary --config \".cspell.yaml\"",
         "all:check": "npm-run-all stylelint:check eslint:check cspell:check --continue-on-error",
         "all:fix": "npm-run-all stylelint:fix eslint:fix cspell:check --continue-on-error"
     },
