@@ -1,7 +1,35 @@
 @import "variables";
 @import "../../node_modules/bootstrap/scss/variables";
 
-.page {
+main .page {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-bottom: 1rem;
+
+    + .edit {
+      margin-top: -0.75rem;
+    }
+  }
+
+  .edit {
+    margin-bottom: 1rem;
+    font-style: italic;
+
+    a {
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+main:not(.home) .page {
   h1,
   h2,
   h3,
@@ -11,14 +39,9 @@
     /* Workaround for anchors: https://stackoverflow.com/a/11842865/5899171 */
     padding-top: calc(#{$navbar-content-height} + #{$navbar-padding-y} * 2 + 1.5rem);
     margin-top: calc((#{$navbar-content-height} + #{$navbar-padding-y} * 2 + 1rem) * -1);
-    margin-bottom: 1rem;
 
     &:first-child {
       padding-top: calc(#{$navbar-content-height} + #{$navbar-padding-y} * 2 + 1rem);
-    }
-
-    + .edit {
-      margin-top: -0.75rem;
     }
 
     a {
@@ -51,19 +74,6 @@
 
     &:hover a {
       opacity: 1;
-    }
-  }
-
-  .edit {
-    margin-bottom: 1rem;
-    font-style: italic;
-
-    a {
-      text-decoration: none;
-
-      &:hover {
-        text-decoration: underline;
-      }
     }
   }
 }

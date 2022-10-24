@@ -4,7 +4,7 @@ This is the repository for the website: https://tinylog.org/v2/. The repository 
 
 ## Content
 
-You are welcome to fix typos and improve the content. All pages and news posts are stored as markdown files in [content/](https://github.com/tinylog-org/website/tree/master/content). The only exceptions are the index page and 404 page, which are stored as HTML files in [layouts/](https://github.com/tinylog-org/website/tree/master/layouts).
+You are welcome to fix typos and improve the content. All pages and news posts are stored as markdown files in [content/](https://github.com/tinylog-org/website/tree/master/content). The only exception is the 404 page, which is stored as HTML files in [layouts/](https://github.com/tinylog-org/website/tree/master/layouts).
 
 ## Commands
 
