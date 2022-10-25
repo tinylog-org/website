@@ -1,6 +1,6 @@
 @import "variables";
-@import "../../node_modules/bootstrap/scss/variables";
-@import "../../node_modules/bootstrap/scss/mixins";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins";
 
 .navbar-toc-icon {
   @extend .navbar-toggler-icon;

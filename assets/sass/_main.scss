@@ -1,5 +1,5 @@
 @import "variables";
-@import "../../node_modules/bootstrap/scss/variables";
+@import "bootstrap/scss/variables";
 
 main:not(.home) {
   @extend .container-xl;
