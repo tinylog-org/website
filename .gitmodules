@@ -2,3 +2,4 @@
 	path = themes/tinylog-theme
 	url = https://github.com/tinylog-org/website.git
 	branch = theme
+	update = rebase
