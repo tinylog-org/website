@@ -31,6 +31,8 @@ jobs:
 
       - name: Checkout Website Repository
         uses: actions/checkout@v3
+        with:
+          submodules: true
 
       - name: Resolve tinylog Version
         run: |
@@ -118,50 +120,6 @@ jobs:
 
       - name: Run CSpell
         run: npm run cspell:check
-
-  lint-sass:
-
-    name: Lint SASS
-    runs-on: ubuntu-20.04
-    needs: pre-checks
-
-    steps:
-
-      - name: Checkout Website Repository
-        uses: actions/checkout@v3
-
-      - name: Install Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-
-      - name: Install Dependencies
-        run: npm install
-
-      - name: Run Stylelint
-        run: npm run stylelint:check
-
-  lint-typescript:
-
-    name: Lint Typescript
-    runs-on: ubuntu-20.04
-    needs: pre-checks
-
-    steps:
-
-      - name: Checkout Website Repository
-        uses: actions/checkout@v3
-
-      - name: Install Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-
-      - name: Install Dependencies
-        run: npm install
-
-      - name: Run ESLint
-        run: npm run eslint:check
 
   validate-html:
 

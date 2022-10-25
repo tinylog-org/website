@@ -14,13 +14,7 @@ If you want to build or run the website on your local computer, [NodeJS](https:/
 :------------------|:------------
  `build:dev`       | Builds the website including drafts and source maps                             
  `build:prod`      | Builds the website excluding drafts and minifies all assets                     
+ `create:post`     | Creates a news post                                                             
+ `cspell:check`    | Checks the spelling in all content files                                        
  `start:dev`       | Starts the web server with the website including drafts and source maps         
  `start:prod`      | Starts the web server with the website excluding drafts and minifies all assets 
- `create:post`     | Creates a news post                                                             
- `stylelint:check` | Reports all Stylelint violations in the SASS files                              
- `stylelint:fix`   | Tries to fix all Stylelint violations in the SASS files                         
- `eslint:check`    | Reports all ESLint violations in the Typescript files                           
- `eslint:fix`      | Tries to fix all ESLint violations in the Typescript files                      
- `cspell:check`    | Checks the spelling in all content files                                        
- `all:check`       | Runs `stylelint:check`, `eslint:check` and `cspell:check`                       
- `all:fix`         | Runs `stylelint:fix`, `eslint:fix` and `cspell:check`                           

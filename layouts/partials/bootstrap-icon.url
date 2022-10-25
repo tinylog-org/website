@@ -1,6 +1,0 @@
-{{- $svg := partial `bootstrap-icon.svg` .                     -}}
-{{- $svg := $svg | replaceRE `\n|\r` ``  | replaceRE `\"` `'`  -}}
-{{- $svg := $svg | replaceRE `<` `%3c` | replaceRE `>` `%3e`   -}}
-{{- $svg := $svg | replaceRE `#` `%23`                         -}}
-{{- $svg := $svg | replaceRE `\(` `%28` | replaceRE `\)` `%29` -}}
-data:image/svg+xml,{{ $svg | safeHTML }}

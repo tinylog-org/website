@@ -1,5 +1,0 @@
-{{- if lt . (mul 1000 1024) -}}
-    {{ math.Round (div . 1024) }} KB
-{{- else -}}
-    {{ div (math.Round (div . (div (mul 1024 1024) 100))) 100 }} MB
-{{- end -}}

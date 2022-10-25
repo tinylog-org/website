@@ -1,6 +1,7 @@
 languageCode: en-us
 title: tinylog 2
 baseURL: https://tinylog.org/v2/
+theme: tinylog-theme
 timeZone: Europe/Berlin
 disableHugoGeneratorInject: true
 publishDir: ./public/v2
