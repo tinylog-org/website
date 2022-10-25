@@ -3,6 +3,10 @@
     "extends": [
         "config:base"
     ],
+    "baseBranches": [
+        "master",
+        "theme"
+    ],
     "packageRules": [
         {
             "matchUpdateTypes": [
