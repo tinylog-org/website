@@ -1,0 +1,22 @@
+#!/bin/sh
+
+title=$1
+if [ -z "$title" ]
+then
+  printf "Title: " >&2
+  read -r title
+fi
+
+year=$(date "+%Y")
+date=$(date "+%Y-%m-%d")
+
+root=$(dirname "$0")
+folder=$(readlink --canonicalize "$root/../content/news/$year")
+base=$(echo "$title" | tr "[:upper:]" "[:lower:]")
+base=$(echo "$base" | sed -r "s/[^0-9a-zA-z_.]+/-/g")
+file="$folder/$date-$base.md"
+
+mkdir -p "$folder"
+printf "%s\n%s: %s\n%s: %s\n%s\n\n" "---" "title" "$title" "date" "$date" "---" > "$file"
+
+echo "Created post: $file"

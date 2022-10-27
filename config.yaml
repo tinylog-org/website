@@ -1,0 +1,28 @@
+languageCode: en-us
+title: tinylog 3
+baseURL: https://tinylog.org/v3/
+theme: tinylog-theme
+timeZone: Europe/Berlin
+disableHugoGeneratorInject: true
+publishDir: ./public/v3
+
+params:
+  stableVersion: 3.0.0-M1
+  previewVersion: 2.0.0-M1
+  size: 254403
+
+permalinks:
+  /documentation: /:filename
+  /news: /:year/:month/:title
+
+disableKinds:
+  - taxonomy
+  - term
+  - RSS
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+  highlight:
+    noClasses: false

@@ -1,0 +1,4 @@
+DirectoryIndex index.html
+ErrorDocument 404 /v2/404.html
+RewriteRule ^count-js$ /matomo/matomo.js [L]
+RewriteRule ^count-php$ /matomo/matomo.php [L]
