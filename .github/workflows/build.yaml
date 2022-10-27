@@ -1,0 +1,136 @@
+name: Build
+
+on:
+  - push
+  - pull_request
+
+jobs:
+
+  pre-checks:
+
+    name: Resolve Pre-Checks
+    runs-on: ubuntu-20.04
+    if: ${{ github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.event.pull_request.base.repo.full_name }}
+
+    steps:
+
+      - name: Print Info
+        run: |
+          echo "Branch push or external pull request detected"
+
+  build:
+
+    name: Build Website
+    runs-on: ubuntu-20.04
+    needs: pre-checks
+
+    outputs:
+      timestamp: ${{ steps.timestamp.outputs.timestamp }}
+
+    steps:
+
+      - name: Checkout Website Repository
+        uses: actions/checkout@v3
+        with:
+          submodules: true
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build Website
+        run: npm run build:prod
+
+      - name: Generate timestamp
+        id: timestamp
+        run: echo "timestamp=$(date +'%Y%m%d-%H%M')" >> $GITHUB_OUTPUT
+
+      - name: Upload Generated Files
+        uses: actions/upload-artifact@v3
+        with:
+          name: website-${{ steps.timestamp.outputs.timestamp }}
+          path: public/
+
+  lint-markdown:
+
+    name: Lint Markdown
+    runs-on: ubuntu-20.04
+    needs: pre-checks
+
+    steps:
+
+      - name: Checkout Website Repository
+        uses: actions/checkout@v3
+
+      - name: Check Markdown
+        uses: DavidAnson/markdownlint-cli2-action@v7
+        with:
+          globs: "content/**/*.md"
+
+  check-spelling:
+
+    name: Check Spelling
+    runs-on: ubuntu-20.04
+    needs: pre-checks
+
+    steps:
+
+      - name: Checkout Website Repository
+        uses: actions/checkout@v3
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run CSpell
+        run: npm run cspell:check
+
+  validate-html:
+
+    name: Validate HTML
+    runs-on: ubuntu-20.04
+    needs: build
+
+    steps:
+
+      - name: Download Generated Files
+        uses: actions/download-artifact@v3
+        with:
+          name: website-${{ needs.build.outputs.timestamp }}
+          path: public/
+
+      - name: Validate HTML
+        uses: Cyb3r-Jak3/html5validator-action@v7.2.0
+        with:
+          log_level: INFO
+          skip_git_check: true
+          root: public/
+
+  check-links:
+
+    name: Check Links
+    runs-on: ubuntu-20.04
+    needs: build
+
+    steps:
+
+      - name: Download Generated Files
+        uses: actions/download-artifact@v3
+        with:
+          name: website-${{ needs.build.outputs.timestamp }}
+          path: public/
+
+      - name: Check Links
+        uses: ruzickap/action-my-broken-link-checker@v2
+        with:
+          url: https://tinylog.org/v2
+          pages_path: public
+          cmd_params: "--exclude=(tinylog.org/v(1|2)/|tinylog.org/p2-repository/|github.com/tinylog-org/website/edit/) --max-connections-per-host=5 --rate-limit=5 --header=User-Agent:Mozilla/5.0 --color=always"
