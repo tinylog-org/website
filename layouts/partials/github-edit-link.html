@@ -1,3 +1,5 @@
-{{- $url := printf "https://github.com/tinylog-org/website/edit/v2/content/%s" (.file.Path | replaceRE `\\` `/`) -}}
-{{- $markdown := printf "You can [edit this %s](%s) on GitHub" (default "page" .name) $url -}}
+{{- $branch   := site.Params.stableVersion | replaceRE `^(\d+)\..*` `v$1`                         -}}
+{{- $path     := .file.Path | replaceRE `\\` `/` | replaceRE `\/?(.*)` `$1`                       -}}
+{{- $url      := printf "https://github.com/tinylog-org/website/edit/%s/content/%s" $branch $path -}}
+{{- $markdown := printf "You can [edit this %s](%s) on GitHub" (default "page" .name) $url        -}}
 <div class="edit">{{ markdownify $markdown }}</div>
