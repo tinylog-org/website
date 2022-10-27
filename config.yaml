@@ -7,6 +7,7 @@ disableHugoGeneratorInject: true
 publishDir: ./public/v3
 
 params:
+  maxMajorVersion: 3
   stableVersion: 3.0.0-M1
   previewVersion: 2.0.0-M1
   size: 254403
