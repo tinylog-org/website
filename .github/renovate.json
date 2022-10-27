@@ -5,6 +5,7 @@
     ],
     "baseBranches": [
         "v2",
+        "v3",
         "theme"
     ],
     "packageRules": [
