@@ -4,7 +4,7 @@ This is the repository for the website: https://tinylog.org/v2/. The repository 
 
 ## Content
 
-Pull requests are welcome! All pages and news posts are stored as Markdown files in [content/](https://github.com/tinylog-org/website/tree/master/content). Feel free to fix typos or improve the documentation.
+Pull requests are welcome! All pages and news posts are stored as Markdown files in [content/](https://github.com/tinylog-org/website/tree/v2/content). Feel free to fix typos or improve the documentation.
 
 ## Commands
 
