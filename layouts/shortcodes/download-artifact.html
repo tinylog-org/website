@@ -69,4 +69,6 @@ SBT
 </tbody>
 </table>
 
+{{ if $file -}}
 Download: {{ partial "download/file-link.html" (dict "version" $version "file" $file) }}
+{{ end -}}
