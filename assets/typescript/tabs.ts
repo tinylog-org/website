@@ -50,11 +50,11 @@ function activateTab(group: string, item: string) {
 
     if (title) {
         document
-            .querySelectorAll('[data-tab-group="' + group + '"] [data-tab-item]')
+            .querySelectorAll('[data-tab-group="' + group + '"] > * > * > [data-tab-item]')
             .forEach((element: HTMLElement) => updateTab(element, item))
 
         document
-            .querySelectorAll('[data-tab-group="' + group + '"] .dropdown-toggle')
+            .querySelectorAll('[data-tab-group="' + group + '"] > * > * > * > .dropdown-toggle')
             .forEach((element: HTMLElement) => element.textContent = title)
 
         updateSettings(group, item)
