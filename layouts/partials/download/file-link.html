@@ -1,8 +1,8 @@
-{{ $fileName := printf `%s-%s.zip` .file .version                                                  -}}
-{{ $json     := getJSON "https://api.github.com/repos/tinylog-org/tinylog/releases/tags/" .version -}}
+{{- $fileName := printf `%s-%s.zip` .file .version                                                  -}}
+{{- $json     := getJSON "https://api.github.com/repos/tinylog-org/tinylog/releases/tags/" .version -}}
 
 {{- range $json.assets -}}
-    {{- if eq .name $fileName }}
+    {{- if eq .name $fileName -}}
         [{{ .name }}]({{ .browser_download_url }}) ({{ partial "file-size.html" .size }})
-    {{ end -}}
-{{- end }}
+    {{- end -}}
+{{- end -}}
