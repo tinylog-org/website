@@ -8,8 +8,8 @@ publishDir: ./public/v3
 
 params:
   maxMajorVersion: 3
-  stableVersion: 3.0.0-M1
-  previewVersion: 2.0.0-M1
+  stableVersion: 2.6.0-M1  # TODO: Replace with tinylog 3 version after first release
+  previewVersion: 2.6.0-M1 # TODO: Replace with tinylog 3 version after first release
   size: 254403
 
 permalinks:
