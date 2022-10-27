@@ -2,7 +2,8 @@
 @import "bootstrap/scss/mixins";
 @import "bootstrap/scss/variables";
 
-.tabs, .tabs-simple {
+.tabs,
+.tabs-simple {
   display: block;
   margin-bottom: 1rem;
 
@@ -22,13 +23,13 @@
 .tabs {
   > thead > tr.nav-tabs {
     @include media-breakpoint-down(md) {
-        display: none;
+      display: none;
     }
   }
 
   > thead > tr:not(.nav-tabs) {
     @include media-breakpoint-up(md) {
-        display: none;
+      display: none;
     }
 
     th {
