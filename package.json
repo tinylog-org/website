@@ -13,6 +13,6 @@
     },
     "devDependencies": {
         "cspell": "6.13.1",
-        "hugo-extended": "0.104.3"
+        "hugo-extended": "0.105.0"
     }
 }
