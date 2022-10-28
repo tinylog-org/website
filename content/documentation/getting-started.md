@@ -96,7 +96,7 @@ fun main() {
 
 When you run this example application, you will see a log entry in the console:
 
-```
+```text
 2022-06-11 14:24:47 [main] INFO  Application.main(): Hello World!
 ```
 
@@ -113,7 +113,7 @@ writer.pattern = {date: HH:mm:ss.SSS} {level}: {message}
 
 When you run the previous example application now, you will see the log entry in the new format in the console:
 
-```
+```text
 14:24:47 INFO: Hello World!
 ```
 
