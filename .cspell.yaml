@@ -1,9 +1,11 @@
 $schema: https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json
 version: "0.2"
 language: en-US
+minWordLength: 2
 
 import:
   - node_modules/@cspell/dict-de-de/cspell-ext.json
+  - node_modules/@cspell/dict-java/cspell-ext.json
 
 dictionaries:
   - custom-dictionary
@@ -12,6 +14,11 @@ dictionaryDefinitions:
   - name: custom-dictionary
     path: dictionary.txt
     addWords: true
+
+languageSettings:
+  - languageId: "*"
+    dictionaries:
+      - java
 
 overrides:
   - filename: content/documentation/external-resources.md
