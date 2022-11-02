@@ -10,18 +10,10 @@ menu:
 
 ## Setup
 
-<table class="tabs-simple" data-tab-group="programming-language">
-<thead>
-<tr class="nav nav-pills" role="tablist">
-<th class="nav-link active" data-tab-item="java" role="tab" aria-selected="true" tabindex="0">Java</th>
-<th class="nav-link" data-tab-item="kotlin" role="tab" aria-selected="true" tabindex="0">Kotlin</th>
-</tr>
-</thead>
-<tbody>
-<tr class="tab-content">
-<td class="tab-pane" data-tab-item="java" role="tabpanel">
+{{< tabs tab-group="programming-language" pills=true >}}
+<div data-identifier="java" data-title="Java">
 
-You can either {{% download-file file="tinylog" version="stable" %}} and add the following JARs to your classpath:
+You can either download {{% download-file file="tinylog" version="stable" %}} and add the following JARs to your classpath:
 
 - `tinylog-api.jar`
 - `tinylog-core.jar`
@@ -31,10 +23,10 @@ Or you can add the latest version of tinylog 3 as dependency for your favorite b
 
 {{% download-artifact artifacts="tinylog-api,tinylog-impl" bundles="org.tinylog.api,org.tinylog.impl" version="stable" %}}
 
-</td>
-<td class="tab-pane" data-tab-item="kotlin" role="tabpanel">
+</div>
+<div data-identifier="kotlin" data-title="Kotlin">
 
-You can either {{% download-file file="tinylog-kotlin" version="stable" %}} and add the following JARs to your classpath:
+You can either download {{% download-file file="tinylog-kotlin" version="stable" %}} and add the following JARs to your classpath:
 
 - `tinylog-api-kotlin.jar`
 - `tinylog-core.jar`
@@ -44,25 +36,15 @@ Or you can add the latest version of tinylog 3 as dependency for your favorite b
 
 {{% download-artifact artifacts="tinylog-api-kotlin,tinylog-impl" bundles="org.tinylog.api.kotlin,org.tinylog.impl" version="stable" %}}
 
-</td>
-</tr>
-</tbody>
-</table>
+</div>
+{{< /tabs >}}
 
 ## Logging
 
-<table class="tabs-simple" data-tab-group="programming-language">
-<thead>
-<tr class="nav nav-pills" role="tablist">
-<th class="nav-link active" data-tab-item="java" role="tab" aria-selected="true" tabindex="0">Java</th>
-<th class="nav-link" data-tab-item="kotlin" role="tab" aria-selected="true" tabindex="0">Kotlin</th>
-</tr>
-</thead>
-<tbody>
-<tr class="tab-content">
-<td class="tab-pane" data-tab-item="java" role="tabpanel">
+{{< tabs tab-group="programming-language" pills=true >}}
+<div data-identifier="java" data-title="Java">
 
-Just add a logging statement to your application:
+Just add a log statement to your application:
 
 ```java
 import org.tinylog.Logger;
@@ -76,10 +58,10 @@ public class Application {
 }
 ```
 
-</td>
-<td class="tab-pane" data-tab-item="kotlin" role="tabpanel">
+</div>
+<div data-identifier="kotlin" data-title="Kotlin">
 
-Just add a logging statement to your application:
+Just add a log statement to your application:
 
 ```kotlin
 import org.tinylog.kotlin.Logger
@@ -89,10 +71,8 @@ fun main() {
 }
 ```
 
-</td>
-</tr>
-</tbody>
-</table>
+</div>
+{{< /tabs >}}
 
 When you run this example application, you will see a log entry in the console:
 
