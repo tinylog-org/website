@@ -4,71 +4,16 @@
 {{- $artifacts := split (.Get `artifacts`) `,`                                                      -}}
 {{- $bundles   := split (.Get `bundles`) `,`                                                        -}}
 
-<table class="tabs" data-tab-group="build-tool">
-<thead>
+{{- $tabItems := slice                                                                                                                                                                              -}}
+{{- $tabItems = $tabItems | append (dict `identifier` `gradle-groovy` `title` `Gradle (Groovy)` `content` (partial `download/gradle-groovy.html` (dict `version` $version `artifacts` $artifacts))) -}}
+{{- $tabItems = $tabItems | append (dict `identifier` `gradle-kotlin` `title` `Gradle (Kotlin)` `content` (partial `download/gradle-kotlin.html` (dict `version` $version `artifacts` $artifacts))) -}}
+{{- $tabItems = $tabItems | append (dict `identifier` `ivy`           `title` `Ivy`             `content` (partial `download/ivy.html`           (dict `version` $version `artifacts` $artifacts))) -}}
+{{- $tabItems = $tabItems | append (dict `identifier` `maven`         `title` `Maven`           `content` (partial `download/maven.html`         (dict `version` $version `artifacts` $artifacts))) -}}
+{{- $tabItems = $tabItems | append (dict `identifier` `p2`            `title` `P2`              `content` (partial `download/p2.html`            (dict `version` $version `bundles`   $bundles  ))) -}}
+{{- $tabItems = $tabItems | append (dict `identifier` `sbt`           `title` `SBT`             `content` (partial `download/sbt.html`           (dict `version` $version `artifacts` $artifacts))) -}}
 
-<tr class="nav">
-<th class="dropdown">
-<a class="dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" tabindex="0">Maven</a>
-<ul class="dropdown-menu">
-<li><a class="dropdown-item" data-tab-item="gradle-groovy" tabindex="0">Gradle (Groovy)</a></li>
-<li><a class="dropdown-item" data-tab-item="gradle-kotlin" tabindex="0">Gradle (Kotlin)</a></li>
-<li><a class="dropdown-item" data-tab-item="ivy" tabindex="0">Ivy</a></li>
-<li><a class="dropdown-item active" data-tab-item="maven" tabindex="0">Maven</a></li>
-<li><a class="dropdown-item" data-tab-item="p2" tabindex="0">P2</a></li>
-<li><a class="dropdown-item" data-tab-item="sbt" tabindex="0">SBT</a></li>
-</ul>
-</th>
-</tr>
-
-<tr class="nav nav-tabs" role="tablist">
-<th class="nav-link" data-tab-item="gradle-groovy" role="tab" aria-selected="false" tabindex="0">
-Gradle (Groovy)
-</th>
-<th class="nav-link" data-tab-item="gradle-kotlin" role="tab" aria-selected="false" tabindex="0">
-Gradle (Kotlin)
-</th>
-<th class="nav-link" data-tab-item="ivy" role="tab" aria-selected="false" tabindex="0">
-Ivy
-</th>
-<th class="nav-link active" data-tab-item="maven" role="tab" aria-selected="true" tabindex="0">
-Maven
-</th>
-<th class="nav-link" data-tab-item="p2" role="tab" aria-selected="false" tabindex="0">
-P2
-</th>
-<th class="nav-link" data-tab-item="sbt" role="tab" aria-selected="false" tabindex="0">
-SBT
-</th>
-</tr>
-
-</thead>
-<tbody>
-
-<tr class="tab-content">
-<td class="tab-pane" data-tab-item="gradle-groovy" role="tabpanel">
-{{ partial "download/gradle-groovy.html" (dict "version" $version "artifacts" $artifacts) }}
-</td>
-<td class="tab-pane" data-tab-item="gradle-kotlin" role="tabpanel">
-{{ partial "download/gradle-kotlin.html" (dict "version" $version "artifacts" $artifacts) }}
-</td>
-<td class="tab-pane" data-tab-item="ivy" role="tabpanel">
-{{ partial "download/ivy.html" (dict "version" $version "artifacts" $artifacts) }}
-</td>
-<td class="tab-pane active" data-tab-item="maven" role="tabpanel">
-{{ partial "download/maven.html" (dict "version" $version "artifacts" $artifacts) }}
-</td>
-<td class="tab-pane" data-tab-item="p2" role="tabpanel">
-{{ partial "download/p2.html" (dict "version" $version "bundles" $bundles) }}
-</td>
-<td class="tab-pane" data-tab-item="sbt" role="tabpanel">
-{{ partial "download/sbt.html" (dict "version" $version "artifacts" $artifacts) }}
-</td>
-</tr>
-
-</tbody>
-</table>
+{{- partial `tabs.html` (dict `tabGroup` `build-tool` `items` $tabItems `default` `maven`) -}}
 
 {{ if $file -}}
-Download: {{ partial "download/file-link.html" (dict "version" $version "file" $file) }}
+Download: {{ partial `download/file-link.html` (dict `version` $version `file` $file) }}
 {{ end -}}
