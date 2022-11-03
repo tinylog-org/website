@@ -1,2 +1,4 @@
+baz
 classpath
+javadoc
 tinylog
