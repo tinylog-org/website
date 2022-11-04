@@ -1,3 +1,9 @@
+-Dtinylog
 baz
 classpath
+env
+JDBC
+JNDI
+JVM
+Logcat
 tinylog
