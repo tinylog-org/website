@@ -8,6 +8,8 @@ menu:
     weight: 2
 ---
 
+## Introduction
+
 Unlike other logging frameworks, tinylog has a static logger class. Thus, the logger class can be used directly without having to create an instance of the logger for every class. tinylog supports five different severity levels: trace, debug, info, warn, and error. The logging methods are named according to the severity levels (for example, `Logger.trace()` for trace). Which severity levels should be output and which should be discarded is freely [configurable](configuration#severity-levels).
 
 The class name of tinylog's static logger is `org.tinylog.Logger`. Additionally, there is `org.tinylog.kotlin.Logger` for Kotlin, which is a re-implementation of `org.tinylog.Logger` for supporting enhanced Kotlin features
