@@ -3,6 +3,9 @@ version: "0.2"
 language: en-US
 minWordLength: 2
 
+import:
+  - node_modules/@cspell/dict-java/cspell-ext.json
+
 dictionaries:
   - custom-dictionary
 
@@ -10,3 +13,8 @@ dictionaryDefinitions:
   - name: custom-dictionary
     path: dictionary.txt
     addWords: true
+
+languageSettings:
+  - languageId: "*"
+    dictionaries:
+      - java
