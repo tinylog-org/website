@@ -60,6 +60,7 @@ jobs:
 
       - name: Generate API documentation
         run: |
+          cd tinylog
           mvn -P release --non-recursive --no-transfer-progress --batch-mode javadoc:javadoc
 
       - name: Copy API documentation
