@@ -24,5 +24,11 @@
         "automerge": true,
         "automergeType": "branch",
         "commitMessageAction": "Update package lock file"
+    },
+    "git-submodules": {
+        "enabled": true,
+        "automerge": true,
+        "automergeType": "branch",
+        "commitMessageAction": "Update theme submodule"
     }
 }
