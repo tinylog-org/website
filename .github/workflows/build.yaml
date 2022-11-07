@@ -39,11 +39,33 @@ jobs:
         with:
           node-version: 16
 
+      - name: Install Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          distribution: zulu
+
       - name: Install Dependencies
         run: npm install
 
       - name: Build Website
         run: npm run build:prod
+
+      - name: Checkout tinylog Repository
+        uses: actions/checkout@v3
+        with:
+          repository: tinylog-org/tinylog
+          ref: v3.0
+          path: tinylog
+
+      - name: Generate API documentation
+        run: |
+          mvn -P release --non-recursive --no-transfer-progress --batch-mode javadoc:javadoc
+
+      - name: Copy API documentation
+        run: |
+          rm -r public/v3/javadoc/*
+          cp -R tinylog/target/site/apidocs/* public/v3/javadoc
 
       - name: Generate timestamp
         id: timestamp
