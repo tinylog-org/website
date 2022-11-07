@@ -28,7 +28,6 @@
     "git-submodules": {
         "enabled": true,
         "automerge": true,
-        "automergeType": "branch",
-        "commitMessageAction": "Update theme submodule"
+        "automergeType": "branch"
     }
 }
