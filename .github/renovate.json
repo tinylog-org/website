@@ -15,8 +15,7 @@
                 "patch"
             ],
             "automerge": true,
-            "automergeType": "branch",
-            "automergeStrategy": "rebase"
+            "automergeType": "branch"
         }
     ],
     "lockFileMaintenance": {
