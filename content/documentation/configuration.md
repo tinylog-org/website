@@ -89,11 +89,52 @@ writer.file = ${ HOME | /tmp }/log.txt
 
 ## Format Pattern
 
-TODO
+The format pattern describes the format for outputting log entries. The default format pattern for the console and file writer is `{date} [{thread}] {level|min-length:5} {class}.{method}(): {message}`. However, the format can be freely configured.
+
+Example:
+
+```properties
+writer.type    = console                                 # required
+writer.format  = pattern                                 # optional, default: "pattern"
+writer.pattern = {level}: {class}.{method}()\t{message}  # optional, default see above
+```
+
+Curly brackets can be escaped by using a pair of single quotes. A single quote itself can be output by using doubled single quotes:
+
+```properties
+writer.type    = console
+writer.pattern = '{' {level} '}' - ''{message}''
+```
+
+Example output:
+
+```output
+{ INFO } - 'Hello World!'
+```
 
 ### Placeholders
 
-TODO
+ Placeholder      | Description
+:-----------------|:------------
+`{class}`         | The fully-qualified name of the class in which the log entry was issued
+`{class-name}`    | The name of the class (without package) in which the log entry was issued
+`{context: key}`  | A value from the [thread-based context](logging#context-values) ("key" should be replaced by a real key)
+`{date}`          | <p>The date and time, when the log entry was issued</p><p>Optionally, a custom date format pattern like `{date: HH:mm:ss.SSS}` can be provided. If none is provided, `yyyy-MM-dd HH:mm:ss` will be used default date format pattern. The date format pattern is compatible with [DateTimeFormatter]({{% javadoc "java.time.format.DateTimeFormatter" %}}).</p>
+`{exception}`     | The logged exception including the stack trace
+`{file}`          | The file name of the source file in which the log entry was issued
+`{level}`         | <p>The severity level of the log entry</p><p>Possible severity levels: TRACE, DEBUG, INFO, WARN, and ERROR</p>
+`{line}`          | The line number of the source file in which the log entry was issued
+`{message}`       | The logged message including the exception and stack trace if present
+`{message-only}`  | Only the logged message without any possible exception
+`{method}`        | The name of the method in which the log entry was issued
+`{package}`       | The name of the package in which the log entry was issued
+`{process-id}`    | The process ID of the application
+`{severity-code}` | The numeric code of the severity level of the log entry ("1" for ERROR ... "5" for TRACE)
+`{tag}`           | <p>The tag of the log entry</p><p>By default, nothing is output for untagged log entries. However, a default text can be explicitly configured. For example, `{tag: none}` outputs "none" for untagged log entries.</p>
+`{thread}`        | The name of the thread in which the log entry was issued
+`{thread-id}`     | The ID of the thread in which the log entry was issued
+`{timestamp}`     | <p>The UNIX timestamp, when the log entry was issued</p><p>By default, the timestamp is output in seconds. However, `{timestamp: milliseconds}` outputs the timestamp in milliseconds.</p>
+`{uptime}`        | <p>The application's uptime, when the log entry was issued</p><p>The default time format pattern is `HH:mm:ss`. However, it is also possible to define a custom time format pattern, such as `{uptime: d:HH:mm:ss.SSS}`. Supported symbols are "d" for days, "H" for hours, "m" for minutes, "s" for seconds, and "S" for fraction of second. Days are defined as 24 hours, even on days with time change.</p><p>Unlike standard Java, Android does not provide an API for receiving the application's uptime. Instead, tinylog outputs the time difference between the initialization of the logging framework and the current log entry on Android. Therefore, it is recommended to call `Tinylog.startUp()` explicitly as one of the first statements in `onCreate()` in the main activity to ensure correct uptimes on Android.</p>
 
 ### Length
 
