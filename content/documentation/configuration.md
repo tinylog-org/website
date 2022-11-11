@@ -290,7 +290,26 @@ writer.file = @{ log/path | /tmp }/log.txt  # use /tmp if java:comp/env/log/path
 
 ## JSON
 
-TODO
+The console and file writer can output log entries as JSON. In general, tinylog outputs [newline-delimited JSON](http://ndjson.org/) (NDJSON), which has the advantage of being streamable. Each log entry is stored as a separate JSON object in a single line. Thus, the first log entries can already be read by external tools while tinylog is still writing more log entries to the same file.
+
+JSON output has to be explicitly configured, because tinylog uses format pattern based output by default. Each JSON field can be individually configured by using any kind of [placeholders](#placeholders) or [format patterns](#format-pattern). It is possible to define complex format patterns with multiple placeholders for JSON fields.
+
+Example:
+
+```properties
+writer.type       = console                          # required
+writer.format     = ndjson                           # optional, default: "pattern"
+writer.fields.lvl = level                            # short for "{level}"
+writer.fields.src = {class}.{method}({file}:{line})
+writer.fields.msg = message                          # short for "{message}"
+```
+
+Output:
+
+```json
+{"lvl": "INFO", "src": "com.example.MyClass.foo(MyClass.java:6)", "msg": "Hello World!"}
+{"lvl": "DEBUG", "src": "com.example.MyClass.foo(MyClass.java:8)", "msg": "First line\nSecond line"}
+```
 
 ## Locale
 

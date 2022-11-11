@@ -6,4 +6,7 @@ JDBC
 JNDI
 JVM
 Logcat
+lvl
+NDJSON
+streamable
 tinylog
