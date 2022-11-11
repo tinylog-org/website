@@ -138,7 +138,91 @@ Example output:
 
 ### Length
 
-TODO
+The length of placeholders and even whole parts of the format pattern can be explicitly configured to align log entries. It is possible to define a minimum length, a maximum length, and an exact length.
+
+When defining a minimum length, additional spaces are appended to the end until the defined minimum length is reached. If the output value has the same or a greater number of characters than the defined minimum length, no spaces are appended.
+
+Example for minimum length:
+
+```properties
+writer.type    = console
+writer.pattern = {level|min-length:5}: {message}
+```
+
+Output:
+
+```output
+TRACE: Hello Trace!
+DEBUG: Hello Debug!
+INFO : Hello Info!
+WARN : Hello Warning!
+ERROR: Hello Error!
+```
+
+The minimum length (and all other length definitions) can also be defined for placeholders together with plain text. In opposite to the example above, this example avoids outputting any spaces before the colon:
+
+```properties
+writer.type    = console
+writer.pattern = {{level}:|min-length:6} {message}
+```
+
+Output:
+
+```output
+TRACE: Hello Trace!
+DEBUG: Hello Debug!
+INFO:  Hello Info!
+WARN:  Hello Warning!
+ERROR: Hello Error!
+```
+
+When defining a maximum length, the output value will be truncated if it is longer than the defined maximum length. If the maximum length is three or greater, an ellipsis (three dot characters) is placed at the end, so that truncated output can be easily recognized. These three dot characters are included in the maximum length. In other words, the truncated part is the three characters shorter than the defined maximum length for having enough space for the dot characters.
+
+Example for maximum length:
+
+```properties
+writer.type    = console
+writer.pattern = [{thread|max-length:10}] {message}
+```
+
+Output:
+
+```output
+[main] Hello Main Thread!
+[Worker-...] Hello Worker Thread!
+```
+
+It is also possible to define the exact length for the output value. This has the same effect as defining a minimum and maximum length with the same value.
+
+Example for exact length:
+
+```properties
+writer.type    = console
+writer.pattern = [{thread|length:10}] {message}
+```
+
+Output:
+
+```output
+[main      ] Hello Main Thread!
+[Worker-...] Hello Worker Thread!
+```
+
+For packages and fully-qualified class names, tinylog shortens the packages instead of truncating the end of the name. Thus, packages and classes can be easily recognized, even if they are shortened.
+
+Example:
+
+```properties
+writer.type    = console
+writer.pattern = {class|length:18} <- {class}
+```
+
+Output:
+
+```output
+c.f.bar.FirstClass <- com.foo.bar.FirstClass
+o.baz.SecondClass  <- org.baz.SecondClass
+```
 
 ### Indentation
 
