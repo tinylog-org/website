@@ -1,9 +1,9 @@
-{{- $classLanguage := default `unknown` .Type                                                           -}}
-{{- $dataLanguage  := .Type                                                                             -}}
-{{- $content       := cond (transform.CanHighlight .Type) (transform.HighlightCodeBlock .).Inner .Inner -}}
+{{- $classLanguage := default `unknown` .Type                                                                        -}}
+{{- $dataLanguage  := .Type                                                                                          -}}
+{{- $content       := cond (transform.CanHighlight .Type) (transform.HighlightCodeBlock .).Inner (htmlEscape .Inner) -}}
 {{- $content       := cond (eq `properties` $dataLanguage)
                    (replaceRE `( +)(# .+)</span>` `</span>$1<span class="c1">$2</span>` $content)
-                   (replaceRE `<span class="n">(\d.*)</span>` `<span class="kc">$1</span>` $content)    -}}
+                   (replaceRE `<span class="n">(\d.*)</span>` `<span class="kc">$1</span>` $content)                 -}}
 <pre><code class="language-{{ $classLanguage }}" data-lang="{{ $dataLanguage }}">
 {{- $content | safeHTML -}}
 </code><button type="button" class="copy-button" title="Copy to clipboard" data-bs-toggle="tooltip">
