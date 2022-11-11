@@ -232,7 +232,7 @@ Stored values are present until they are explicitly removed. Therefore, the thre
 ThreadContext.clear();
 ```
 
-Even within the same thread, code blocks can be executed with different independent context values. For this purpose, tinylog provides two methods: `withEmptyContext()` executes a code block without any predefined context values, and `withIndependentContext()` executes a code block with a copy of all existing context values of the current thread. Regardless of which of the two methods you use, all context value changes are undone after execution.
+Even within the same thread, code blocks can be executed with different independent context values. For this purpose, tinylog provides two methods: `withEmptyContext()` executes a code block without any predefined context values, and `withIndependentContext()` executes a code block with a copy of all existing context values of the current thread. Regardless of which of the two methods is used, all context value changes are undone after execution.
 
 {{< tabs tab-group="programming-language" >}}
 <div data-identifier="java" data-title="Java">
@@ -279,4 +279,4 @@ Logger.info(ThreadContext["value"])      // "foo"
 </div>
 {{< /tabs >}}
 
-The methods `withEmptyContext()` and `withIndependentContext()` are only needed if you want to encapsulate context values within the same thread for different code blocks. Usually, a context value should be stored for the entire lifetime of a thread. Then, you can call `ThreadContext.put()` directly.
+The methods `withEmptyContext()` and `withIndependentContext()` are only necessary for encapsulating context values within the same thread for different code blocks. If a context value should be stored for the entire lifetime of the thread, `ThreadContext.put()` can simply be called directly.
