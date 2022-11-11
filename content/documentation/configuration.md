@@ -226,7 +226,47 @@ o.baz.SecondClass  <- org.baz.SecondClass
 
 ### Indentation
 
-TODO
+The indentation depth of new lines of multiline messages is configurable. If an indentation depth is defined, each line but the first will be indented by the defined number of spaces and each tab at the beginning of a line will be replaced by the defined number of spaces.
+
+Example:
+
+```properties
+writer.type    = console
+writer.pattern = {level}: {message|indent:4}
+```
+
+Log statement:
+
+```java
+Logger.info("Multiple lines\nFirst line\n\tLine with tabs\nAnother line");
+```
+
+Output:
+
+```output
+INFO: Multiple lines
+    First line
+        Line with tabs
+    Another line
+```
+
+By default, stack trace elements of exceptions are indented by a tab. The first line with the exception class name and description are not indented. However, the indentation depth defined in the example above works for exceptions in the same way as for multiline text messages.
+
+Log statement:
+
+```java
+Logger.error(ex);
+```
+
+Output:
+
+```output
+ERROR: java.lang.RuntimeException: java.io.FileNotFoundException: file.log
+        at Application.run(Application.java:14)
+        at Application.main(Application.java:10)
+    Caused by: java.io.FileNotFoundException: file.log
+        at Application.main(Application.java:9)
+```
 
 ## JNDI Values
 
