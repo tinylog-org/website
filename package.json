@@ -12,8 +12,8 @@
     },
     "devDependencies": {
         "@types/bootstrap": "5.2.6",
-        "@typescript-eslint/eslint-plugin": "5.42.1",
-        "@typescript-eslint/parser": "5.42.1",
+        "@typescript-eslint/eslint-plugin": "5.43.0",
+        "@typescript-eslint/parser": "5.43.0",
         "eslint": "8.27.0",
         "stylelint": "14.15.0",
         "stylelint-config-idiomatic-order": "9.0.0",
