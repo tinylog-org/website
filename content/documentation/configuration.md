@@ -406,7 +406,15 @@ writer.file = #{ user.name | anonymous }/log.txt
 
 ## Verbose Mode
 
-TODO
+By default, tinylog only outputs its internal log entries if these are warning or errors. Internal log entries are log entries that are issued by the logging framework itself, such as configuration issues. The tag "tinylog" can be used to configure the severity level of internal log entries in the same way as for [all other tags](#tags). However, the tag "tinylog" has always to be configured explicitly and is not covered by wildcards.
+
+When having any configuration issues with tinylog, setting the severity level to "debug" can be helpful to understand what is going on under the hood.
+
+Example:
+
+```properties
+level = info, debug@tinylog
+```
 
 ## Writers
 
