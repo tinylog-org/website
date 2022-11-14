@@ -418,7 +418,33 @@ level = info, debug@tinylog
 
 ## Writers
 
-TODO
+Writers are used to output log entries. By default, tinylog outputs all log entries to the console if no writers are explicitly configured. A writer can be configured via the property `writer`.
+
+Example:
+
+```properties
+writer.type    = file
+writer.level   = info
+writer.pattern = {date}: {message}
+writer.file    = log.txt
+```
+
+It is also possible to have multiple writers. Each writer has to be configured via a unique property that starts with `writer`. These can be meaningful names, such as `writerConsole` or `writerFile`, or simply consecutively numbered names.
+
+Example:
+
+```properties
+writer1.type    = console
+writer1.level   = debug
+writer1.pattern = {level}: {message}
+
+writer2.type    = file
+writer2.level   = info
+writer2.pattern = {date}: {message}
+writer2.file    = log.txt
+```
+
+The definition of [format patterns](#format-pattern) and [severity levels](#severity-levels) is optional. If not explicitly set, default values are used.
 
 ### Console Writer
 
