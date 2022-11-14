@@ -14,7 +14,9 @@ tinylog 3 can be configured either via properties files or programmatically via 
 
 ### Properties Files
 
-The default file name for the configuration file is `tinylog.properties`. At startup, tinylog automatically loads the configuration from `tinylog.properties`, if this file is present in the classpath. If a build tool like Maven or Gradle is used, `src/main/resources` is usually the correct folder, where `tinylog.properties` can be placed. Plain IDE projects without build tool usually do not have a dedicated resource directory. In this case, `tinylog.properties` can typically be placed directly in the source directory `src`.
+The default file name for the configuration file is `tinylog.properties`. At startup, tinylog automatically loads the configuration from `tinylog.properties`, if this file is present in the classpath. If a build tool like Maven or Gradle is used, `src/main/resources` is usually the correct folder, where `tinylog.properties` can be placed.
+
+Plain IDE projects without build tool usually do not have a dedicated resource directory. Typically, `tinylog.properties` can typically be placed directly in the source directory `src` in this case.
 
 Example of a simple properties file for writing all log entries (with severity level info and higher) to `log.txt`:
 
@@ -24,7 +26,9 @@ writer.file  = log.txt
 writer.level = info
 ```
 
-If separate logging configurations are needed for development or test environments, they can be stored in `tinylog-dev.properties` and `tinylog-test.properties` respectively. On startup, tinylog looks firstly for `tinylog-dev.properties`, then for `tinylog-test.properties`, and afterwards for `tinylog.properties`. Of these three properties files, only the first existing file is loaded. It is best practice to put `tinylog-test.properties` in the test resource folder (usually `src/test/resources`). The development properties file `tinylog-dev.properties` can be put in the main resource folder (usually `src/main/resources`) and excluded in the distribution artifact by any common build tool.
+If separate logging configurations are needed for development or test environments, they can be stored in `tinylog-dev.properties` and `tinylog-test.properties` respectively. On startup, tinylog looks firstly for `tinylog-dev.properties`, then for `tinylog-test.properties`, and afterwards for `tinylog.properties`. Of these three properties files, only the first existing file is loaded.
+
+It is best practice to put `tinylog-test.properties` in the test resource folder (usually `src/test/resources`). The development properties file `tinylog-dev.properties` can be put in the main resource folder (usually `src/main/resources`) and excluded in the distribution artifact by any common build tool.
 
 In case the properties file has a name other than `tinylog.properties`, `tinylog-test.properties`, or `tinylog-dev.properties`, or is stored somewhere else in the classpath or on the file system, the path to the file can be passed via the system property `tinylog.configuration`.
 
