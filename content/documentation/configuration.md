@@ -159,7 +159,7 @@ WARN : Hello Warning!
 ERROR: Hello Error!
 ```
 
-The minimum length (and all other length definitions) can also be defined for placeholders together with plain text. In opposite to the example above, this example avoids outputting any spaces before the colon:
+The minimum length (and all other length definitions) can also be defined for placeholders together with plain text. In opposite to the above example, this example avoids outputting any spaces before the colon:
 
 ```properties
 writer.type    = console
@@ -250,7 +250,7 @@ INFO: Multiple lines
     Another line
 ```
 
-By default, stack trace elements of exceptions are indented by a tab. The first line with the exception class name and description are not indented. However, the indentation depth defined in the example above works for exceptions in the same way as for multiline text messages.
+By default, stack trace elements of exceptions are indented by a tab. The first line with the exception class name and description are not indented. However, the indentation depth defined in the above example works for exceptions in the same way as for multiline text messages.
 
 Log statement:
 
@@ -323,7 +323,66 @@ locale = en_US  # optional, default: Locale.getDefault()
 
 ## Severity Levels
 
-TODO
+### Global
+
+tinylog supports five different severity levels: trace, debug, info, warn, and error, Log entries with severity level "trace" are the least important. Those with severity level "error" are the most important. By default, the severity level "trace" is enabled. This means that log entries with any severity level are output.
+
+It is also possible to set the severity level to one of the five supported severity levels as well as to "off" to disable any kind of logging. For example, if "info" is set as severity level, only log entries with severity level "info" and higher (info, warn, and error) will be output, while all other log entries (trace and debug) will be ignored.
+
+Example:
+
+```properties
+level = info  # optional, default: trace
+```
+
+### Packages & Classes
+
+If needed, specific severity levels can be set for packages and classes to override the global severity level for them. In the below example, only log entries with severity level "warn" and higher are output by default. However, log entries with severity level "info" (and higher) are output, if issued by a class of the package `com.foo` or a sub package. If issued by the class `com.foo.MyClass`, even log entries with severity level "debug" (and higher) are output.
+
+Example:
+
+```properties
+level                 = warn
+level@com.foo         = info
+level@com.foo.MyClass = debug
+```
+
+### Writers {#writers-level}
+
+Severity levels can also be defined directly on writers. Thus, it is possible to have different severity levels for different writers. In the below example, only log entries with severity level "warn" and higher are output by the configured file writer. The console writer is configured to output log entries with severity level "debug" and higher. However, tinylog never passes any debug log entries to this writer as the global severity level is set to "info".
+
+Example:
+
+```properties
+level         = info     # optional, default: trace
+
+writer1.type  = file     # required
+writer1.level = warn     # optional, default: global severity level
+writer1.file  = log.txt  # required
+
+writer2.type  = console  # required
+writer2.level = debug    # optional, default: global severity level
+```
+
+### Tags
+
+If using [tagged log entries](logging#tags), the severity level can be configured individually for each tag. The concrete tag can be appended to the severity level, separated by an "@" character, if the severity level should only be assigned to the specific tag.
+
+Example:
+
+```properties
+level = info@foo, warn@bar
+```
+
+There are also three wildcards for more generic tag based configurations. The wildcard "-" is for untagged log entries, the wildcard "+" for all tagged log entries, and the wildcard "&ast;" for both, untagged and tagged log entries. Where the wildcard "&ast;" is optional as for example `level = *@info` is just the same as `level = info`. Such generic severity level configurations can be combined with concrete severity level configurations for specific tags.
+
+For example:
+
+```properties
+level = info@-, warn@+, debug@foo
+```
+
+The output of internal tinylog log entries can be configured in the same way by using the "tinylog" tag (see [verbose mode](#verbose-mode)).
 
 ## System Properties
 
@@ -344,10 +403,6 @@ Example:
 writer.type = file
 writer.file = #{ user.name | anonymous }/log.txt
 ```
-
-## Tags
-
-TODO
 
 ## Verbose Mode
 
