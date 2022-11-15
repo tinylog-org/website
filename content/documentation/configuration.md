@@ -564,4 +564,13 @@ writer.fields.MESSAGE   = message                          # short for "{message
 
 ### Logcat Writer
 
-TODO
+The Logcat writer forwards log entries to Android’s native logging system (known as Logcat). Therefore, this writer is only available on Android. It is possible to configure the [severity level](#severity-levels) and the [format patterns](#format-pattern) for the tag and message.
+
+Example:
+
+```properties
+writer.type            = logcat             # required
+writer.level           = info               # optional, default: global severity level
+writer.tag-pattern     = {class-name}       # optional, default: <none>
+writer.message-pattern = {file}: {message}  # optional, default: "{message}"
+```
