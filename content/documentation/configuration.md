@@ -118,27 +118,27 @@ Example output:
 
 ### Placeholders
 
- Placeholder      | Description
-:-----------------|:------------
-`{class}`         | The fully-qualified name of the class in which the log entry was issued
-`{class-name}`    | The name of the class (without package) in which the log entry was issued
-`{context: key}`  | A value from the [thread-based context](logging#context-values) ("key" should be replaced by a real key)
-`{date}`          | <p>The date and time, when the log entry was issued</p><p>Optionally, a custom date format pattern like `{date: HH:mm:ss.SSS}` can be provided. If none is provided, `yyyy-MM-dd HH:mm:ss` will be used default date format pattern. The date format pattern is compatible with [DateTimeFormatter]({{% javadoc "java.time.format.DateTimeFormatter" %}}).</p>
-`{exception}`     | The logged exception including the stack trace
-`{file}`          | The file name of the source file in which the log entry was issued
-`{level}`         | <p>The severity level of the log entry</p><p>Possible severity levels: TRACE, DEBUG, INFO, WARN, and ERROR</p>
-`{line}`          | The line number of the source file in which the log entry was issued
-`{message}`       | The logged message including the exception and stack trace if present
-`{message-only}`  | Only the logged message without any possible exception
-`{method}`        | The name of the method in which the log entry was issued
-`{package}`       | The name of the package in which the log entry was issued
-`{process-id}`    | The process ID of the application
-`{severity-code}` | The numeric code of the severity level of the log entry ("1" for ERROR ... "5" for TRACE)
-`{tag}`           | <p>The tag of the log entry</p><p>By default, nothing is output for untagged log entries. However, a default text can be explicitly configured. For example, `{tag: none}` outputs "none" for untagged log entries.</p>
-`{thread}`        | The name of the thread in which the log entry was issued
-`{thread-id}`     | The ID of the thread in which the log entry was issued
-`{timestamp}`     | <p>The UNIX timestamp, when the log entry was issued</p><p>By default, the timestamp is output in seconds. However, `{timestamp: milliseconds}` outputs the timestamp in milliseconds.</p>
-`{uptime}`        | <p>The application's uptime, when the log entry was issued</p><p>The default time format pattern is `HH:mm:ss`. However, it is also possible to define a custom time format pattern, such as `{uptime: d:HH:mm:ss.SSS}`. Supported symbols are "d" for days, "H" for hours, "m" for minutes, "s" for seconds, and "S" for fraction of second. Days are defined as 24 hours, even on days with time change.</p><p>Unlike standard Java, Android does not provide an API for receiving the application's uptime. Instead, tinylog outputs the time difference between the initialization of the logging framework and the current log entry on Android. Therefore, it is recommended to call `Tinylog.startUp()` explicitly as one of the first statements in `onCreate()` in the main activity to ensure correct uptimes on Android.</p>
+ Placeholder       | Description
+:------------------|:------------
+ `{class}`         | The fully-qualified name of the class in which the log entry was issued
+ `{class-name}`    | The name of the class (without package) in which the log entry was issued
+ `{context: key}`  | A value from the [thread-based context](logging#context-values) ("key" should be replaced by a real key)
+ `{date}`          | <p>The date and time, when the log entry was issued</p><p>Optionally, a custom date format pattern like `{date: HH:mm:ss.SSS}` can be provided. If none is provided, `yyyy-MM-dd HH:mm:ss` will be used default date format pattern. The date format pattern is compatible with [DateTimeFormatter]({{% javadoc "java.time.format.DateTimeFormatter" %}}).</p>
+ `{exception}`     | The logged exception including the stack trace
+ `{file}`          | The file name of the source file in which the log entry was issued
+ `{level}`         | <p>The severity level of the log entry</p><p>Possible severity levels: TRACE, DEBUG, INFO, WARN, and ERROR</p>
+ `{line}`          | The line number of the source file in which the log entry was issued
+ `{message}`       | The logged message including the exception and stack trace if present
+ `{message-only}`  | Only the logged message without any possible exception
+ `{method}`        | The name of the method in which the log entry was issued
+ `{package}`       | The name of the package in which the log entry was issued
+ `{process-id}`    | The process ID of the application
+ `{severity-code}` | The numeric code of the severity level of the log entry ("1" for ERROR ... "5" for TRACE)
+ `{tag}`           | <p>The tag of the log entry</p><p>By default, nothing is output for untagged log entries. However, a default text can be explicitly configured. For example, `{tag: none}` outputs "none" for untagged log entries.</p>
+ `{thread}`        | The name of the thread in which the log entry was issued
+ `{thread-id}`     | The ID of the thread in which the log entry was issued
+ `{timestamp}`     | <p>The UNIX timestamp, when the log entry was issued</p><p>By default, the timestamp is output in seconds. However, `{timestamp: milliseconds}` outputs the timestamp in milliseconds.</p>
+ `{uptime}`        | <p>The application's uptime, when the log entry was issued</p><p>The default time format pattern is `HH:mm:ss`. However, it is also possible to define a custom time format pattern, such as `{uptime: d:HH:mm:ss.SSS}`. Supported symbols are "d" for days, "H" for hours, "m" for minutes, "s" for seconds, and "S" for fraction of second. Days are defined as 24 hours, even on days with time change.</p><p>Unlike standard Java, Android does not provide an API for receiving the application's uptime. Instead, tinylog outputs the time difference between the initialization of the logging framework and the current log entry on Android. Therefore, it is recommended to call `Tinylog.startUp()` explicitly as one of the first statements in `onCreate()` in the main activity to ensure correct uptimes on Android.</p>
 
 ### Length
 
@@ -486,11 +486,11 @@ writer.policies = startup            # optional, default: <none>
 
 The path and name of the log file can contain dynamic path segments that are resolved when starting a new log file.
 
-Dynamic Path Segment | Description
-:--------------------|:------------
-`{count}`            | Consecutive number, starting with "0" for the first log file, "1" for the second log file, and so on
-`{date}`             | <p>Current date and time</p><p>Optionally, a custom date format pattern such as `{date: yyyy-MM-dd}` can be specified. If none is specified, `yyyy-MM-dd_HH-mm-ss` will be used default date format pattern. The date format pattern is compatible with [DateTimeFormatter]({{% javadoc "java.time.format.DateTimeFormatter" %}}).</p>
-`{process-id}`       | Process ID of the application
+ Dynamic Path Segment | Description
+:---------------------|:------------
+ `{count}`            | Consecutive number, starting with "0" for the first log file, "1" for the second log file, and so on
+ `{date}`             | <p>Current date and time</p><p>Optionally, a custom date format pattern such as `{date: yyyy-MM-dd}` can be specified. If none is specified, `yyyy-MM-dd_HH-mm-ss` will be used default date format pattern. The date format pattern is compatible with [DateTimeFormatter]({{% javadoc "java.time.format.DateTimeFormatter" %}}).</p>
+ `{process-id}`       | Process ID of the application
 
 It is possible to use multiple dynamic path segments for the same log file.
 
@@ -506,13 +506,13 @@ writer.policies = startup
 
 By default, tinylog always appends log entries to the same log file. However, it is possible (and recommended) to define policies for regularly starting new log files on defined events.
 
-Policy        | Description
-:-------------|:------------
-`daily`       | <p>Starts a new log file every day</p><p>By default, a new log file is started at midnight. However, the desired time can be defined in 24-hour format, such as: "`daily: 03:00`". The time zone can also be explicitly set, such as: "`daily: 03:00 UTC`".</p>
-`monthly`     | <p>Starts a new log file on the first day of each month</p><p>By default, a new log file is started at midnight. However, the desired time can be defined in 24-hour format, such as: "`monthly: 03:00`". The time zone can also be explicitly set, such as: "`monthly: 03:00 UTC`".</p>
-`size: <max>` | <p>Starts a new log file if the next log entry would exceed the maximum file size for the current log file</p><p>This policy ensures that a log file never exceeds the specified maximum file size. The file size can be set in bytes, KB, MB, or GB, such as: "`size: 32 MB`". Since tinylog never spreads a single log entry over multiple log files, full log files are usually a few bytes smaller than the specified maximum file size.</p>
-`startup`     | Starts a new log file at every application startup
-`weekly`      | <p>Starts a new log file every week</p><p>By default, a new log file is started at midnight on the first day of the week. The first day of the week depends on the [locale](#locale) and is usually a Sunday or Monday. However, the desired weekday can be freely defined, such as: "`weekly: Saturday`". The time with or without time zone can also be explicitly set, such as: "`weekly: Saturday 03:00 UTC`".</p>
+ Policy        | Description
+:--------------|:------------
+ `daily`       | <p>Starts a new log file every day</p><p>By default, a new log file is started at midnight. However, the desired time can be defined in 24-hour format, such as: "`daily: 03:00`". The time zone can also be explicitly set, such as: "`daily: 03:00 UTC`".</p>
+ `monthly`     | <p>Starts a new log file on the first day of each month</p><p>By default, a new log file is started at midnight. However, the desired time can be defined in 24-hour format, such as: "`monthly: 03:00`". The time zone can also be explicitly set, such as: "`monthly: 03:00 UTC`".</p>
+ `size: <max>` | <p>Starts a new log file if the next log entry would exceed the maximum file size for the current log file</p><p>This policy ensures that a log file never exceeds the specified maximum file size. The file size can be set in bytes, KB, MB, or GB, such as: "`size: 32 MB`". Since tinylog never spreads a single log entry over multiple log files, full log files are usually a few bytes smaller than the specified maximum file size.</p>
+ `startup`     | Starts a new log file at every application startup
+ `weekly`      | <p>Starts a new log file every week</p><p>By default, a new log file is started at midnight on the first day of the week. The first day of the week depends on the [locale](#locale) and is usually a Sunday or Monday. However, the desired weekday can be freely defined, such as: "`weekly: Saturday`". The time with or without time zone can also be explicitly set, such as: "`weekly: Saturday 03:00 UTC`".</p>
 
 It is possible to define multiple policies for the same file writer.
 
