@@ -1,6 +1,7 @@
 -Dtinylog
 baz
 classpath
+DS
 env
 JDBC
 JNDI

@@ -526,7 +526,41 @@ writer.policies = startup, size: 32 MB
 
 ### JDBC Writer
 
-TODO
+The JDBC writer inserts log entries into a table of an SQL database or a data source. It is possible to configure the [severity level](#severity-levels), the URL, the credentials, the schema, the table, and the fields.
+
+All configured fields must exist as column in the target database table. The value for each field can be individually configured by using any kind of [placeholders](#placeholders) or [format patterns](#format-pattern). It is possible to define complex format patterns with multiple placeholders for fields.
+
+Most placeholders are resolved to a string and expect the corresponding database column to have a textual data type such as VARCHAR or CLOB. Exceptions are `{date}` which expects TIMESTAMP or DATETIME and `{line}`, `{process-id}`, `{severity-code}`, `{thread-id}`, and `{timestamp}` which expect a numeric date type like NUMBER, INT, or BIGINT.
+
+Example for SQL database:
+
+```properties
+writer.type             = jdbc                             # required
+writer.level            = info                             # optional, default: global severity level
+writer.url              = jdbc:mysql://localhost/example   # required
+writer.user             = bob                              # usually required by database
+writer.password         = secret123                        # usually required by database
+writer.schema           = PUBLIC                           # optional, default depends on database
+writer.table            = LOGS                             # required
+writer.fields.TIMESTAMP = date                             # short for "{date}"
+writer.fields.SOURCE    = {class}.{method}({file}:{line})
+writer.fields.MESSAGE   = message                          # short for "{message}"
+```
+
+Example for data source:
+
+```properties
+writer.type             = jdbc                             # required
+writer.level            = info                             # optional, default: global severity level
+writer.url              = java:comp/env/jdbc/ExampleDS     # required
+writer.user             = bob                              # usually not required for data sources
+writer.password         = secret123                        # usually not required for data sources
+writer.schema           = PUBLIC                           # optional, default depends on database
+writer.table            = LOGS                             # required
+writer.fields.TIMESTAMP = date                             # short for "{date}"
+writer.fields.SOURCE    = {class}.{method}({file}:{line})
+writer.fields.MESSAGE   = message                          # short for "{message}"
+```
 
 ### Logcat Writer
 
