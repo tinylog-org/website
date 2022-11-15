@@ -468,7 +468,61 @@ writer.threshold = off                # optional, default: "warn"
 
 ### File Writer
 
-TODO
+The file writer writes log entries to log files. It is possible to configure the [severity level](#severity-levels), the [format pattern](#format-pattern), the path and name to the log file, the charset, and the policies for starting new log files. Instead of format patterns, it is also possible to output [JSON](#json).
+
+Example:
+
+```properties
+writer.type     = file               # required
+writer.level    = info               # optional, default: global severity level
+writer.file     = app.log            # required
+writer.charset  = ISO-8859-1         # optional, default: UTF-8
+writer.format   = pattern            # optional, default: "pattern"
+writer.pattern  = {date}: {message}  # optional, default: see format pattern chapter
+writer.policies = startup            # optional, default: <none>
+```
+
+#### File Path & Name
+
+The path and name of the log file can contain dynamic path segments that are resolved when starting a new log file.
+
+Dynamic Path Segment | Description
+:--------------------|:------------
+`{count}`            | Consecutive number, starting with "0" for the first log file, "1" for the second log file, and so on
+`{date}`             | <p>Current date and time</p><p>Optionally, a custom date format pattern such as `{date: yyyy-MM-dd}` can be specified. If none is specified, `yyyy-MM-dd_HH-mm-ss` will be used default date format pattern. The date format pattern is compatible with [DateTimeFormatter]({{% javadoc "java.time.format.DateTimeFormatter" %}}).</p>
+`{process-id}`       | Process ID of the application
+
+It is possible to use multiple dynamic path segments for the same log file.
+
+Example:
+
+```properties
+writer.type     = file
+writer.file     = logs/{date: yyyy-MM}/app-{count}.log
+writer.policies = startup
+```
+
+#### Policies
+
+By default, tinylog always appends log entries to the same log file. However, it is possible (and recommended) to define policies for regularly starting new log files on defined events.
+
+Policy        | Description
+:-------------|:------------
+`daily`       | <p>Starts a new log file every day</p><p>By default, a new log file is started at midnight. However, the desired time can be defined in 24-hour format, such as: "`daily: 03:00`". The time zone can also be explicitly set, such as: "`daily: 03:00 UTC`".</p>
+`monthly`     | <p>Starts a new log file on the first day of each month</p><p>By default, a new log file is started at midnight. However, the desired time can be defined in 24-hour format, such as: "`monthly: 03:00`". The time zone can also be explicitly set, such as: "`monthly: 03:00 UTC`".</p>
+`size: <max>` | <p>Starts a new log file if the next log entry would exceed the maximum file size for the current log file</p><p>This policy ensures that a log file never exceeds the specified maximum file size. The file size can be set in bytes, KB, MB, or GB, such as: "`size: 32 MB`". Since tinylog never spreads a single log entry over multiple log files, full log files are usually a few bytes smaller than the specified maximum file size.</p>
+`startup`     | Starts a new log file at every application startup
+`weekly`      | <p>Starts a new log file every week</p><p>By default, a new log file is started at midnight on the first day of the week. The first day of the week depends on the [locale](#locale) and is usually a Sunday or Monday. However, the desired weekday can be freely defined, such as: "`weekly: Saturday`". The time with or without time zone can also be explicitly set, such as: "`weekly: Saturday 03:00 UTC`".</p>
+
+It is possible to define multiple policies for the same file writer.
+
+Example:
+
+```properties
+writer.type     = file
+writer.file     = app.log
+writer.policies = startup, size: 32 MB
+```
 
 ### JDBC Writer
 

@@ -10,3 +10,4 @@ lvl
 NDJSON
 streamable
 tinylog
+UTF
