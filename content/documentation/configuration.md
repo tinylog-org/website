@@ -549,7 +549,7 @@ The definition of [format patterns](#format-pattern) and [severity levels](#seve
 
 ### Console Writer
 
-The console writer is the default writer of tinylog, and writes log entries to the console. By default, warnings and errors are written to the standard error stream ([System.err]({{% javadoc "java.lang.System#err" %}}), and all other severity levels to the standard output stream ([System.out]({{% javadoc "java.lang.System#out" %}}). The streams are configurable, and it is possible to output all log entries to the same stream, regardless of their severity level.
+The console writer is the default writer of tinylog, and writes log entries to the console. By default, warnings and errors are written to the standard error stream ([System.err]({{% javadoc "java.lang.System#err" %}})), and all other severity levels to the standard output stream ([System.out]({{% javadoc "java.lang.System#out" %}})). The streams are configurable, and it is possible to output all log entries to the same stream, regardless of their severity level.
 
 Example:
 
