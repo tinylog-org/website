@@ -452,7 +452,19 @@ The definition of [format patterns](#format-pattern) and [severity levels](#seve
 
 ### Console Writer
 
-TODO
+The console writer is the default writer of tinylog and outputs log entries to the console. It is possible to configure the [severity level](#severity-levels), the [format pattern](#format-pattern), and the threshold for outputting log entries to the standard output or standard error stream. Instead of format patterns, it is also possible to output [JSON](#json).
+
+By default, warnings and errors are output to the standard error stream ([System.err]({{% javadoc "java.lang.System#err" %}})), and all other severity levels are output to the standard output stream ([System.out]({{% javadoc "java.lang.System#out" %}})). However, the threshold is configurable. For example, setting "threshold" to "trace" will output all log entries to the standard error stream, whereas setting "threshold" to "off" will output all log entries to the standard output stream.
+
+Example:
+
+```properties
+writer.type      = console            # required
+writer.level     = info               # optional, default: global severity level
+writer.format    = pattern            # optional, default: "pattern"
+writer.pattern   = {date}: {message}  # optional, default: see format pattern chapter
+writer.threshold = off                # optional, default: "warn"
+```
 
 ### File Writer
 
