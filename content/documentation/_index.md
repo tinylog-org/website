@@ -3,5 +3,5 @@ title: Documentation
 menu:
   main:
     identifier: documentation
-weight: 4
+    weight: 4
 ---
