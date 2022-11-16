@@ -8,8 +8,10 @@ JNDI
 JVM
 Logcat
 lvl
+MDC
 NDJSON
 NOP
+SLF4J
 streamable
 tinylog
 UTF
