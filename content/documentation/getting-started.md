@@ -15,9 +15,9 @@ menu:
 
 You can either download {{% download-file file="tinylog" version="stable" %}} and add the following JARs to your classpath:
 
-- `tinylog-api.jar`
-- `tinylog-core.jar`
-- `tinylog-iml.jar`
+- `tinylog-api-{{% stable-version %}}.jar`
+- `tinylog-core-{{% stable-version %}}.jar`
+- `tinylog-iml-{{% stable-version %}}.jar`
 
 Or you can add the latest version of tinylog 3 as dependency for your favorite build tool:
 
@@ -28,9 +28,9 @@ Or you can add the latest version of tinylog 3 as dependency for your favorite b
 
 You can either download {{% download-file file="tinylog-kotlin" version="stable" %}} and add the following JARs to your classpath:
 
-- `tinylog-api-kotlin.jar`
-- `tinylog-core.jar`
-- `tinylog-iml.jar`
+- `tinylog-api-kotlin-{{% stable-version %}}.jar`
+- `tinylog-core-{{% stable-version %}}.jar`
+- `tinylog-iml-{{% stable-version %}}.jar`
 
 Or you can add the latest version of tinylog 3 as dependency for your favorite build tool:
 
