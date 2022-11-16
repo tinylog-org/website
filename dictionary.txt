@@ -9,6 +9,7 @@ JVM
 Logcat
 lvl
 NDJSON
+NOP
 streamable
 tinylog
 UTF

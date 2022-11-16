@@ -325,6 +325,24 @@ Example:
 locale = en_US  # optional, default: Locale.getDefault()
 ```
 
+## Logging Backend
+
+If the `tinylog-impl` artifact is in the classpath and there are no other artifacts with tinylog-compatible logging backends, the native tinylog backend will be used for outputting log entries. However, if there are multiple tinylog-compatible logging backends in the classpath, all log entries will be forwarded to all of them. In this case, the native tinylog backend can be explicitly defined as the only active logging backend.
+
+Example:
+
+```properties
+backends = tinylog  # optional, default depends on classpath
+```
+
+It is also possible to completely disable any kind of logging output by using the NOP logging backend.
+
+Example:
+
+```properties
+backends = nop  # optional, default depends on classpath
+```
+
 ## Severity Levels
 
 ### Global
