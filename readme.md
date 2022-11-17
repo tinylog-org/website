@@ -12,13 +12,13 @@ This section is only relevant, if you want to run the website on your local mach
 
 In order to run the website on your local machine, you have to install [NodeJS](https://nodejs.org/en/) and check out the repository recursively to integrate the tinylog theme as submodule. Many Git clients offer a checkbox that can be checked to check out the repository recursively. Otherwise, execute `git submodule update --init` on the console in the directory, where you have checked out the website repository. All NPM packages can be installed via the command `npm install`.
 
- Command                   | Description                                                                     
-:--------------------------|:--------------------------------------------------------------------------------
- `npm run build:dev`       | Builds the website including drafts and source maps                             
- `npm run build:prod`      | Builds the website excluding drafts and minifies all assets                     
- `npm run create:post`     | Creates a news post                                                             
- `npm run cspell:check`    | Checks the spelling in all content files                                        
- `npm run start:dev`       | Starts the web server with the website including drafts and source maps         
- `npm run start:prod`      | Starts the web server with the website excluding drafts and minifies all assets 
+| Command                | Description                                                                     |
+|:-----------------------|:--------------------------------------------------------------------------------|
+| `npm run build:dev`    | Builds the website including drafts and source maps                             |
+| `npm run build:prod`   | Builds the website excluding drafts and minifies all assets                     |
+| `npm run create:post`  | Creates a news post                                                             |
+| `npm run cspell:check` | Checks the spelling in all content files                                        |
+| `npm run start:dev`    | Starts the web server with the website including drafts and source maps         |
+| `npm run start:prod`   | Starts the web server with the website excluding drafts and minifies all assets |
 
 The theme can be updated via `git submodule update --remote`.
