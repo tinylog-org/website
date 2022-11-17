@@ -10,7 +10,7 @@
         </button>
         {{- end }}
         <a class="navbar-brand" href="{{ `` | safeURL | relURL }}" aria-hidden="true">
-            {{ partial "logo.svg" . }}
+            {{ partial "logo.gohtml" . }}
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#main-navbar" aria-label="Main Menu">
             <span class="navbar-toggler-icon"></span>
@@ -21,7 +21,7 @@
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body pt-0">
-                {{ partial "navbar.html" . }}
+                {{ partial "navbar.gohtml" . }}
             </div>
         </div>
     </nav>

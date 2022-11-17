@@ -1,4 +1,4 @@
-{{- $svg := partial `bootstrap-icon.svg` .                     -}}
+{{- $svg := partial `bootstrap-icon-svg.gohtml` .              -}}
 {{- $svg := $svg | replaceRE `\n|\r` ``  | replaceRE `\"` `'`  -}}
 {{- $svg := $svg | replaceRE `<` `%3c` | replaceRE `>` `%3e`   -}}
 {{- $svg := $svg | replaceRE `#` `%23`                         -}}

@@ -9,4 +9,4 @@
 {{- $scratch.Add `items` (slice (dict `identifier` $identifier `title` $title `content` $content)) -}}
 {{- end -}}
 
-{{- partial `tabs.html` (dict `tabGroup` (.Get `tab-group`) `items` ($scratch.Get `items`) `pills` (.Get `pills`)) -}}
+{{- partial `tabs.gohtml` (dict `tabGroup` (.Get `tab-group`) `items` ($scratch.Get `items`) `pills` (.Get `pills`)) -}}

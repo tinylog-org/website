@@ -1,4 +1,4 @@
-{{- $branch    := partial `branch.html` site                -}}
+{{- $branch    := partial `branch.gohtml` site              -}}
 {{- $project   := replaceRE `(.*)/.*` `$1` .                -}}
 {{- $class     := replaceRE `.*/([^(]*).*` `$1` .           -}}
 {{- $hint      := replaceRE `[^(]*(.*)` `$1` .              -}}

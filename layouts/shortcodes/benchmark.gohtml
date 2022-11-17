@@ -13,7 +13,7 @@
 </thead>
 
 <tbody>
-{{- $branch := partial `branch.html` . -}}
+{{- $branch := partial `branch.gohtml` . -}}
 {{- $url := printf `https://raw.githubusercontent.com/tinylog-org/tinylog/%s/benchmarks/src/main/resources/benchmark.csv` $branch -}}
 {{- $csv := getCSV `,` $url -}}
 {{- range $index, $row := $csv -}}
@@ -29,7 +29,7 @@
 
             {{- $name := replaceRE ` / .*$` `` $benchmark -}}
             {{- $filters := dict `0` (printf `^.* / %s$` $method) `8` (printf `^%s$` $paramLocationInfo ) -}}
-            {{- $boundaries := partial `find-boundary-values.html` (dict `data` $csv `column` 4 `filters` $filters) -}}
+            {{- $boundaries := partial `find-boundary-values.gohtml` (dict `data` $csv `column` 4 `filters` $filters) -}}
             {{- $count := cond (eq $mode `ss`) (div 1_000_000 $data) ($data) -}}
             {{- $max := cond (eq $mode `ss`) (div 1_000_000 $boundaries.min) ($boundaries.max) -}}
             {{- $width := mul (div $count $max) 100 -}}

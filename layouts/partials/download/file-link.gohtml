@@ -3,6 +3,6 @@
 
 {{- range $json.assets -}}
     {{- if eq .name $fileName -}}
-        [{{ .name }}]({{ .browser_download_url }}) ({{ partial "file-size.html" .size }})
+        [{{ .name }}]({{ .browser_download_url }}) ({{ partial "file-size.gohtml" .size }})
     {{- end -}}
 {{- end -}}

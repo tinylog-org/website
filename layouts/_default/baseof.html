@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="{{ .Site.LanguageCode }}">
-    {{ partial "head.html" . }}
+    {{ partial "head.gohtml" . }}
     <body>
-        {{ partial "header.html" . }}
+        {{ partial "header.gohtml" . }}
         <main class="{{ .Page.Params.cssClass }}">
         {{- block "main" . }}{{- end }}
         </main>
-        {{- partial "footer.html" . }}
+        {{- partial "footer.gohtml" . }}
     </body>
 </html>

@@ -34,27 +34,27 @@ pre {
     border: 0;
     margin: 0.5rem 1.5rem;
     background-color: inherit;
-    background-image: url("{{ partial `bootstrap-icon.url` (dict `file` `clipboard` `color` `#{$body-color}`) }}");
+    background-image: url("{{ partial `bootstrap-icon-url.gohtml` (dict `file` `clipboard` `color` `#{$body-color}`) }}");
     background-position: center;
     background-repeat: no-repeat;
 
     &:hover {
-      background-image: url("{{ partial `bootstrap-icon.url` (dict `file` `clipboard` `color` `#{$primary}`) }}");
+      background-image: url("{{ partial `bootstrap-icon-url.gohtml` (dict `file` `clipboard` `color` `#{$primary}`) }}");
     }
 
     &.success {
-      background-image: url("{{ partial `bootstrap-icon.url` (dict `file` `clipboard-check` `color` `#{$body-color}`) }}");
+      background-image: url("{{ partial `bootstrap-icon-url.gohtml` (dict `file` `clipboard-check` `color` `#{$body-color}`) }}");
 
       &:hover {
-        background-image: url("{{ partial `bootstrap-icon.url` (dict `file` `clipboard-check` `color` `#{$primary}`) }}");
+        background-image: url("{{ partial `bootstrap-icon-url.gohtml` (dict `file` `clipboard-check` `color` `#{$primary}`) }}");
       }
     }
 
     &.failed {
-      background-image: url("{{ partial `bootstrap-icon.url` (dict `file` `clipboard-x` `color` `#{$body-color}`) }}");
+      background-image: url("{{ partial `bootstrap-icon-url.gohtml` (dict `file` `clipboard-x` `color` `#{$body-color}`) }}");
 
       &:hover {
-        background-image: url("{{ partial `bootstrap-icon.url` (dict `file` `clipboard-x` `color` `#{$primary}`) }}");
+        background-image: url("{{ partial `bootstrap-icon-url.gohtml` (dict `file` `clipboard-x` `color` `#{$primary}`) }}");
       }
     }
   }

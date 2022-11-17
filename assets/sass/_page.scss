@@ -35,7 +35,7 @@
       display: block;
       width: 1.5em;
       height: 1.5em;
-      background-image: url("{{ partial `bootstrap-icon.url` (dict `file` `calendar-event` `color` `#{$dark}`) }}");
+      background-image: url("{{ partial `bootstrap-icon-url.gohtml` (dict `file` `calendar-event` `color` `#{$dark}`) }}");
       background-repeat: no-repeat;
       background-size: 100%;
       content: "";
