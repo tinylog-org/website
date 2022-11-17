@@ -1,0 +1,31 @@
+@import "variables";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/variables";
+
+.page .service-info.table {
+  @include media-breakpoint-up(lg) {
+    tr td {
+      &:first-child {
+        width: 10em;
+      }
+    }
+  }
+
+  @include media-breakpoint-down(lg) {
+    tr td {
+      &:first-child {
+        color: inherit;
+        font-family: inherit;
+        font-size: inherit;
+
+        :last-child::after {
+          content: ":";
+        }
+      }
+
+      &:not(:first-child) {
+        font-weight: inherit;
+      }
+    }
+  }
+}

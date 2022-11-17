@@ -1,0 +1,79 @@
+{{- $interfaces      := cond (isset .Params `interfaces`     ) (split (.Get `interfaces`)      `,`) (slice) -}}
+{{- $baseClasses     := cond (isset .Params `baseClasses`    ) (split (.Get `baseClasses`)     `,`) (slice) -}}
+{{- $implementations := cond (isset .Params `implementations`) (split (.Get `implementations`) `,`) (slice) -}}
+
+<table class="table service-info">
+<thead>
+
+<tr>
+<th>Category</th>
+<th>Info</th>
+</tr>
+
+</thead>
+<tbody>
+
+{{- if ge (len $interfaces) 1 }}
+<tr>
+<td>
+Service File
+</td>
+<td>
+<code>{{ replaceRE `(.*)/(.*)` `META-INF/services/$2` (index $interfaces 0) }}</code>
+</td>
+</tr>
+{{ end -}}
+
+{{- if ge (len $interfaces) 1 }}
+<tr>
+<td>
+{{ if eq (len $interfaces) 1 -}}
+Interface
+{{- else -}}
+Interfaces
+{{- end }}
+</td>
+<td>
+{{ range $interfaces -}}
+{{ partial `github-file-link.html` . }}<br />
+{{- end }}
+</td>
+</tr>
+{{ end -}}
+
+{{- if ge (len $baseClasses) 1 }}
+<tr>
+<td>
+{{ if eq (len $baseClasses) 1 -}}
+Useful Base Class
+{{- else -}}
+Useful Base Classes
+{{- end }}
+</td>
+<td>
+{{ range $baseClasses -}}
+{{ partial `github-file-link.html` . }}<br />
+{{- end }}
+</td>
+</tr>
+{{ end -}}
+
+{{- if ge (len $implementations) 1 }}
+<tr>
+<td>
+{{ if eq (len $implementations) 1 -}}
+Implementation
+{{- else -}}
+Implementations
+{{- end }}
+</td>
+<td>
+{{ range $implementations -}}
+{{ partial `github-file-link.html` . }}<br />
+{{- end }}
+</td>
+</tr>
+{{ end -}}
+
+</tbody>
+</table>

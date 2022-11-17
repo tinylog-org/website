@@ -1,0 +1,12 @@
+{{- $branch    := partial `branch.html` site                -}}
+{{- $project   := replaceRE `(.*)/.*` `$1` .                -}}
+{{- $class     := replaceRE `.*/([^(]*).*` `$1` .           -}}
+{{- $hint      := replaceRE `[^(]*(.*)` `$1` .              -}}
+{{- $path      := replaceRE `\.` `/` $class                 -}}
+{{- $extension := cond (in $class `kotlin`) `kotlin` `java` -}}
+
+{{- $format := `https://github.com/tinylog-org/tinylog/blob/%s/%s/src/main/java/%s.%s` -}}
+{{- $url    := printf $format $branch $project $path $extension                        -}}
+{{- $link   := printf `[%s](%s) %s` $class $url $hint | markdownify                    -}}
+
+{{- $link -}}
