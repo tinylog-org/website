@@ -157,4 +157,4 @@ jobs:
         with:
           url: https://tinylog.org/v3
           pages_path: public
-          cmd_params: "--exclude=(tinylog.org/v(1|2)/|tinylog.org/p2-repository/|github.com/tinylog-org/website/edit/) --max-connections-per-host=5 --rate-limit=5 --header=User-Agent:Mozilla/5.0 --color=always"
+          cmd_params: "--exclude=(tinylog.org/(v[^3]|p2-repository)/|github.com/tinylog-org/website/edit/) --max-connections-per-host=5 --rate-limit=5 --header=User-Agent:Mozilla/5.0 --color=always"
