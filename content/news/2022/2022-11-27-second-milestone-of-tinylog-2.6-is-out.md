@@ -1,0 +1,8 @@
+---
+title: Second milestone of tinylog 2.6 is out
+date: 2022-11-27
+---
+
+In previous versions, the artifact `tinylog-impl` had an unwanted dependency on `animal-sniffer-annotations`. Actually, these annotations are only required at compile time to ensure backward compatibility for Java 6 and 7. Now, `animal-sniffer-annotations` is correctly declared as a compile-time only dependency.
+
+All manifests of all tinylog artifacts now contain specification and implementation details. This makes it possible, for example, to resolve the tinylog version at runtime.
