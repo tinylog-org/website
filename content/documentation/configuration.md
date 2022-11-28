@@ -440,7 +440,7 @@ level = info, debug@tinylog
 
 ## Writers
 
-Writers are used to output log entries. By default, tinylog outputs all log entries to the console if no writers are explicitly configured. A writer can be configured via the property `writer`.
+Writers are used to output log entries. By default, if no writers are configured, tinylog outputs all log entries on the JVM to the console and on Android to Logcat. However, a writer can be configured explicitly via the property `writer`.
 
 Example:
 
