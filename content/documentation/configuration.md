@@ -40,15 +40,18 @@ java -jar -Dtinylog.configuration=/tinylog/configuration.properties application.
 
 ### Configuration API
 
-The configuration API of tinylog can be accessed by calling `Tinylog.getConfiguration()`. Via the received instance of the class [Configuration]({{% javadoc "org.tinylog.core.Configuration" %}}), configuration parameters can be read and set. Configuration changes have to be made before issuing the first log entry. After issuing the first log entry, the configuration becomes immutable and further configuration changes will throw an `UnsupportedOperationException`.
+The configuration API of tinylog can be accessed by calling `Tinylog.getConfigurationBuilder(boolean inherit)`. If the argument `inherit` is set to `true`, the received [ConfigurationBuilder]({{% javadoc "org.tinylog.core.ConfigurationBuilder" %}}) is initialized with the current configuration. Whereas if the argument `inherit` is set to `false`, the received [ConfigurationBuilder]({{% javadoc "org.tinylog.core.ConfigurationBuilder" %}}) is empty.
+
+Via the received configuration builder, configuration parameters can be read and set. Configuration changes have to be made before issuing the first log entry. After issuing the first log entry, the configuration becomes immutable and further configuration changes will throw an `UnsupportedOperationException`.
 
 Example of configuring a [file writer](#file-writer) for writing all log entries (with severity level info and higher) to `log.txt`:
 
 ```java
-Tinylog.getConfiguration()
+Tinylog.getConfigurationBuilder(true)
     .set("writer.type", "file")
     .set("writer.file", "log.txt")
-    .set("writer.level", "info");
+    .set("writer.level", "info")
+    .activate();
 ```
 
 ## Automatic Shutdown
