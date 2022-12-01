@@ -429,6 +429,18 @@ writer.type = file
 writer.file = #{ user.name | anonymous }/log.txt
 ```
 
+## Time Zone
+
+The time zone is used for logging date-based values, outputting the date and time of log entries via the date placeholder, adding dates or time to the log file path, and configuring the time for date-based policies.
+
+By default, tinylog uses the system's default time zone. However, the time zone can be set to any time zone supported by Java.
+
+Example:
+
+```properties
+zone = UTC  # optional, default: TimeZone.getDefault()
+```
+
 ## Verbose Mode
 
 By default, tinylog only outputs its internal log entries if these are warning or errors. Internal log entries are log entries that are issued by the logging framework itself, such as configuration issues. The tag "tinylog" can be used to configure the severity level of internal log entries in the same way as for [all other tags](#tags). However, the tag "tinylog" has always to be configured explicitly and is not covered by wildcards.
@@ -529,11 +541,11 @@ By default, tinylog always appends log entries to the same log file. However, it
 
  Policy        | Description
 :--------------|:------------
- `daily`       | <p>Starts a new log file every day</p><p>By default, a new log file is started at midnight. However, the desired time can be defined in 24-hour format, such as: "`daily: 03:00`". The time zone can also be explicitly set, such as: "`daily: 03:00 UTC`".</p>
- `monthly`     | <p>Starts a new log file on the first day of each month</p><p>By default, a new log file is started at midnight. However, the desired time can be defined in 24-hour format, such as: "`monthly: 03:00`". The time zone can also be explicitly set, such as: "`monthly: 03:00 UTC`".</p>
+ `daily`       | <p>Starts a new log file every day</p><p>By default, a new log file is started at midnight. However, the desired time can be defined in 24-hour format, such as: "`daily: 03:00`".</p>
+ `monthly`     | <p>Starts a new log file on the first day of each month</p><p>By default, a new log file is started at midnight. However, the desired time can be defined in 24-hour format, such as: "`monthly: 03:00`".</p>
  `size: <max>` | <p>Starts a new log file if the next log entry would exceed the maximum file size for the current log file</p><p>This policy ensures that a log file never exceeds the specified maximum file size. The file size can be set in bytes, KB, MB, or GB, such as: "`size: 32 MB`". Since tinylog never spreads a single log entry over multiple log files, full log files are usually a few bytes smaller than the specified maximum file size.</p>
  `startup`     | Starts a new log file at every application startup
- `weekly`      | <p>Starts a new log file every week</p><p>By default, a new log file is started at midnight on the first day of the week. The first day of the week depends on the [locale](#locale) and is usually a Sunday or Monday. However, the desired weekday can be freely defined, such as: "`weekly: Saturday`". The time with or without time zone can also be explicitly set, such as: "`weekly: Saturday 03:00 UTC`".</p>
+ `weekly`      | <p>Starts a new log file every week</p><p>By default, a new log file is started at midnight on the first day of the week. The first day of the week depends on the [locale](#locale) and is usually a Sunday or Monday. However, the desired weekday can be freely defined, such as: "`weekly: Saturday`". The time with can also be explicitly set, such as: "`weekly: Saturday 03:00`".</p>
 
 It is possible to define multiple policies for the same file writer.
 
