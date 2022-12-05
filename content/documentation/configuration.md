@@ -431,9 +431,9 @@ writer.file = #{ user.name | anonymous }/log.txt
 
 ## Time Zone
 
-The time zone is used for logging date-based values, outputting the date and time of log entries via the date placeholder, adding dates or time to the log file path, and configuring the time for date-based policies.
+The configured time zone is used for logging date-based values, outputting the date and time of log entries via the date placeholder, adding dates or time to the log file path, and configuring the time for date-based policies.
 
-By default, tinylog uses the system's default time zone. However, the time zone can be set to any time zone supported by Java.
+By default, tinylog uses the system's default time zone. However, any time zone supported by Java can be configured.
 
 Example:
 
