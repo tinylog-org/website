@@ -59,9 +59,6 @@ German tutorial about using tinylog 2.3 with a focus of differences to other log
 [tinylog Tutorial](https://mkyong.com/logging/tinylog-tutorial/)  
 English tutorial about the main features of tinylog 2 with GitHub source code examples by mkyong
 
-[tinylog 2.3: Logging-Ausgaben detailliert konfigurieren](https://web.archive.org/web/20210420130107/https://jaxenter.de/java/tinylog-2-3-100145)  
-German news article about the release of tinylog 2.3 by Martin Winandy
-
 [Tinylog - Simple example with Rolling File Writer](https://ckinan.com/blog/tinylog-simple-example-rolling-file-writer/)  
 English tutorial about using the rolling file writer with tinylog 2 by Cesar Kina
 
@@ -76,9 +73,6 @@ German news article about the release of tinylog 2.1 by Martin Winandy
 
 [Java-Logging-Framework tinylog in Version 2.0 erschienen](https://www.heise.de/developer/meldung/Java-Logging-Framework-tinylog-in-Version-2-0-erschienen-4501478.html)  
 German news article about the release of tinylog 2.0 by Alexander Neumann
-
-[TinyLog – Lightweight Java Logging Framework Tutorial](https://web.archive.org/web/20210924182748/https://www.journaldev.com/31579/tinylog-lightweight-java-logging-framework-tutorial)  
-English tutorial for tinylog 2 by Pankaj
 
 [Better logging with TinyLog 2](https://dzone.com/articles/better-logging-with-tinylog-2)  
 English article about tinylog 2 by Erik Pragt
