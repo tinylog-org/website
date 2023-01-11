@@ -44,6 +44,9 @@ Example application for configuring tinylog via Typesafe's Config
 
 ## Articles and Tutorials
 
+[Lightweight Logging With tinylog 2](https://www.baeldung.com/java-logging-tinylog-guide)
+English basic tutorial about issuing log entries and configuring tinylog 2 by baeldung
+
 [Spring Boot integration lightweight logging framework tinylog](https://www.springcloud.io/post/2022-02/spring-boot-tinylog/)  
 English tutorial for using tinylog as logging back-end for Spring Boot by springcloud.io
 
