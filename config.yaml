@@ -8,9 +8,9 @@ publishDir: ./public/v2
 
 params:
   maxMajorVersion: 2
-  stableVersion: 2.5.0
-  previewVersion: 2.6.0-M2
-  size: 187965
+  stableVersion: 2.6.0
+  previewVersion: 2.6.0
+  size: 191624
 
 permalinks:
   /documentation: /:filename
