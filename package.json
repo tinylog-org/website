@@ -12,7 +12,7 @@
         "theme": "file:themes/tinylog-theme"
     },
     "devDependencies": {
-        "@cspell/dict-java": "5.0.4",
+        "@cspell/dict-java": "5.0.5",
         "cspell": "6.26.3",
         "hugo-extended": "0.110.0"
     }
