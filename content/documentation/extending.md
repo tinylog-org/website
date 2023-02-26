@@ -67,7 +67,7 @@ package org.tinylog.example;
 import java.io.File;
 import org.tinylog.converters.FileConverter;
 
-public class CypherFileConverter implements FileConverter {
+public class CipherFileConverter implements FileConverter {
 
     private long offset = 0;
 
@@ -114,17 +114,17 @@ Custom file converters have to be registered as a service so that tinylog can fi
 For the new custom file converter, `META-INF/services/org.tinylog.converters.FileConverter` would look like this:
 
 ```text
-org.tinylog.example.CypherFileConverter
+org.tinylog.example.CipherFileConverter
 ```
 
-Now the file converter is ready to be used. To use it in a configuration, the name of the file converter is derived from the class name. Spaces are inserted between the words, and "File Converter" disappears at the end. Hence, `CypherFileConverter` becomes `cypher`.
+Now the file converter is ready to be used. To use it in a configuration, the name of the file converter is derived from the class name. Spaces are inserted between the words, and "File Converter" disappears at the end. Hence, `CipherFileConverter` becomes `cipher`.
 
 Configuration for activating the new custom file converter in `tinylog.properties`:
 
 ```properties
 writer         = rolling file
 writer.file    = output-{count}.log
-writer.convert = cypher
+writer.convert = cipher
 ```
 
 ## Custom Logging API
