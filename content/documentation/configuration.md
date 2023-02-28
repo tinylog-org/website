@@ -137,11 +137,22 @@ Example output:
  `{package}`       | The name of the package in which the log entry was issued
  `{process-id}`    | The process ID of the application
  `{severity-code}` | The numeric code of the severity level of the log entry ("1" for ERROR ... "5" for TRACE)
- `{tag}`           | <p>The tag of the log entry</p><p>By default, nothing is output for untagged log entries. However, a default text can be explicitly configured. For example, `{tag: none}` outputs "none" for untagged log entries.</p>
+ `{tag}`           | The tag of the log entry
  `{thread}`        | The name of the thread in which the log entry was issued
  `{thread-id}`     | The ID of the thread in which the log entry was issued
  `{timestamp}`     | <p>The UNIX timestamp, when the log entry was issued</p><p>By default, the timestamp is output in seconds. However, `{timestamp: milliseconds}` outputs the timestamp in milliseconds.</p>
  `{uptime}`        | <p>The application's uptime, when the log entry was issued</p><p>The default time format pattern is `HH:mm:ss`. However, it is also possible to define a custom time format pattern, such as `{uptime: d:HH:mm:ss.SSS}`. Supported symbols are "d" for days, "H" for hours, "m" for minutes, "s" for seconds, and "S" for fraction of second. Days are defined as 24 hours, even on days with time change.</p><p>Unlike standard Java, Android does not provide an API for receiving the application's uptime. Instead, tinylog outputs the time difference between the initialization of the logging framework and the current log entry on Android. Therefore, it is recommended to call `Tinylog.startUp()` explicitly as one of the first statements in `onCreate()` in the main activity to ensure correct uptimes on Android.</p>
+
+### Default Value
+
+By default, nothing is output if a placeholder has no value. For example, if the `{tag}` placeholder is used, no tag will be output for an untagged log entry. However, it is possible to explicitly configure a default value for placeholders.
+
+Example:
+
+```properties
+writer.type    = console
+writer.pattern = {tag|default:<none>}: {message}
+```
 
 ### Length
 
