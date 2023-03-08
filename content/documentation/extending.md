@@ -176,7 +176,7 @@ tinylog supports variable resolvers for dynamically resolving values in the conf
 
 ## Writers
 
-Writers are used to output log entries. The [name]({{% javadoc "org.tinylog.impl.writers.WriterBuilder#getName()" %}}) of a writer can be used to enable it in the configuration. All properties of a writer are passed to its writer builder as part of the [configuration object](org.tinylog.core.Configuration).
+Writers are used to output log entries. The [name]({{% javadoc "org.tinylog.impl.writers.WriterBuilder#getName()" %}}) of a writer can be used to enable it in the configuration. All properties of a writer are passed to its writer builder as part of the [configuration object]({{% javadoc "org.tinylog.core.Configuration" %}}).
 
 Example:
 
