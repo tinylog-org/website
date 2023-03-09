@@ -58,6 +58,7 @@ shoneslab
 simonsilvalauinger
 SLF4J
 Sollder1
+SPI
 springcloud
 SSD
 tagname
