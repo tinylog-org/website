@@ -8,8 +8,8 @@ publishDir: ./public/v2
 
 params:
   maxMajorVersion: 2
-  stableVersion: 2.6.0
-  previewVersion: 2.6.0
+  stableVersion: 2.6.1
+  previewVersion: 2.6.1
   size: 191624
 
 permalinks:
