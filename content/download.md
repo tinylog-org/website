@@ -26,7 +26,7 @@ Enhanced logging API for Kotlin with tinylog implementation
 
 ### SLF4J
 
-`slf4j-tinylog` is a binding for SLF4J, which means that `slf4j-api` must also exist in the classpath, but no other binding than `slf4j-tinylog`. The binding supports SLF4J 1.7 and later as well as SLF4J 2.0 and later.
+`slf4j-tinylog` is a binding for SLF4J, which means that `slf4j-api` must also be present in the classpath, but no other binding than `slf4j-tinylog`. The binding supports SLF4J 2.0 and later.
 
 All log entries are forwarded from `org.slf4j.Logger` to tinylog and processed by the tinylog implementation. Markers are mapped to tinylog’s tags. MDC and tinylog’s thread context share their data.
 
