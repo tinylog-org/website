@@ -10,7 +10,7 @@ menu:
 
 ## Introduction
 
-tinylog is highly extensible. Most of tinylog's features are based on standard Java services, which are loaded via the [ServiceLoader]({{% javadoc "java.util.ServiceLoader" %}}) mechanism. A good tutorial on how services generally work in Java can be found at [baeldung.com](https://www.baeldung.com/java-spi). A custom feature can be developed for tinylog by implementing the corresponding interface and registering the implementation as a service.
+tinylog is highly extensible. Most of tinylog’s features are based on standard Java services, which are loaded via the [ServiceLoader]({{% javadoc "java.util.ServiceLoader" %}}) mechanism. A good tutorial on how services generally work in Java can be found at [baeldung.com](https://www.baeldung.com/java-spi). A custom feature can be developed for tinylog by implementing the corresponding interface and registering the implementation as a service.
 
 In every chapter, there are links to the service interfaces, which provide detailed implementation documentation in the Javadoc. Additionally, the linked built-in implementations provide a good basis for developing own custom implementations.
 

@@ -141,7 +141,7 @@ Example output:
  `{thread}`        | The name of the thread in which the log entry was issued
  `{thread-id}`     | The ID of the thread in which the log entry was issued
  `{timestamp}`     | <p>The UNIX timestamp, when the log entry was issued</p><p>By default, the timestamp is output in seconds. However, `{timestamp: milliseconds}` outputs the timestamp in milliseconds.</p>
- `{uptime}`        | <p>The application's uptime, when the log entry was issued</p><p>The default time format pattern is `HH:mm:ss`. However, it is also possible to define a custom time format pattern, such as `{uptime: d:HH:mm:ss.SSS}`. Supported symbols are "d" for days, "H" for hours, "m" for minutes, "s" for seconds, and "S" for fraction of second. Days are defined as 24 hours, even on days with time change.</p><p>Unlike standard Java, Android does not provide an API for receiving the application's uptime. Instead, tinylog outputs the time difference between the initialization of the logging framework and the current log entry on Android. Therefore, it is recommended to call `Tinylog.startUp()` explicitly as one of the first statements in `onCreate()` in the main activity to ensure correct uptimes on Android.</p>
+ `{uptime}`        | <p>The application’s uptime, when the log entry was issued</p><p>The default time format pattern is `HH:mm:ss`. However, it is also possible to define a custom time format pattern, such as `{uptime: d:HH:mm:ss.SSS}`. Supported symbols are "d" for days, "H" for hours, "m" for minutes, "s" for seconds, and "S" for fraction of second. Days are defined as 24 hours, even on days with time change.</p><p>Unlike standard Java, Android does not provide an API for receiving the application’s uptime. Instead, tinylog outputs the time difference between the initialization of the logging framework and the current log entry on Android. Therefore, it is recommended to call `Tinylog.startUp()` explicitly as one of the first statements in `onCreate()` in the main activity to ensure correct uptimes on Android.</p>
 
 ### Default Value
 
@@ -444,7 +444,7 @@ writer.file = #{ user.name | anonymous }/log.txt
 
 The configured time zone is used for logging date-based values, outputting the date and time of log entries via the date placeholder, adding dates or time to the log file path, and configuring the time for date-based policies.
 
-By default, tinylog uses the system's default time zone. However, any time zone supported by Java can be configured.
+By default, tinylog uses the system’s default time zone. However, any time zone supported by Java can be configured.
 
 Example:
 
