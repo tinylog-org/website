@@ -13,7 +13,7 @@ tinylog is constantly being developed and actively supported. Feedback and quest
 
 - If you want to contribute to tinylog, you are welcome to [create a pull request](https://github.com/tinylog-org/tinylog/pulls) on GitHub.
 
-- If you want to contact the main developer directly, you can e-mail martin@tinylog.org.
+- If you want to contact the main developer directly, you can e-mail <martin@tinylog.org>.
 
 <div class="tuple">
     <div>
