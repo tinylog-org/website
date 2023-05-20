@@ -44,6 +44,9 @@ Example application for configuring tinylog via Typesafe's Config
 
 ## Articles and Tutorials
 
+[Java Logger의 또다른 식구, tinylog](https://dev.gmarket.com/67)  
+Korean article about tinylog 2 by 지마켓 박규민
+
 [Lightweight Logging With tinylog 2](https://www.baeldung.com/java-logging-tinylog-guide)  
 English basic tutorial about issuing log entries and configuring tinylog 2 by baeldung
 
