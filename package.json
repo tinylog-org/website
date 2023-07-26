@@ -7,7 +7,7 @@
         "stylelint:fix": "stylelint \"assets/sass/**/*.scss\" --fix"
     },
     "dependencies": {
-        "bootstrap": "5.3.0",
+        "bootstrap": "5.3.1",
         "bootstrap-icons": "1.10.5"
     },
     "devDependencies": {
