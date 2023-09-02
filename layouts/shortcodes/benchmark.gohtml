@@ -13,7 +13,7 @@
 </thead>
 
 <tbody>
-{{- $branch := partial `branch.gohtml` . -}}
+{{- $branch := partial `branch.gohtml` $.Site -}}
 {{- $url := printf `https://raw.githubusercontent.com/tinylog-org/tinylog/%s/benchmarks/src/main/resources/benchmark.csv` $branch -}}
 {{- $csv := getCSV `,` $url -}}
 {{- range $index, $row := $csv -}}
