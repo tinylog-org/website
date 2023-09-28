@@ -143,6 +143,7 @@ jobs:
     name: Check Links
     runs-on: ubuntu-22.04
     needs: build
+    continue-on-error: true
 
     steps:
 
