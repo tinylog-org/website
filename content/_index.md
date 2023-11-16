@@ -66,7 +66,7 @@ public class Application {
 ## Many Output Options
 
 tinylog has multiple writers for outputting log entries.
-Log entries can be written to the console, into database tables, to log files, to JSON files, and to Android's logcat.
+Log entries can be written to the console, to log files, to JSON files, into database tables, to syslog servers, and to Android's logcat.
 
 There are even four different file-based writers, depending on whether you simply want to write to a log file, to a JSON file, share a log file with several instances simultaneously, or start a new log file regularly after defined events (such as reaching a configured file size).
 
@@ -75,8 +75,9 @@ There are even four different file-based writers, depending on whether you simpl
 
 <ul class="list-group" aria-label="Output Options">
 <li class="list-group-item">Console via <code>System.out</code> and <code>System.err</code></li>
-<li class="list-group-item">Database via JDBC and Java EE data sources</li>
 <li class="list-group-item">Files (including shared and rolling log files)</li>
+<li class="list-group-item">Database via JDBC and Java EE data sources</li>
+<li class="list-group-item">Syslog Server</li>
 <li class="list-group-item">Logcat (Android only)</li>
 </ul>
 

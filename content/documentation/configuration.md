@@ -523,6 +523,7 @@ A writer outputs issued log entries (for example to a log file or to the console
  [Logcat Writer](#logcat-writer)             | logcat       | Forwards log entries to Android's native logging system
  [Rolling File Writer](#rolling-file-writer) | rolling file | Like _File Writer_ but uses multiple files by rotating them
  [Shared File Writer](#shared-file-writer)   | shared file  | Like _File Writer_ but supports writing of multiple instances of an application to the same file
+ [Syslog Writer](#syslog-writer)             | syslog       | Sends log entries to a syslog server
 
 Example:
 
@@ -734,6 +735,30 @@ writer.format  = {level}: {message} # optional
 writer.file    = log.txt            # required, absolute or relative path
 writer.charset = UTF-8              # optional
 writer.append  = true               # optional, default: false
+```
+
+### Syslog Writer
+
+Since version 2.7, tinylog is able to send log entries to syslog servers. TCP and UDP are both supported as protocol. By default, the writer sends all log entries to `localhost:514`. However, you can freely configure the host and port. Domains and IP addresses are both supported as host.
+
+All supported syslog facilities can be configured by using the corresponding keyword. A complete list with all facilities and the corresponding keywords can be found on [Wikipedia](https://en.wikipedia.org/wiki/Syslog#Facility).
+
+By default, tinylog automatically maps the logging level of log entries to the corresponding syslog severity level. `ERROR` is mapped to Error (3), `WARN` to Warning (4), `INFO` to Informational (6), and `DEBUG` as well as `TRACE` are both mapped to Debug (7). If you want to assign the same syslog severity to all log entries regardless of their original logging level, you can set a static severity level. All supported syslog severity levels can be found on [Wikipedia](https://en.wikipedia.org/wiki/Syslog#Severity_level)
+
+The syslog writer uses the standard charset of the Java virtual machine by default. However, it is possible to configure any charset that is supported by the current Java virtual machine. Since Java 7, the charsets US-ASCII, ISO-8859-1, UTF-8, and UTF-16 are guaranteed to be available on every implementation of the Java platform.
+
+Example:
+
+```properties
+writer          = syslog
+writer.level    = debug              # optional
+writer.format   = {level}: {message} # optional
+writer.charset  = UTF-8              # optional
+writer.protocol = TCP                # optional, default: UDP
+writer.host     = 192.168.0.1        # optional, default: localhost
+writer.port     = 6514               # optional, default: 514
+writer.facility = CONSOLE            # optional, default: USER
+writer.severity = NOTICE             # optional, derived from logging level by default
 ```
 
 ## Writing Thread
