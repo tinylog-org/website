@@ -5,6 +5,7 @@
 -keepnames
 adolgiy
 appender
+AUTHPRIV
 autoshutdown
 baeldung
 BAZ
@@ -30,12 +31,14 @@ JPMS
 JSL
 JVM
 kahgoh
+Karlowicz
 ker
 kropp
 LDJSON
 Legner
 Logback
 logcat
+LPR
 mailz
 MairwunNx
 Markus
@@ -45,6 +48,7 @@ myapp
 nop
 pabl0rg
 Pankaj
+Piotr
 pid
 pmw
 Poynt
@@ -66,6 +70,7 @@ tinylog
 typesafe
 UDP
 unbuffered
+UUCP
 UTF
 VM
 Wildfly
