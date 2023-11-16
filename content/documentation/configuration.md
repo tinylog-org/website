@@ -739,11 +739,11 @@ writer.append  = true               # optional, default: false
 
 ### Syslog Writer
 
-Since version 2.7, tinylog is able to send log entries to syslog servers. TCP and UDP are both supported as protocol. By default, the writer sends all log entries to `localhost:514`. However, you can freely configure the host and port. Domains and IP addresses are both supported as host.
+Since version 2.7, tinylog is able to send log entries to syslog servers. By default, the writer sends all log entries to `localhost:514`. However, you can configure the host and port freely. Domains as well as IP addresses can be used as host and TCP as well as UDP can be used as protocol.
 
-All supported syslog facilities can be configured by using the corresponding keyword. A complete list with all facilities and the corresponding keywords can be found on [Wikipedia](https://en.wikipedia.org/wiki/Syslog#Facility).
+All standard syslog facilities are supported: `KERN`, `USER` (default), `MAIL`, `DAEMON`, `AUTH`, `SYSLOG`, `LPR`, `NEWS`, `UUCP`, `CRON`, `AUTHPRIV`, `FTP`, `NTP`, `LOG_AUDIT`, `LOG_ALERT`, `CLOCK`, and `LOCAL0` to `LOCAL7`
 
-By default, tinylog automatically maps the logging level of log entries to the corresponding syslog severity level. `ERROR` is mapped to Error (3), `WARN` to Warning (4), `INFO` to Informational (6), and `DEBUG` as well as `TRACE` are both mapped to Debug (7). If you want to assign the same syslog severity to all log entries regardless of their original logging level, you can set a static severity level. All supported syslog severity levels can be found on [Wikipedia](https://en.wikipedia.org/wiki/Syslog#Severity_level)
+By default, tinylog automatically maps the logging level of log entries to the corresponding syslog severity level. `ERROR` is mapped to Error (3), `WARN` to Warning (4), `INFO` to Informational (6), and `DEBUG` as well as `TRACE` are both mapped to Debug (7). If you want to assign the same syslog severity to all log entries regardless of their original logging level, you can set a static severity level. All standard syslog severity levels are supported: `EMERG`, `ALERT`, `CRITICAL`, `ERROR`, `WARNING`, `NOTICE`, `INFORMATIONAL`, `DEBUG`
 
 The syslog writer uses the standard charset of the Java virtual machine by default. However, it is possible to configure any charset that is supported by the current Java virtual machine. Since Java 7, the charsets US-ASCII, ISO-8859-1, UTF-8, and UTF-16 are guaranteed to be available on every implementation of the Java platform.
 

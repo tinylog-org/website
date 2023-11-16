@@ -64,6 +64,7 @@ SSD
 tagname
 tinylog
 typesafe
+UDP
 unbuffered
 UTF
 VM
