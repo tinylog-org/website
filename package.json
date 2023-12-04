@@ -14,7 +14,7 @@
     "devDependencies": {
         "@cspell/dict-de-de": "3.2.0",
         "@cspell/dict-java": "5.0.6",
-        "cspell": "8.1.0",
+        "cspell": "8.1.2",
         "hugo-extended": "0.120.4"
     }
 }
