@@ -4,8 +4,8 @@ language: en-US
 minWordLength: 2
 
 import:
-  - node_modules/@cspell/dict-de-de/cspell-ext.json
-  - node_modules/@cspell/dict-java/cspell-ext.json
+  - ./node_modules/@cspell/dict-de-de/cspell-ext.json
+  - ./node_modules/@cspell/dict-java/cspell-ext.json
 
 dictionaries:
   - custom-dictionary
