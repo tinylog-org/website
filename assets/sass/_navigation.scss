@@ -18,8 +18,8 @@ header.navbar {
   color: $light;
 
   @include media-breakpoint-up(lg) {
-    margin-right: var(--bs-navbar-brand-margin-end);
     padding-bottom: var(--bs-navbar-brand-padding-y);
+    margin-right: var(--bs-navbar-brand-margin-end);
   }
 
   &:hover,
