@@ -10,7 +10,7 @@
         </button>
         {{- end }}
         <a class="navbar-brand" href="{{ `` | safeURL | relURL }}" aria-hidden="true">
-            {{ partial "logo.gohtml" . }}
+            tinylog {{ substr .Site.Params.stableVersion 0 1 }}
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#main-navbar" aria-label="Main Menu">
             <span class="navbar-toggler-icon"></span>

@@ -15,34 +15,17 @@ header.navbar {
 .navbar-brand {
   padding: 0;
   margin: 0;
+  color: $light;
 
   @include media-breakpoint-up(lg) {
     margin-right: var(--bs-navbar-brand-margin-end);
-  }
-
-  .logo {
-    height: $navbar-content-height;
-  }
-
-  .logo-rectangle,
-  .logo-text {
-    fill: $light;
-    font-size: 1em;
-    transition: fill $transition-time ease-in-out;
-  }
-
-  .logo-text-invert {
-    fill: $dark;
-    font-size: 1.5em;
+    padding-bottom: var(--bs-navbar-brand-padding-y);
   }
 
   &:hover,
   &:focus,
   &:active {
-    .logo-rectangle,
-    .logo-text {
-      fill: $white;
-    }
+    fill: $white;
   }
 }
 
