@@ -17,4 +17,4 @@ jobs:
         uses: ruzickap/action-my-broken-link-checker@v2
         with:
           url: https://tinylog.org/
-          cmd_params: "--exclude=(baeldung.com|mkyong.com|gmarket.com) --max-connections-per-host=1 --rate-limit=1 --buffer-size=8192 --header=User-Agent:Mozilla/5.0 --color=always"
+          cmd_params: "--max-connections-per-host=1 --rate-limit=1 --buffer-size=8192 --header=User-Agent:Wget --color=always"
