@@ -143,7 +143,6 @@ jobs:
     name: Check Links
     runs-on: ubuntu-22.04
     needs: build
-    if: false
 
     steps:
 
@@ -158,4 +157,4 @@ jobs:
         with:
           url: https://tinylog.org/v3
           pages_path: public
-          cmd_params: "--exclude=(tinylog.org/(v[^3]|p2-repository)/|github.com/tinylog-org/website/edit/) --max-connections-per-host=5 --rate-limit=5 --buffer-size=8192 --header=User-Agent:Mozilla/5.0 --color=always"
+          cmd_params: "--exclude=(tinylog.org/(v[^3]|p2-repository)/|github.com/tinylog-org/website/edit/) --max-connections-per-host=2 --rate-limit=10 --accepted-status-codes=200,403 --buffer-size=8192 --color=always"
