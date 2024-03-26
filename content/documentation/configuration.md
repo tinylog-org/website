@@ -276,7 +276,7 @@ A format pattern describes the format for outputting log entries. The default fo
  {closing-curly-bracket} | Closing curly bracket: "}"
  {class}                 | Fully-qualified name of the class in which the log entry was issued
  {class-name}            | Name of the class (without package) in which the log entry was issued
- {context: key}          | Value from [thread-based context](logging#context-values) ("key" should be replaced by a real key). If the key is omitted, all keys and their values are sent to output.
+ {context: key}          | Value from [thread-based context](logging#context-values) ("key" should be replaced by a real key). If the key is omitted, all keys and their values are output.
  {date}                  | Date and time of issuing the log entry. Optionally there can be a custom date format pattern such as `{date: HH:mm:ss.SSS}`. The date format pattern is compatible with [SimpleDateFormat]({{% javadoc "java.text.SimpleDateFormat" %}}) and on Java 9 (or higher), also with [DateTimeFormatter]({{% javadoc "java.time.format.DateTimeFormatter" %}}) that supports milliseconds and nanoseconds. The default date format pattern is "yyyy-MM-dd HH:mm:ss".
  {exception}             | Logged exception including stack trace
  {file}                  | Filename of the source file in which the log entry was issued
