@@ -125,7 +125,7 @@ Example output:
 :------------------|:------------
  `{class}`         | The fully-qualified name of the class in which the log entry was issued
  `{class-name}`    | The name of the class (without package) in which the log entry was issued
- `{context: key}`  | A value from the [thread-based context](logging#context-values) ("key" should be replaced by a real key)
+ `{context: key}`  | A value from the [thread-based context](logging#context-values) ("key" should be replaced by a real key). If the key is omitted, all keys and their values are output.
  `{date}`          | <p>The date and time, when the log entry was issued</p><p>Optionally, a custom date format pattern like `{date: HH:mm:ss.SSS}` can be provided. If none is provided, `yyyy-MM-dd HH:mm:ss` will be used default date format pattern. The date format pattern is compatible with [DateTimeFormatter]({{% javadoc "java.time.format.DateTimeFormatter" %}}).</p>
  `{exception}`     | The logged exception including the stack trace
  `{file}`          | The file name of the source file in which the log entry was issued
