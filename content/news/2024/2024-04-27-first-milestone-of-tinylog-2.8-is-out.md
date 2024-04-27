@@ -9,3 +9,6 @@ The placeholder `{context}` has been extended for this purpose.
 Previously, the placeholder with the syntax `{context: key}` always expected a key and then output the associated stored value.
 Now the definition of a key is optional.
 If the key is omitted, the placeholder outputs now all current entries of the thread-based context as key-value pairs in alphabetical order.
+
+The complete documentation for using the context placeholder and others placeholders can be found in the [Format Pattern](configuration#format-pattern) chapter.
+Many thanks to [Russell Hanneken](https://github.com/rhanneken) for further developing the context placeholder and writing the documentation!
