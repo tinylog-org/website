@@ -9,7 +9,7 @@ publishDir: ./public/v2
 params:
   maxMajorVersion: 2
   stableVersion: 2.7.0
-  previewVersion: 2.7.0
+  previewVersion: 2.8.0-M1
   size: 200036
 
 permalinks:
