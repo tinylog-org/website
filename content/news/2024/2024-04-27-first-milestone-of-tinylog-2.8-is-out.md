@@ -3,7 +3,7 @@ title: First milestone of tinylog 2.8 is out
 date: 2024-04-27
 ---
 
-With the first milestone of version 2.8.0, tinylog offers the possibility to output all stored thread context values collectively without having to know the keys. 
+With the first milestone of version 2.8.0, tinylog offers the possibility to output all stored thread context values collectively without having to know the keys.
 
 The placeholder `{context}` has been extended for this purpose.
 Previously, the placeholder with the syntax `{context: key}` always expected a key and then output the associated stored value.
