@@ -15,7 +15,7 @@
 <tbody>
 {{- $branch := partial `branch.gohtml` $.Site -}}
 {{- $url := printf `https://raw.githubusercontent.com/tinylog-org/tinylog/%s/benchmarks/src/main/resources/benchmark.csv` $branch -}}
-{{- $csv := getCSV `,` $url -}}
+{{- $csv := resources.GetRemote $url | transform.Unmarshal -}}
 {{- range $index, $row := $csv -}}
     {{- if gt $index 0 -}}
 
@@ -40,7 +40,7 @@
                 </td>
                 <td>
                     <div class="bar" style="width: {{ math.Floor $width  }}%"></div>
-                    <span class="total">{{ lang.NumFmt 0 $count }}</span>
+                    <span class="total">{{ lang.FormatNumberCustom 0 $count }}</span>
                 </td>
             </tr>
         {{- end -}}
