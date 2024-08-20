@@ -91,5 +91,5 @@ German comparison of multiple logging frameworks including tinylog 2
 [Introduction to tinylog](https://youtu.be/tx3K7gPinKE)  
 English YouTube video about tinylog 2 by Siva Reddy
 
-[tinylog implementation for Maven project](https://youtu.be/tx3K7gPinKE)  
+[tinylog implementation for Maven project](https://youtu.be/N43DQ__RGi4)  
 English YouTube video that shows step by step how to use tinylog 2 in a Maven project by Siva Reddy
