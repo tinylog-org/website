@@ -1,4 +1,4 @@
-import {Offcanvas} from 'bootstrap'
+import { Offcanvas } from 'bootstrap'
 
 const tocLinks = document.querySelectorAll('.navbar-toc .toc-link')
 const headings = document.querySelectorAll([1, 2, 3].map(i => `.page > h${i}`).join(', '))
@@ -52,7 +52,7 @@ function closeOffcanvas() {
 }
 
 function registerOffcanvasClosing() {
-    tocLinks.forEach(link => {
+    tocLinks.forEach((link) => {
         const href = link.getAttribute('href')
         if (href && href.startsWith('#')) {
             link.addEventListener('click', closeOffcanvas)

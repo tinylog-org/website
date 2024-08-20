@@ -1,4 +1,4 @@
-import {Popover, Tooltip} from 'bootstrap'
+import { Popover, Tooltip } from 'bootstrap'
 
 export function init() {
     document

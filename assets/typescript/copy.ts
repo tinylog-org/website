@@ -1,9 +1,9 @@
-import {Tooltip} from 'bootstrap'
+import { Tooltip } from 'bootstrap'
 
 function showSuccess(button: HTMLElement) {
     button.classList.remove('failed')
     button.classList.add('success')
-    Tooltip.getInstance(button).setContent({'.tooltip-inner': 'Copied successfully'})
+    Tooltip.getInstance(button).setContent({ '.tooltip-inner': 'Copied successfully' })
 }
 
 function showError(button: HTMLElement, reason: Error | string) {
@@ -11,7 +11,7 @@ function showError(button: HTMLElement, reason: Error | string) {
     button.classList.add('failed')
 
     const message = (reason as Error).message || reason
-    Tooltip.getInstance(button).setContent({'.tooltip-inner': 'Copying failed: ' + message})
+    Tooltip.getInstance(button).setContent({ '.tooltip-inner': 'Copying failed: ' + message })
 }
 
 function copyCode(event: MouseEvent) {
@@ -33,13 +33,13 @@ function resetButton(event: FocusEvent) {
     button.classList.remove('success', 'failed')
 
     const tooltip = Tooltip.getInstance(button)
-    tooltip.setContent({'.tooltip-inner': button.ariaLabel})
+    tooltip.setContent({ '.tooltip-inner': button.ariaLabel })
 }
 
 function registerCopyButtons() {
     document
         .querySelectorAll('.copy-button')
-        .forEach(button => {
+        .forEach((button) => {
             button.addEventListener('click', copyCode)
             button.addEventListener('blur', resetButton)
         })

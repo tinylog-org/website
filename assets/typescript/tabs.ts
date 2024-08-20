@@ -100,7 +100,7 @@ function onKeyPress(event: KeyboardEvent) {
 function registerTabs() {
     document
         .querySelectorAll('[data-tab-group] [data-tab-item]')
-        .forEach(tab => {
+        .forEach((tab) => {
             tab.addEventListener('click', onClick)
             tab.addEventListener('keypress', onKeyPress)
         })
