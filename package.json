@@ -13,7 +13,7 @@
     },
     "devDependencies": {
         "@cspell/dict-java": "5.0.7",
-        "cspell": "8.14.2",
+        "cspell": "8.17.1",
         "hugo-extended": "0.133.0"
     }
 }
