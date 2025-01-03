@@ -11,7 +11,7 @@
         "bootstrap-icons": "1.11.3"
     },
     "devDependencies": {
-        "@eslint/eslintrc": "3.1.0",
+        "@eslint/eslintrc": "3.2.0",
         "@eslint/js": "9.10.0",
         "@stylistic/eslint-plugin": "2.8.0",
         "@types/bootstrap": "5.2.10",
