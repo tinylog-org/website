@@ -9,7 +9,7 @@ jobs:
   pre-checks:
 
     name: Resolve Pre-Checks
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     if: ${{ github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.event.pull_request.base.repo.full_name }}
 
     steps:
@@ -21,7 +21,7 @@ jobs:
   lint-sass:
 
     name: Lint SASS
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     needs: pre-checks
 
     steps:
@@ -43,7 +43,7 @@ jobs:
   lint-typescript:
 
     name: Lint Typescript
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     needs: pre-checks
 
     steps:
