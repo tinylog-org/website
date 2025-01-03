@@ -8,7 +8,7 @@
     <link rel="icon" href="{{ `favicon.svg` | relURL }}" sizes="any" type="image/svg+xml">
     <link rel="mask-icon" href="{{ `maskicon.svg` | relURL }}" type="image/svg+xml" color="#33ad00">
     {{- $options := dict "includePaths" (slice "node_modules") "targetPath" "assets/style.css" "outputStyle" (cond hugo.IsProduction "compressed" nil) "enableSourceMap" (not hugo.IsProduction) }}
-    {{- $style := resources.Get "sass/index.scss" | resources.ToCSS $options | resources.ExecuteAsTemplate "assets/style.css" . | resources.Fingerprint }}
+    {{- $style := resources.Get "sass/index.scss" | toCSS $options | resources.ExecuteAsTemplate "assets/style.css" . | resources.Fingerprint }}
     <link rel="stylesheet" href="{{ $style.RelPermalink }}">
     {{- $options := dict "targetPath" "assets/script.js" "target" "es2015" "minify" hugo.IsProduction "sourceMap" (cond hugo.IsProduction nil "inline") }}
     {{- $script := resources.Get "typescript/index.ts" | js.Build $options | resources.Fingerprint }}
