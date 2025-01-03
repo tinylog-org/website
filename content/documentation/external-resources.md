@@ -65,9 +65,6 @@ German tutorial about using tinylog 2.3 with a focus of differences to other log
 [tinylog Tutorial](https://mkyong.com/logging/tinylog-tutorial/)  
 English tutorial about the main features of tinylog 2 with GitHub source code examples by mkyong
 
-[Tinylog - Simple example with Rolling File Writer](https://ckinan.com/blog/tinylog-simple-example-rolling-file-writer/)  
-English tutorial about using the rolling file writer with tinylog 2 by Cesar Kina
-
 [Java-Logging-Framework tinylog 2.2 komprimiert Log-Dateien mit GZIP](https://www.heise.de/news/Java-Logging-Framework-tinylog-2-2-komprimiert-Log-Dateien-mit-GZIP-4939451.html)  
 German news article about the release of tinylog 2.2 by Alexander Neumann
 
