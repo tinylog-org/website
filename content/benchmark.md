@@ -25,7 +25,7 @@ In this benchmark, all logging frameworks use `{date:yyyy-MM-dd HH:mm:ss} - {thr
 
 ### Class or Category only
 
-In this benchmark, all logging frameworks use `{date:yyyy-MM-dd HH:mm:ss} - {thread} - {class} - {level}: {message}` or an equivalent as format pattern for outputting log entries. Only tinylog 1 and 2 use the caller class. All other logging frameworks use the logger category instead, which is according to the documentation of [Logback](http://logback.qos.ch/manual/layouts.html#class) and [Apache Log4j](https://logging.apache.org/log4j/2.x/manual/configuration.html#Configuring_Loggers) significantly faster and ensures a fair benchmark.
+In this benchmark, all logging frameworks use `{date:yyyy-MM-dd HH:mm:ss} - {thread} - {class} - {level}: {message}` or an equivalent as format pattern for outputting log entries. Only tinylog 1 and 2 use the caller class. All other logging frameworks use the logger category instead, which is according to the documentation of [Logback](http://logback.qos.ch/manual/layouts.html#class) and [Apache Log4j](https://logging.apache.org/log4j/2.x/manual/pattern-layout.html#converter-class) significantly faster and ensures a fair benchmark.
 
 {{% benchmark method="output" nameHeader="Framework" dataHeader="Processed Log Entries per Second" locationInfo="CLASS_OR_CATEGORY_ONLY" %}}
 
