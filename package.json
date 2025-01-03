@@ -15,6 +15,6 @@
         "@cspell/dict-de-de": "4.0.3",
         "@cspell/dict-java": "5.0.11",
         "cspell": "8.17.1",
-        "hugo-extended": "0.133.0"
+        "hugo-extended": "0.140.2"
     }
 }
