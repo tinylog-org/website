@@ -70,8 +70,8 @@ jobs:
 
       - name: Copy API documentation
         run: |
-          rm -r public/v2/javadoc/*
-          cp -R tinylog/tinylog-api/target/site/apidocs/* public/v2/javadoc
+          rm -r public/javadoc/*
+          cp -R tinylog/tinylog-api/target/site/apidocs/* public/javadoc
 
       - name: Generate timestamp
         id: timestamp
@@ -204,6 +204,6 @@ jobs:
       - name: Check Links
         uses: ruzickap/action-my-broken-link-checker@v2
         with:
-          url: https://tinylog.org/v2
+          url: https://tinylog.org
           pages_path: public
-          cmd_params: "--exclude=(tinylog.org/(v[^2]|p2-repository)/|github.com/tinylog-org/website/edit/) --max-connections-per-host=2 --rate-limit=10 --accepted-status-codes=200,403 --buffer-size=8192 --color=always"
+          cmd_params: "--exclude=(tinylog.org/p2-repository/|github.com/tinylog-org/website/edit/) --max-connections-per-host=2 --rate-limit=10 --accepted-status-codes=200,403 --buffer-size=8192 --color=always"
