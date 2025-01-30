@@ -53,8 +53,8 @@ jobs:
 
       - name: Copy API documentation
         run: |
-          rm -r public/v2/javadoc/*
-          cp -R tinylog/tinylog-api/target/site/apidocs/* public/v2/javadoc
+          rm -r public/javadoc/*
+          cp -R tinylog/tinylog-api/target/site/apidocs/* public/javadoc
 
       - name: Upload Assets
         uses: kevinpainchaud/simple-ftp-deploy-action@v1.2.1
@@ -62,7 +62,7 @@ jobs:
           ftp_host: tinylog.org
           ftp_username: tinylog2-website@tinylog.org
           ftp_password: ${{ secrets.FTP_PASSWORD_TINYLOG2_WEBSITE }}
-          local_source_dir: public/v2/assets/
+          local_source_dir: public/assets/
           dist_target_dir: assets/
 
       - name: Sync Website
@@ -72,5 +72,8 @@ jobs:
           username: tinylog2-website@tinylog.org
           password: ${{ secrets.FTP_PASSWORD_TINYLOG2_WEBSITE }}
           protocol: ftps
-          local-dir: public/v2/
-          exclude: "assets/*"
+          local-dir: public/
+          exclude: |
+            assets/*
+            matomo/*
+            p2-repository/*
