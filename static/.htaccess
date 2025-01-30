@@ -1,4 +1,4 @@
-DirectoryIndex index.html
+DirectoryIndex index.html index.php
 ErrorDocument 404 /404.html
 RewriteRule ^v1/(.*)$ / [R=301,L]
 RewriteRule ^v2/(.*)$ /$1 [R=301,L]
