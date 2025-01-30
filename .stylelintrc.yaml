@@ -1,0 +1,13 @@
+extends:
+  - stylelint-config-standard-scss
+  - stylelint-config-idiomatic-order
+
+rules:
+  # Order selectors by specificity can make SCSS more complicated and less readable
+  no-descending-specificity: null
+  # Bootstrap does not provide any placeholders
+  scss/at-extend-no-missing-placeholder: null
+  # @use syntax is not support in Hugo's deprecated LibSass
+  scss/no-global-function-names: null
+  # Disallow redundant nesting selectors (&)
+  scss/selector-no-redundant-nesting-selector: true
