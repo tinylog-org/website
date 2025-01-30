@@ -185,7 +185,7 @@ jobs:
           log_level: INFO
           skip_git_check: true
           root: public/
-          blacklist: javadoc
+          blacklist: javadoc google179accde67aec4e2.html
 
   check-links:
 
