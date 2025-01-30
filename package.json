@@ -5,16 +5,32 @@
         "build:prod": "hugo --cleanDestinationDir --minify --environment production",
         "create:post": "scripts/create-post",
         "cspell:check": "cspell \"*.md\" \"content/**/*.md\" --no-progress --no-summary --config \".cspell.yaml\"",
+        "eslint:check": "eslint \"assets/typescript/**/*.ts\"",
+        "eslint:fix": "eslint \"assets/typescript/**/*.ts\" --fix",
         "start:dev": "hugo server --port 80 --buildDrafts --environment development",
-        "start:prod": "hugo server --port 80 --minify --environment production"
+        "start:prod": "hugo server --port 80 --minify --environment production",
+        "stylelint:check": "stylelint \"assets/sass/**/*.scss\"",
+        "stylelint:fix": "stylelint \"assets/sass/**/*.scss\" --fix"
     },
     "dependencies": {
-        "theme": "file:themes/tinylog-theme"
+        "bootstrap": "5.3.3",
+        "bootstrap-icons": "1.11.3"
     },
     "devDependencies": {
         "@cspell/dict-de-de": "4.0.3",
         "@cspell/dict-java": "5.0.11",
+        "@eslint/eslintrc": "3.2.0",
+        "@eslint/js": "9.19.0",
+        "@stylistic/eslint-plugin": "3.0.1",
+        "@types/bootstrap": "5.2.10",
+        "@types/eslint__js": "8.42.3",
         "cspell": "8.17.3",
-        "hugo-extended": "0.142.0"
+        "eslint": "9.19.0",
+        "hugo-extended": "0.142.0",
+        "stylelint": "16.14.1",
+        "stylelint-config-idiomatic-order": "10.0.0",
+        "stylelint-config-standard-scss": "14.0.0",
+        "typescript": "5.7.3",
+        "typescript-eslint": "8.22.0"
     }
 }

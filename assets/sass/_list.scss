@@ -1,0 +1,25 @@
+@import "bootstrap/scss/variables";
+
+.page {
+  ol,
+  ul,
+  dl {
+    &:not(.dropdown-menu, .list-group) {
+      padding-left: 2ch;
+
+      > li {
+        padding-left: 0.25rem;
+
+        &::marker {
+          font-weight: $font-weight-bold;
+        }
+      }
+    }
+  }
+
+  .list-group-item {
+    padding: 1rem 1.5rem;
+    line-height: var(--bs-body-line-height);
+    text-align: left;
+  }
+}

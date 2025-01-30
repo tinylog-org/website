@@ -1,0 +1,48 @@
+{{- $relevantItems := cond (eq .default nil) (.items) (where .items `identifier` .default) -}}
+{{- $defaultItem   := index $relevantItems 0                                               -}}
+
+<table class="{{ if .pills }}tabs-simple{{ else }}tabs{{ end }}" data-tab-group="{{ .tabGroup }}">
+<thead>
+
+{{- if not .pills }}
+<tr class="nav">
+<th class="dropdown">
+<a class="dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" tabindex="0">{{ $defaultItem.title }}</a>
+<ul class="dropdown-menu">
+{{- range .items }}
+{{- if eq .identifier $defaultItem.identifier }}
+<li><a class="dropdown-item active" data-tab-item="{{ .identifier }}" tabindex="0">{{ .title }}</a></li>
+{{- else }}
+<li><a class="dropdown-item" data-tab-item="{{ .identifier }}" tabindex="0">{{ .title }}</a></li>
+{{- end }}
+{{- end }}
+</ul>
+</th>
+</tr>
+{{- end }}
+
+<tr class="nav {{ if .pills }}nav-pills{{ else }}nav-tabs{{ end }}" role="tablist">
+{{- range .items }}
+{{- if eq .identifier $defaultItem.identifier }}
+<th class="nav-link active" data-tab-item="{{ .identifier }}" role="tab" aria-selected="true" tabindex="0">{{ .title }}</th>
+{{- else }}
+<th class="nav-link" data-tab-item="{{ .identifier }}" role="tab" aria-selected="false" tabindex="0">{{ .title }}</th>
+{{- end }}
+{{- end }}
+</tr>
+
+</thead>
+<tbody>
+
+<tr class="tab-content">
+{{- range .items }}
+{{- if eq .identifier $defaultItem.identifier }}
+<td class="tab-pane active" data-tab-item="{{ .identifier }}" role="tabpanel">{{ .content | safeHTML }}</td>
+{{- else }}
+<td class="tab-pane" data-tab-item="{{ .identifier }}" role="tabpanel">{{ .content | safeHTML }}</td>
+{{- end }}
+{{- end }}
+</tr>
+
+</tbody>
+</table>

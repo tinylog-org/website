@@ -1,10 +1,9 @@
 languageCode: en-us
-title: tinylog 2
-baseURL: https://tinylog.org/v2/
-theme: tinylog-theme
+title: tinylog
+baseURL: https://tinylog.org/
 timeZone: Europe/Berlin
 disableHugoGeneratorInject: true
-publishDir: ./public/v2
+publishDir: ./public
 
 params:
   maxMajorVersion: 2

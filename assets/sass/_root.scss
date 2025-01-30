@@ -1,0 +1,13 @@
+@import "bootstrap/scss/mixins";
+
+:root {
+  &.no-smooth-scrolling {
+    scroll-behavior: auto;
+  }
+
+  &.no-smooth-scrolling-lg {
+    @include media-breakpoint-down(lg) {
+      scroll-behavior: auto;
+    }
+  }
+}

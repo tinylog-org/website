@@ -1,0 +1,52 @@
+{{- $method       := .Get `method`       -}}
+{{- $locationInfo := .Get `locationInfo` -}}
+{{- $nameHeader   := .Get `nameHeader`   -}}
+{{- $dataHeader   := .Get `dataHeader`   -}}
+
+<table class="table benchmark">
+
+<thead>
+    <tr>
+        <th>{{ $nameHeader }}</th>
+        <th>{{ $dataHeader }}</th>
+    </tr>
+</thead>
+
+<tbody>
+{{- $branch := partial `branch.gohtml` $.Site -}}
+{{- $url := printf `https://raw.githubusercontent.com/tinylog-org/tinylog/%s/benchmarks/src/main/resources/benchmark.csv` $branch -}}
+{{- $csv := resources.GetRemote $url | transform.Unmarshal -}}
+{{- range $index, $row := $csv -}}
+    {{- if gt $index 0 -}}
+
+        {{- $benchmark := index $row 0 -}}
+        {{- $mode := index $row 1 -}}
+        {{- $data := float (index $row 4) -}}
+        {{- $async := eq (index $row 7) `true` -}}
+        {{- $paramLocationInfo := index $row 8 -}}
+
+        {{- if and (strings.HasSuffix $benchmark (printf `/ %s` $method)) (eq $locationInfo $paramLocationInfo) -}}
+
+            {{- $name := replaceRE ` / .*$` `` $benchmark -}}
+            {{- $filters := dict `0` (printf `^.* / %s$` $method) `8` (printf `^%s$` $paramLocationInfo ) -}}
+            {{- $boundaries := partial `find-boundary-values.gohtml` (dict `data` $csv `column` 4 `filters` $filters) -}}
+            {{- $count := cond (eq $mode `ss`) (div 1_000_000 $data) ($data) -}}
+            {{- $max := cond (eq $mode `ss`) (div 1_000_000 $boundaries.min) ($boundaries.max) -}}
+            {{- $width := mul (div $count $max) 100 -}}
+
+            <tr class="{{ cond $async `async` `sync` }}">
+                <td>
+                    {{ cond ($async) (replaceRE `(.+) with (.+)` `with $2` $name) ($name) }}
+                </td>
+                <td>
+                    <div class="bar" style="width: {{ math.Floor $width  }}%"></div>
+                    <span class="total">{{ lang.FormatNumberCustom 0 $count }}</span>
+                </td>
+            </tr>
+        {{- end -}}
+
+    {{- end -}}
+{{- end -}}
+</tbody>
+
+</table>

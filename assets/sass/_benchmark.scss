@@ -1,0 +1,61 @@
+@import "variables";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/variables";
+
+.benchmark.table {
+  tr {
+    > td {
+      color: inherit !important;
+      font-family: inherit !important;
+      font-size: inherit !important;
+      font-weight: inherit !important;
+    }
+
+    > td:first-child {
+      width: 12em;
+    }
+
+    > td:not(:first-child) {
+      position: relative;
+      width: 100%;
+      padding-right: 8em;
+
+      @include media-breakpoint-down(lg) {
+        padding-right: 7em;
+      }
+    }
+
+    &.async > td {
+      border-top-width: 0;
+    }
+
+    @include media-breakpoint-down(lg) {
+      &.async {
+        padding-top: 0 !important;
+      }
+    }
+  }
+
+  .bar {
+    height: 1.5rem;
+    border: $border-width solid $blue-600;
+    background-color: $blue-300;
+  }
+
+  .async .bar {
+    border-color: $yellow-600;
+    background-color: $yellow-300;
+  }
+
+  .total {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    padding: $table-cell-padding-y $table-cell-padding-x;
+
+    @include media-breakpoint-down(lg) {
+      padding: 0;
+    }
+  }
+}

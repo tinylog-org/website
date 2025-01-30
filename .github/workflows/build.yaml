@@ -83,6 +83,50 @@ jobs:
           name: website-${{ steps.timestamp.outputs.timestamp }}
           path: public/
 
+  lint-sass:
+
+    name: Lint SASS
+    runs-on: ubuntu-24.04
+    needs: pre-checks
+
+    steps:
+
+      - name: Checkout Website Repository
+        uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Stylelint
+        run: npm run stylelint:check
+
+  lint-typescript:
+
+    name: Lint Typescript
+    runs-on: ubuntu-24.04
+    needs: pre-checks
+
+    steps:
+
+      - name: Checkout Website Repository
+        uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run ESLint
+        run: npm run eslint:check
+
   lint-markdown:
 
     name: Lint Markdown

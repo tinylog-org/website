@@ -1,0 +1,13 @@
+{{ define "main" }}
+<div class="page">
+    {{ printf "# %s" .Title | $.Page.RenderString }}
+    <ol>
+        {{ range sort .Pages "Params.menu.main.weight" }}
+        <li>
+            {{ printf "**[%s](%s)**" .Title .RelPermalink | $.Page.RenderString }}
+            <p>{{ .Description }}</p>
+        </li>
+        {{ end }}
+    </ol>
+</div>
+{{ end }}

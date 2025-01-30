@@ -1,0 +1,117 @@
+@import "variables";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/variables";
+
+.tabs,
+.tabs-simple {
+  display: block;
+  margin-bottom: 1rem;
+
+  > thead,
+  > tbody,
+  > tbody > tr,
+  > tbody > tr > td {
+    display: block;
+    width: 100%;
+  }
+
+  .nav-link {
+    cursor: pointer;
+  }
+}
+
+.tabs {
+  > thead > tr.nav-tabs {
+    @include media-breakpoint-down(md) {
+      display: none;
+    }
+  }
+
+  > thead > tr:not(.nav-tabs) {
+    @include media-breakpoint-up(md) {
+      display: none;
+    }
+
+    th {
+      padding: 0 1rem 0.5rem;
+      font-weight: $font-weight-base;
+
+      a {
+        text-decoration: none;
+      }
+    }
+  }
+
+  .nav-tabs {
+    --bs-nav-tabs-border-color: #{$dark};
+    --bs-nav-tabs-link-active-border-color: #{$dark};
+
+    border: none;
+
+    .nav-link {
+      position: relative;
+      z-index: 1;
+      transition: none;
+
+      &.active {
+        border-bottom-color: $light;
+        background-color: $light;
+      }
+
+      &:not(.active) {
+        &:hover {
+          border-color: $dark;
+
+          &:first-child::after {
+            position: absolute;
+            bottom: calc(#{$border-radius} * -1);
+            left: calc(#{$border-width} * -1);
+            width: $border-radius;
+            height: $border-radius;
+            border-top: $border-width $border-style $dark;
+            border-left: $border-width $border-style $dark;
+            background-color: $light;
+            content: "";
+          }
+        }
+
+        &:focus {
+          border: var(--bs-nav-tabs-border-width) solid transparent;
+        }
+      }
+    }
+  }
+
+  .tab-pane {
+    padding: 0;
+    border: $border-width $border-style $dark;
+    border-radius: $border-radius;
+
+    > pre:only-child {
+      border: none;
+      margin: 0;
+    }
+
+    @include media-breakpoint-up(md) {
+      &:first-child {
+        border-top-left-radius: 0;
+
+        > pre:only-child {
+          border-top-left-radius: 0;
+        }
+      }
+    }
+  }
+}
+
+.tabs-simple {
+  > thead > tr {
+    margin-bottom: 1rem;
+  }
+
+  .nav-pills {
+    .nav-link.active {
+      background-color: $dark;
+    }
+  }
+}

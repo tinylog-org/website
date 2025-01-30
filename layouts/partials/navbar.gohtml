@@ -1,0 +1,29 @@
+<ul class="navbar-nav">
+    {{- $currentPage := . }}
+    {{- range .Site.Menus.main }}
+    {{- $isActive := or ($currentPage.HasMenuCurrent "main" .) ($currentPage.IsMenuCurrent "main" .) }}
+    <li class="nav-item {{ if .HasChildren }}dropdown{{ end }}">
+        {{- if and (.HasChildren) (ne .Page.Params.showMenuChildren false) }}
+        <a class="nav-link dropdown-toggle {{ if $isActive }}active{{ end }}" role="button" data-bs-toggle="dropdown" href="{{ .URL }}">
+            {{ .Name }}
+        </a>
+        <ul class="dropdown-menu">
+            {{- range .Children }}
+            {{- $isActive := $currentPage.IsMenuCurrent "main" . }}
+            <li>
+                <a class="dropdown-item {{ if $isActive }}active{{ end }}" href="{{ .URL }}" {{ if in .URL `/javadoc/` }}target="_blank"{{ end }}>{{ .Name }}</a>
+            </li>
+            {{- end }}
+        </ul>
+        {{- else }}
+        <a class="nav-link {{ if $isActive }}active{{ end }}" href="{{ .URL }}">{{ .Name }}</a>
+        {{- end }}
+    </li>
+    {{- end }}
+</ul>
+<hr class="d-lg-none text-white-50">
+<ul class="navbar-nav ms-lg-auto">
+    <li class="nav-item social">
+        <a class="github-button" href="https://github.com/tinylog-org/tinylog" data-show-count="true">GitHub</a>
+    </li>
+</ul>

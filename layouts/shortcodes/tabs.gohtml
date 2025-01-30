@@ -1,0 +1,12 @@
+{{- $content := .Inner | markdownify -}}
+{{- $divs    := findRE `<div .*?>(.|\n)*?</div>` $content -}}
+{{- $scratch := newScratch -}}
+
+{{- range $divs -}}
+{{- $identifier := replaceRE `(?:.*)(?:data-identifier=")(.*?)(?:")(?:.|\n)*` `$1` . -}}
+{{- $title := replaceRE `(?:.*)(?:data-title=")(.*?)(?:")(?:.|\n)*` `$1` . -}}
+{{- $content := replaceRE `^<div .*>((.|\n)*)</div>$` `$1` . -}}
+{{- $scratch.Add `items` (slice (dict `identifier` $identifier `title` $title `content` $content)) -}}
+{{- end -}}
+
+{{- partial `tabs.gohtml` (dict `tabGroup` (.Get `tab-group`) `items` ($scratch.Get `items`) `pills` (.Get `pills`)) -}}

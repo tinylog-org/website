@@ -1,0 +1,7 @@
+{{ $version := .version }}
+
+```groovy
+{{ range .artifacts -}}
+implementation 'org.tinylog:{{ . }}:{{ $version }}'
+{{ end }}
+```

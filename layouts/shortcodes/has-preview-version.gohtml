@@ -1,0 +1,3 @@
+{{- if ne $.Site.Params.stableVersion $.Site.Params.previewVersion -}}
+{{ .Inner }}
+{{- end -}}
