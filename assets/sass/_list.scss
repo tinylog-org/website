@@ -10,6 +10,10 @@
       > li {
         padding-left: 0.25rem;
 
+        &:not(:last-child) {
+          margin-bottom: 0.75rem;
+        }
+
         &::marker {
           font-weight: $font-weight-bold;
         }
