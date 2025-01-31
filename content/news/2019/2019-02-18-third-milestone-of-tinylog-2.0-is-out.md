@@ -9,4 +9,4 @@ For Apache Commons Logging (JCL) and JBoss Logging 3, tinylog provides bindings.
 
 Since Apache Log4j 1.2 does not support bindings, tinylog offers a replacement for the legacy Log4j-JAR. This means that the legacy Log4j-JAR has to be removed from the classpath, when using tinylog's log4j1.2-api.
 
-Furthermore, [the fix of tinylog 1.3.6](https://tinylog.org/v1/news#92) for ConcurrentModificationExceptions that can occur, if system properties change while loading the configuration, has been merged to tinylog 2.
+Furthermore, [the fix of tinylog 1.3.6](/news/#2019-02-11-update-for-tinylog-1.3) for `ConcurrentModificationExceptions` that can occur, if system properties change while loading the configuration, has been merged to tinylog 2.
