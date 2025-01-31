@@ -59,8 +59,8 @@ jobs:
       - name: Upload Assets
         uses: kevinpainchaud/simple-ftp-deploy-action@v1.2.1
         with:
-          ftp_host: ${{ vars.TINYLOG_WEBSITE_FTP_PASSWORD }}
-          ftp_username: ${{ vars.TINYLOG_WEBSITE_FTP_PASSWORD }}
+          ftp_host: ${{ vars.TINYLOG_WEBSITE_FTP_HOST }}
+          ftp_username: ${{ vars.TINYLOG_WEBSITE_FTP_USER }}
           ftp_password: ${{ secrets.TINYLOG_WEBSITE_FTP_PASSWORD }}
           local_source_dir: public/assets/
           dist_target_dir: assets/
@@ -68,8 +68,8 @@ jobs:
       - name: Sync Website
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: ${{ vars.TINYLOG_WEBSITE_FTP_PASSWORD }}
-          username: ${{ vars.TINYLOG_WEBSITE_FTP_PASSWORD }}
+          server: ${{ vars.TINYLOG_WEBSITE_FTP_HOST }}
+          username: ${{ vars.TINYLOG_WEBSITE_FTP_USER }}
           password: ${{ secrets.TINYLOG_WEBSITE_FTP_PASSWORD }}
           protocol: ftps
           local-dir: public/
