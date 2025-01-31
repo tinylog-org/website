@@ -12,6 +12,7 @@ BAZ
 BOM
 btn
 classpath
+Cristian
 Dalvik
 Direnc
 DS
@@ -65,10 +66,12 @@ simonsilvalauinger
 SLF4J
 Sollder1
 SPI
+Spinetta
 springcloud
 SSD
 tagname
 tinylog
+trebouillon
 typesafe
 UDP
 unbuffered

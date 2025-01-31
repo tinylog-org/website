@@ -1,0 +1,15 @@
+---
+title: First beta of tinylog 1.2 is released
+date: 2016-10-13
+---
+
+The first beta version of tinylog 1.2 is released and available for [download](download). Feedback including bug reports and feature requests is welcome!
+
+New features:
+
+* Full support of Android including a logcat writer
+* New alternative JARs for redirecting log entries to logging system of application servers
+* Resolve Unix-like placeholders with environment variables like `${home}` in paths
+* Support loading configurations from any input stream
+* Support JavaEE DataSources in JDBC writer
+* Auto reconnecting option for JDBC writer

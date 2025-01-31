@@ -1,0 +1,6 @@
+---
+title: Roadmap is online
+date: 2013-01-12
+---
+
+The roadmap shows the current state of development and all steps to the version 1.0. All milestones will be released as soon as they are done, sufficiently tested and completely documented. For the benefit of stability I don't give fixed release dates.

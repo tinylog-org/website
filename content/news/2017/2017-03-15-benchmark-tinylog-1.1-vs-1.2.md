@@ -1,0 +1,78 @@
+---
+title: "Benchmark: tinylog 1.1 vs 1.2"
+date: 2017-03-15
+---
+
+The tinylog project contains benchmarks to prevent performance issues for new releases. Both benchmarks have been executes with tinylog 1.1 and 1.2 on the same machine.
+
+Maximum logging performance (creating log entries in a loop one million times)
+
+<table class="table benchmark">
+    <tbody>
+        <tr class="sync">
+            <td>tinylog 1.2</td>
+            <td>
+                <div class="bar" style="width: 73%"></div>
+                <span class="total">2&thinsp;s 492&thinsp;ms</span>
+            </td>
+        </tr>
+        <tr class="async">
+            <td>with writing thread</td>
+            <td>
+                <div class="bar" style="width: 38%"></div>
+                <span class="total">1&thinsp;s 301&thinsp;ms</span>
+            </td>
+        </tr>
+        <tr class="sync">
+            <td>tinylog 1.1</td>
+            <td>
+                <div class="bar" style="width: 84%"></div>
+                <span class="total">2&thinsp;s 848&thinsp;ms</span>
+            </td>
+        </tr>
+        <tr class="async">
+            <td>with writing thread</td>
+            <td>
+                <div class="bar" style="width: 38%"></div>
+                <span class="total">1&thinsp;s 294&thinsp;ms</span>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+Influence on compute-intensive application (calculating all prime numbers from 2 to 10,000,000)
+
+<table class="table benchmark">
+    <tbody>
+        <tr class="sync">
+            <td>tinylog 1.2</td>
+            <td>
+                <div class="bar" style="width: 91%"></div>
+                <span class="total">3&thinsp;s 69&thinsp;ms</span>
+            </td>
+        </tr>
+        <tr class="async">
+            <td>with writing thread</td>
+            <td>
+                <div class="bar" style="width: 38%"></div>
+                <span class="total">1&thinsp;s 311&thinsp;ms</span>
+            </td>
+        </tr>
+        <tr class="sync">
+            <td>tinylog 1.1</td>
+            <td>
+                <div class="bar" style="width: 100%"></div>
+                <span class="total">3&thinsp;s 369&thinsp;ms</span>
+            </td>
+        </tr>
+        <tr class="async">
+            <td>with writing thread</td>
+            <td>
+                <div class="bar" style="width: 37%"></div>
+                <span class="total">1&thinsp;s 269&thinsp;ms</span>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+All parameters and the method of measurement are documented on the [benchmark page](benchmark).

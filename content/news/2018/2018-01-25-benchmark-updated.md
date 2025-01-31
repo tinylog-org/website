@@ -1,0 +1,6 @@
+---
+title: Benchmark updated
+date: 2018-01-25
+---
+
+In the [benchmark](benchmark), all logging frameworks have been updated to the latest version. tinylog 1.3.2 is a few milliseconds faster than the previous version 1.2. Log4j 2.10 has become much slower (up to 2 seconds) compared to version 2.8 and sometimes loses a few log entries. Ideas and suggestions on how to optimize the [configuration](configuration) are welcome.
