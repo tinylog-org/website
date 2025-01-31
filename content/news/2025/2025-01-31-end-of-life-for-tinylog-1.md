@@ -1,0 +1,8 @@
+---
+title: End of life for tinylog 1
+date: 2025-01-31
+---
+
+Today the tinylog website moved to a new hosting provider. This is also the final end of tinylog 1. The version 1.0 of tinylog was released in March 2015, almost 10 years ago. Its successor, tinylog 2, was released in August 2019, and is now the only supported tinylog version.
+
+Currently, the focus of development is on tinylog 3. Supporting tinylog 1 and 2 while developing on tinylog 3 would take too many resources. However, tinylog 2 is still actively supported and the logging API of tinylog 3 will be even compatible with its predecessor.
