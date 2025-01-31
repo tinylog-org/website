@@ -59,18 +59,18 @@ jobs:
       - name: Upload Assets
         uses: kevinpainchaud/simple-ftp-deploy-action@v1.2.1
         with:
-          ftp_host: tinylog.org
-          ftp_username: tinylog2-website@tinylog.org
-          ftp_password: ${{ secrets.FTP_PASSWORD_TINYLOG2_WEBSITE }}
+          ftp_host: ${{ vars.TINYLOG_WEBSITE_FTP_PASSWORD }}
+          ftp_username: ${{ vars.TINYLOG_WEBSITE_FTP_PASSWORD }}
+          ftp_password: ${{ secrets.TINYLOG_WEBSITE_FTP_PASSWORD }}
           local_source_dir: public/assets/
           dist_target_dir: assets/
 
       - name: Sync Website
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: tinylog.org
-          username: tinylog2-website@tinylog.org
-          password: ${{ secrets.FTP_PASSWORD_TINYLOG2_WEBSITE }}
+          server: ${{ vars.TINYLOG_WEBSITE_FTP_PASSWORD }}
+          username: ${{ vars.TINYLOG_WEBSITE_FTP_PASSWORD }}
+          password: ${{ secrets.TINYLOG_WEBSITE_FTP_PASSWORD }}
           protocol: ftps
           local-dir: public/
           exclude: |
