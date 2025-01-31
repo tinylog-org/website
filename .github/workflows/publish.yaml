@@ -66,14 +66,12 @@ jobs:
           dist_target_dir: assets/
 
       - name: Sync Website
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        uses: kevinpainchaud/simple-ftp-deploy-action@v1.2.1
         with:
-          server: ${{ vars.TINYLOG_WEBSITE_FTP_HOST }}
-          username: ${{ vars.TINYLOG_WEBSITE_FTP_USER }}
-          password: ${{ secrets.TINYLOG_WEBSITE_FTP_PASSWORD }}
-          protocol: ftps
-          local-dir: public/
-          exclude: |
-            assets/*
-            matomo/*
-            p2-repository/*
+          ftp_host: ${{ vars.TINYLOG_WEBSITE_FTP_HOST }}
+          ftp_username: ${{ vars.TINYLOG_WEBSITE_FTP_USER }}
+          ftp_password: ${{ secrets.TINYLOG_WEBSITE_FTP_PASSWORD }}
+          local_source_dir: public/
+          dist_target_dir: /
+          delete: true
+          exclude: "'^assets/' '^matomo/' '^p2-repository/'"
