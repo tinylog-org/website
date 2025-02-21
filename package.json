@@ -24,7 +24,7 @@
         "@stylistic/eslint-plugin": "3.1.0",
         "@types/bootstrap": "5.2.10",
         "@types/eslint__js": "8.42.3",
-        "cspell": "8.17.3",
+        "cspell": "8.17.4",
         "eslint": "9.20.1",
         "hugo-extended": "0.144.1",
         "stylelint": "16.14.1",
