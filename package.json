@@ -26,7 +26,7 @@
         "@types/eslint__js": "8.42.3",
         "cspell": "8.17.5",
         "eslint": "9.21.0",
-        "hugo-extended": "0.144.2",
+        "hugo-extended": "0.145.0",
         "stylelint": "16.14.1",
         "stylelint-config-idiomatic-order": "10.0.0",
         "stylelint-config-standard-scss": "14.0.0",
