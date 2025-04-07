@@ -74,7 +74,7 @@ English article about clearer exceptions logging with tinylog 2.1 by Martin Wina
 [tinylog 2.1: Java-Logging-Framework bringt übersichtlichere Exceptions](https://jaxenter.de/tools/tinylog-2-1-java-logging-framework-exceptions-92758)  
 German news article about the release of tinylog 2.1 by Martin Winandy
 
-[Java-Logging-Framework tinylog in Version 2.0 erschienen](https://www.heise.de/developer/meldung/Java-Logging-Framework-tinylog-in-Version-2-0-erschienen-4501478.html)  
+[Java-Logging-Framework tinylog in Version 2.0 erschienen](https://www.heise.de/news/Java-Logging-Framework-tinylog-in-Version-2-0-erschienen-4501478.html)  
 German news article about the release of tinylog 2.0 by Alexander Neumann
 
 [Better logging with TinyLog 2](https://dzone.com/articles/better-logging-with-tinylog-2)  
