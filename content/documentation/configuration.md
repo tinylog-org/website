@@ -36,7 +36,7 @@ Example of overriding the severity level:
 java -jar -Dtinylog.writer.level=debug application.jar
 ```
 
-tinylog can also be configured programmatically by using the class `Configuration`. Unlike system properties, `Configuration` does expect all properties without "tinylog." prefix (same as in `tinylog.properties`). Individual properties can be set or overridden via `set(String key, String value)`. A complete configuration can also be passed as a map via `replace(Map<String, String> configuration)`. All properties that have already been set are overwritten. The configuration of tinylog will become immutable as soon as the first log entry is issued. Further configuration changes will be silently ignored in tinylog 2.0 and 2.1. Since version 2.2, an `UnsupportedOperationException` will be thrown instead.
+tinylog can also be configured programmatically by using the class `Configuration`. Unlike system properties, `Configuration` does expect all properties without "tinylog." prefix (same as in `tinylog.properties`). Individual properties can be set or overridden via `set(String key, String value)`. A complete configuration can also be passed as a map via `replace(Map<String, String> configuration)`. All properties that have already been set are overwritten. The tinylog configuration becomes immutable once it is accessed for the first time, such as when a log entry is written, a logger is created, or the configuration is retrieved using `get(String key)`. Further configuration changes will be silently ignored in tinylog 2.0 and 2.1. Since version 2.2, an `UnsupportedOperationException` will be thrown instead.
 
 ## Automatic Shutdown
 
