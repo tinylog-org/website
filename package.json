@@ -15,7 +15,6 @@
         "@eslint/js": "9.21.0",
         "@stylistic/eslint-plugin": "4.2.0",
         "@types/bootstrap": "5.2.10",
-        "@types/eslint__js": "9.14.0",
         "eslint": "9.21.0",
         "stylelint": "16.18.0",
         "stylelint-config-idiomatic-order": "10.0.0",
