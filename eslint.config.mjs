@@ -10,8 +10,8 @@ export default tseslint.config(
     ...tseslint.configs.strict,
     {
         rules: {
-            '@stylistic/brace-style': ['error', "1tbs", { 'allowSingleLine': true }],
+            '@stylistic/brace-style': ['error', '1tbs', { allowSingleLine: true }],
             '@stylistic/indent': ['error', 4],
-        }
-    }
+        },
+    },
 )
