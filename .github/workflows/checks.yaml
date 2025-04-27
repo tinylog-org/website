@@ -17,4 +17,4 @@ jobs:
         uses: ruzickap/action-my-broken-link-checker@v2
         with:
           url: https://tinylog.org/
-          cmd_params: "--max-connections-per-host=1 --rate-limit=1 --accepted-status-codes=200,403 --buffer-size=8192 --color=always"
+          cmd_params: "--max-connections-per-host=1 --rate-limit=2 --accepted-status-codes=200,403 --buffer-size=8192 --color=always"

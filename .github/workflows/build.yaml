@@ -206,4 +206,4 @@ jobs:
         with:
           url: https://tinylog.org
           pages_path: public
-          cmd_params: "\"--exclude=(tinylog.org/p2-repository/|github.com/tinylog-org/website/edit/)\" --max-connections-per-host=1 --rate-limit=1 --accepted-status-codes=200,403 --buffer-size=8192 --color=always"
+          cmd_params: "\"--exclude=(tinylog.org/p2-repository/|github.com/tinylog-org/website/edit/)\" --max-connections-per-host=1 --rate-limit=2 --accepted-status-codes=200,403 --buffer-size=8192 --color=always"
