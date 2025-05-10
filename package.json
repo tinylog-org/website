@@ -14,7 +14,7 @@
     },
     "dependencies": {
         "bootstrap": "5.3.5",
-        "bootstrap-icons": "1.11.3"
+        "bootstrap-icons": "1.13.1"
     },
     "devDependencies": {
         "@cspell/dict-de-de": "4.1.0",
