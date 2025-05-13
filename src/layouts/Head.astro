@@ -1,0 +1,40 @@
+---
+import { findVersionedPagePair, isPreview } from '../composables/preview'
+
+interface Props {
+    title: string | undefined
+    description: string | undefined
+}
+
+const { url, props } = Astro
+
+const title = props.title ? `tinylog - ${props.title}` : 'tinylog'
+const description = props.description
+const canonicalLink = generateCanonicalLink()
+
+function generateCanonicalLink() {
+    if (!isPreview(url)) return null
+
+    const [current, preview] = findVersionedPagePair(url)
+
+    if (!current || !preview) return null
+    if (current.version !== preview.version) return null
+
+    return `${url}`.replace(/-preview\/$/, '/')
+}
+---
+
+<head>
+    <meta charset="utf-8" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png" />
+    <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png" />
+    <link rel="icon" href="/favicon.svg" sizes="any" type="image/svg+xml" />
+    <link rel="mask-icon" href="/maskicon.svg" type="image/svg+xml" color="#33ad00" />
+    {canonicalLink && <link rel="canonical" href={canonicalLink} />}
+    <script src="../scripts/index.ts"></script>
+    <script src="https://buttons.github.io/buttons.js" defer is:inline></script>
+</head>

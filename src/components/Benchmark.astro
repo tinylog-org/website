@@ -1,0 +1,59 @@
+---
+import { fetchGitHubFile } from '../composables/github'
+import { getDefaultVersion } from '../composables/version'
+import { parse } from 'csv-parse/sync'
+
+interface Props {
+    name: string
+    data: string
+    method: 'output' | 'discard' | 'emptyMethod'
+    locationInfo?: 'FULL' | 'CLASS_OR_CATEGORY_ONLY' | 'NONE' | undefined
+}
+
+const { name, data, method, locationInfo } = Astro.props
+const numberFormat = new Intl.NumberFormat('en-US')
+
+const content = await fetchGitHubFile(
+    'benchmarks/src/main/resources/benchmark.csv',
+    getDefaultVersion(Astro.url),
+    'current',
+)
+
+const lines: Record<string, string>[] = parse(content, { columns: true })
+
+if (!lines?.length) {
+    throw Error('CSV benchmark file is empty')
+}
+
+const entries = lines.map(record => ({
+    name: record['Benchmark']?.replace(/(.*) \/ (.*)/, '$1'),
+    method: record['Benchmark']?.replace(/(.*) \/ (.*)/, '$2'),
+    async: record['Param: async'] === 'true',
+    locationInfo: record['Param: locationInfo'] || undefined,
+    score: Math.round(record['Mode'] === 'ss' ? 1_000_000 / Number(record['Score']) : Number(record['Score'])),
+})).filter(entry => entry.method === method && entry.locationInfo === locationInfo)
+
+const max = Math.max(...entries.map(entry => entry.score))
+---
+
+<table class="table benchmark">
+    <thead>
+        <tr>
+            <th>{name}</th>
+            <th>{data}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {entries.map(entry => (
+            <tr class={entry.async ? 'async' : 'sync'}>
+                <td>
+                    {entry.async ? entry.name?.replace(/.* (with .*)/, '$1') : entry.name}
+                </td>
+                <td>
+                    <div class="bar" style={`width: ${entry.score * 100 / max}%`}></div>
+                    <span class="total">{numberFormat.format(entry.score)}</span>
+                </td>
+            </tr>
+        ))}
+    </tbody>
+</table>

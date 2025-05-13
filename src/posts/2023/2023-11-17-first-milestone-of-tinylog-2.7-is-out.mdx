@@ -1,0 +1,18 @@
+---
+title: First milestone of tinylog 2.7 is out
+---
+
+The first milestone of tinylog 2.7 introduces a new writer for syslog servers. Now, tinylog can send log entries to syslog compatible servers out of the box!
+
+Example syslog server configuration:
+
+```properties
+writer          = syslog
+writer.level    = debug
+writer.format   = {class}: {message}
+writer.protocol = UDP
+writer.host     = 192.168.0.1
+writer.port     = 514
+```
+
+Detailed information and all configuration parameters for the new syslog writer can be found on the [configuration page](/configuration/#syslog-writer). Many thanks to [Piotr Karlowicz](https://github.com/pkarlowicz), who developed the new writer.

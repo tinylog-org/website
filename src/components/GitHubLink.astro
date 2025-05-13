@@ -1,0 +1,17 @@
+---
+import Link from './Link.astro'
+import { resolveGitHubUrl } from '../composables/github'
+import { getDefaultVersion } from '../composables/version'
+import type { Type, Version } from '../types/version.ts'
+
+interface Props {
+    path: string
+    version?: Version
+    type?: Type
+}
+
+const { path, type = 'current', version = getDefaultVersion(Astro.url) } = Astro.props
+const url = resolveGitHubUrl(path, version, type)
+---
+
+<Link href={url}><slot /></Link>

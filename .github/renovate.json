@@ -3,12 +3,6 @@
     "extends": [
         "config:recommended"
     ],
-    "cloneSubmodules": true,
-    "baseBranches": [
-        "v2",
-        "v3",
-        "theme"
-    ],
     "packageRules": [
         {
             "matchUpdateTypes": [
@@ -24,10 +18,5 @@
         "automerge": true,
         "automergeType": "branch",
         "commitMessageAction": "Update package lock file"
-    },
-    "git-submodules": {
-        "enabled": true,
-        "automerge": true,
-        "automergeType": "branch"
     }
 }

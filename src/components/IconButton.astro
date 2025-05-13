@@ -1,0 +1,17 @@
+---
+import BootstrapIcon from './BootstrapIcon.astro'
+import Button from './Button.astro'
+
+interface Props {
+    icon: string
+    title: string
+    url: string
+}
+
+const { icon, title, url } = Astro.props
+---
+
+<div>
+    <BootstrapIcon name={icon} />
+    <Button title={title} url={url} />
+</div>

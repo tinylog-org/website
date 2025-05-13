@@ -1,8 +1,0 @@
-{{ define "main" }}
-{{ if .Params.tableOfContents }}{{ partial "toc.gohtml" . }}{{ end }}
-<div class="page">
-    {{ printf "# %s" .Title | $.Page.RenderString }}
-    {{ partial "github-edit-link.gohtml" (dict "file" .File) }}
-    {{ partial "content.gohtml" . }}
-</div>
-{{ end }}

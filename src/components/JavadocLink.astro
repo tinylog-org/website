@@ -1,0 +1,14 @@
+---
+import Link from './Link.astro'
+import { resolveJavadocUrl } from '../composables/javadoc'
+
+interface Props {
+    class: string
+    anchor?: string
+}
+
+const { class: className, anchor } = Astro.props
+const url = resolveJavadocUrl(className) + (anchor ? `#${anchor}` : '')
+---
+
+<Link href={url}><slot /></Link>

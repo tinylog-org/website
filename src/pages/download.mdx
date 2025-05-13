@@ -1,0 +1,89 @@
+---
+title: Download
+description: 'Download tinylog including third-party logging APIs and adapters for web and application severs. Get JARs and Maven or Gradle artifacts for your JVM projects.'
+tableOfContents: true
+navigationIndex: 2
+---
+
+import Download from '../components/Download.astro'
+import Version from '../components/Version.astro'
+
+## tinylog
+
+### Java
+
+The default logging API and logging implementation of tinylog <Version type="current" /> for Java and any other JVM language.
+
+<Download file="tinylog" artifacts="tinylog-api tinylog-impl" bundles="org.tinylog.api org.tinylog.impl" type="current" />
+
+### Kotlin
+
+Enhanced logging API for Kotlin and the default logging implementation of tinylog <Version type="current" />.
+
+<Download file="tinylog-kotlin" artifacts="tinylog-api-kotlin tinylog-impl" bundles="org.tinylog.api.kotlin org.tinylog.impl" type="current" />
+
+### Scala
+
+Enhanced logging API for Scala and the default logging implementation of tinylog <Version type="current" />.
+
+<Download file="tinylog-scala" artifacts="tinylog-api-scala_2.13 tinylog-impl" bundles="org.tinylog.api.scala_2.13 org.tinylog.impl" type="current" />
+
+## Third-Party Logging APIs
+
+### Apache Commons Logging (JCL)
+
+`jcl-tinylog` is a binding for Apache Commons Logging (JCL). This means that `commons-logging` must also exist in the classpath, but no other binding than `jcl-tinylog`. All log entries will be forwarded from `org.apache.commons.logging.Log` to tinylog and processed by the tinylog implementation.
+
+<Download file="jcl-tinylog" artifacts="jcl-tinylog" bundles="org.tinylog.api.jcl" type="current" />
+
+### Apache Log4j 1.2
+
+`log4j1.2-api` provides the logging API of Apache Log4j 1.2 for tinylog 2 and should be used instead of the legacy log4j artifact. Thus, classes that use Apache Log4j 1.2 for logging can be used together with tinylog 2.
+
+<Download file="log4j1.2-api" artifacts="log4j1.2-api" bundles="org.tinylog.api.log4j12" type="current" />
+
+### Java System Logger
+
+`jsl-tinylog` is a binding for `java.lang.System.Logger` and has just to be added to the classpath. Then, all log entries logged via `java.lang.System.Logger` will be processed by the tinylog implementation.
+
+<Download file="jsl-tinylog" artifacts="jsl-tinylog" bundles="org.tinylog.api.jsl" type="current" />
+
+### Java Util Logging (JUL)
+
+`jul-tinylog` is a bridge for `java.util.logging.Logger`. Before issuing any log entries via `java.util.logging.Logger`, it has to be activated by calling `org.tinylog.jul.JulTinylogBridge.activate()` at the startup of the application. All log entries will be forwarded from `java.util.logging.Logger` to tinylog and processed by the tinylog implementation.
+
+<Download file="jul-tinylog" artifacts="jul-tinylog" bundles="org.tinylog.api.jul" type="current" />
+
+### JBoss Logging 3
+
+`jboss-tinylog` is a binding for JBoss Logging 3. This means that `jboss-logging` must also exist in the classpath, but no other binding than `jboss-tinylog`. All log entries will be forwarded from `org.jboss.logging.Logger` to tinylog and processed by the tinylog implementation. MDC and tinylog’s thread context will share their data.
+
+<Download file="jboss-tinylog" artifacts="jboss-tinylog" bundles="org.tinylog.api.jboss" type="current" />
+
+### SLF4J 1.6 – 2.0
+
+`slf4j-tinylog` is a binding for SLF4J, which supports all versions from 1.6 up to 2.0. This means that `slf4j-api` must also exist in the classpath, but no other binding than `slf4j-tinylog`. All log entries will be forwarded from `org.slf4j.Logger` to tinylog and processed by the tinylog implementation. Markers are mapped to tinylog’s tags. MDC and tinylog’s thread context share their data.
+
+<Download file="slf4j-tinylog" artifacts="slf4j-tinylog" bundles="org.tinylog.api.slf4j" type="current" />
+
+### tinylog 1.3
+
+`tinylog1.3-api` provides the logging API of tinylog 1.3 for tinylog 2 and should be used instead of the old tinylog 1.3 artifact. Thus, classes that still use tinylog 1.3 for logging can be used together with tinylog 2.
+
+<Download file="tinylog1.3-api" artifacts="tinylog1.3-api" bundles="org.tinylog.api.tinylog13" type="current" />
+
+## Web and Application Servers
+
+tinylog can be used on web and application servers like all other popular logging APIs. For outputting log entries by the logging back-end of a server, one of the adapters below can be used instead of `tinylog-impl`. If log entries should be output by tinylog as well as by the logging back-end of a server, the adapters can be also used together with `tinylog-impl` in parallel.
+
+### Java Util Logging Based Servers
+
+`tinylog-jul` is an adapter implementation for all web and application servers that use `java.util.logging` (JUL) as logging back-end. This includes Tomcat and Glassfish for example. It is also possible to use this adapter for Spring Boot applications, but `tinylog-jboss` is recommended in this case.
+
+<Download file="tinylog-jboss" artifacts="tinylog-jboss" bundles="org.tinylog.adapter.jul" type="current" />
+
+### JBoss Logging Based Servers
+
+`tinylog-jboss` is an adapter implementation for all web and application servers that use JBoss Logging as logging back-end. This includes Wildfly and JBoss EAP for example. Furthermore, this adapter can be used for Spring Boot applications.
+
+<Download file="tinylog-jul" artifacts="tinylog-jul" bundles="org.tinylog.adapter.jboss" type="current" />

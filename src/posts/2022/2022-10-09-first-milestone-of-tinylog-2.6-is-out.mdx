@@ -1,0 +1,9 @@
+---
+title: First milestone of tinylog 2.6 is out
+---
+
+tinylog 2.6 is mainly a maintenance release. All Maven plug-ins and libraries have been updated to the latest version, with only a few handpicked exceptions to ensure we don't have to drop support for Java 6. For very old legacy versions of Android, Java 6 is still important. The two most important enhancements are improved support for SLF4J 2 and improved compatibility with Scala 2.12.17 and 2.13.9.
+
+With the first milestone of the version 2.6, the SLF4J binding for tinylog supports location aware logging for the new fluent logging API of SLF4J 2.0.0. Thereby, tinylog ensures that the correct location information such as class name, method name and line number is output. Furthermore, tinylog now implements all new MDC methods so that no compilation errors can occur when using the new deque methods of SLF4J 2.
+
+For improving the compatibility with Scala 2.12.17 and 2.13.9, all Scala macros (more than 2,000 lines!) of the logging API for Scala have been rewritten from scratch. The logging API for Scala 2.12 and 2.13 are two different artifacts. When using OSGi bundles, both artifacts now have different bundle names: `org.tinylog.api.scala_2.12` and `org.tinylog.api.scala_2.13`. This change is necessary to be able to deliver both bundles via the same P2 repository for Eclipse. Unfortunately, the rewritten logging API for Scala now requires at least Java 8. However, the logging APIs for Java and Kotlin are still compatible with Java 6 and 7.

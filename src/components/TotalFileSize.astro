@@ -1,0 +1,16 @@
+---
+import config from '../../tinylog.json'
+import { formatFileSize } from '../composables/io'
+import { getDefaultVersion } from '../composables/version'
+import type { Version } from '../types/version.ts'
+
+interface Props {
+    version?: Version
+}
+
+const { version = getDefaultVersion(Astro.url) } = Astro.props
+
+const size = config.versions[version].size
+---
+
+{formatFileSize(size)}

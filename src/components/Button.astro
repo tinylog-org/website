@@ -1,0 +1,12 @@
+---
+import Link from './Link.astro'
+
+interface Props {
+    title: string
+    url: string
+}
+
+const { title, url } = Astro.props
+---
+
+<Link href={url} role="button" class="btn btn-outline-dark btn-lg">{title}</Link>

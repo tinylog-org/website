@@ -1,0 +1,15 @@
+---
+import { isInPathname } from '../composables/navigation'
+import type { NavigationEntry } from '../types/navigation'
+
+interface Props {
+    entry: NavigationEntry
+}
+
+const { entry } = Astro.props
+const active = isInPathname(Astro.url, entry)
+---
+
+<li>
+    <a href={entry.url} class:list={['dropdown-item', { active }]}>{entry.title}</a>
+</li>

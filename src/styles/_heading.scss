@@ -1,0 +1,79 @@
+@import "variables";
+@import "bootstrap/scss/variables";
+
+main .page {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-bottom: 1rem;
+
+    + .edit {
+      margin-top: -0.75rem;
+    }
+  }
+
+  .edit {
+    margin-bottom: 1rem;
+    font-style: italic;
+
+    a {
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+main:not(.home) .page {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    /* Workaround for anchors: https://stackoverflow.com/a/11842865/5899171 */
+    padding-top: calc(#{$navbar-content-height} + #{$navbar-padding-y} * 2 + 1.5rem);
+    margin-top: calc((#{$navbar-content-height} + #{$navbar-padding-y} * 2 + 1rem) * -1);
+
+    &:first-child {
+      padding-top: calc(#{$navbar-content-height} + #{$navbar-padding-y} * 2 + 1rem);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+
+      &:hover {
+        color: var(--bs-link-color);
+      }
+
+      > .anchor-link {
+        display: inline;
+        margin-left: 0.6ch;
+        color: $gray-400;
+        font-weight: $font-weight-normal;
+        opacity: 0;
+        transform: translateY(0.1rem);
+
+        &::before {
+          content: "#";
+        }
+
+        &:hover,
+        &:focus-visible {
+          color: var(--bs-link-color);
+          opacity: 1;
+        }
+      }
+    }
+
+    &:hover a  > .anchor-link {
+      opacity: 1;
+    }
+  }
+}

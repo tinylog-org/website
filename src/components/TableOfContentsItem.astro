@@ -1,0 +1,15 @@
+---
+import TableOfContentsCollection from './TableOfContentsCollection.astro'
+import type { NestedHeading } from '../types/headings'
+
+interface Props {
+    heading: NestedHeading
+}
+
+const { heading } = Astro.props
+---
+
+<li class="toc-item">
+    <a class="toc-link" href={heading.link}>{heading.text}</a>
+    {heading.children && <TableOfContentsCollection headings={heading.children} />}
+</li>

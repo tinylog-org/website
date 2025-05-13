@@ -1,0 +1,19 @@
+---
+import Link from './Link.astro'
+import { loadSubNavigation } from '../composables/navigation'
+
+const entries = loadSubNavigation(Astro.url) || []
+---
+
+{entries.length > 0 && (
+    <ol>
+        {entries.map(entry => (
+            <li>
+                <strong>
+                    <Link href={entry.url}>{entry.title}</Link>
+                </strong>
+                <p>{entry.description}</p>
+            </li>
+        ))}
+    </ol>
+)}

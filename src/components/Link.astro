@@ -1,0 +1,14 @@
+---
+interface Props {
+    href: string
+    role?: 'button' | undefined
+    class?: string
+}
+
+const { href, role, class: className } = Astro.props
+const isExternal = /^(https?|mailto):/.test(href)
+const target = isExternal && !/\.zip$/.test(href) ? '_blank' : null
+const rel = isExternal ? 'noopener' : null
+---
+
+<a href={href} role={role} class={className} target={target} rel={rel}><slot /></a>

@@ -1,0 +1,27 @@
+---
+import EditLink from '../components/EditLink.astro'
+import Header from '../components/Header.astro'
+import TableOfContents from '../components/TableOfContents.astro'
+import type { SlugHeading } from '../types/headings'
+
+interface Props {
+    file: string
+    title: string | undefined
+    headings: SlugHeading[] | undefined
+    styleClass: string | undefined
+}
+
+const { file, title, headings, styleClass } = Astro.props
+---
+
+<body>
+    <Header headings={!!headings} />
+    <main class={styleClass}>
+        {!!headings && <TableOfContents title={title} headings={headings} />}
+        <div class="page">
+            {title && <h1>{title}</h1>
+            <EditLink file={file} />}
+            <slot />
+        </div>
+    </main>
+</body>

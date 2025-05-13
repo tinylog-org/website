@@ -1,0 +1,22 @@
+---
+import NavigationDropdown from './NavigationDropdown.astro'
+import NavigationLinkItem from './NavigationLinkItem.astro'
+import { isVisible, loadNavigation } from '../composables/navigation'
+
+const entries = loadNavigation()
+---
+
+<ul class="navbar-nav">
+    {entries.filter(isVisible).map(entry => entry.children?.some(isVisible)
+        ? <NavigationDropdown entry={entry} />
+        : <NavigationLinkItem entry={entry} />,
+    )}
+</ul>
+
+<hr class="d-lg-none text-white-50" />
+
+<ul class="navbar-nav ms-lg-auto">
+    <li class="nav-item social">
+        <a class="github-button" href="https://github.com/tinylog-org/tinylog" data-show-count="true">GitHub</a>
+    </li>
+</ul>

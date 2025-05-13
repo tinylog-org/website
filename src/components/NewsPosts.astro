@@ -1,0 +1,22 @@
+---
+import EditLink from './EditLink.astro'
+import FormattedDate from './FormattedDate.astro'
+import Link from './Link.astro'
+import { loadPosts } from '../composables/posts'
+
+const posts = loadPosts()
+---
+
+{posts.map(post => (
+    <article>
+        <h1 id={`${post.year}-${post.month}-${post.day}-${post.name}`}>
+            <Link href={`/${post.year}/${post.month}/${post.name}/`}>{post.frontmatter.title}</Link>
+            <a aria-hidden="true" tabindex="-1" href={`#${post.year}-${post.month}-${post.day}-${post.name}`}>
+                <span class="anchor-link"></span>
+            </a>
+        </h1>
+        <EditLink file={post.file} />
+        <FormattedDate year={post.year} month={post.month} day={post.day} />
+        <post.Content />
+    </article>
+))}

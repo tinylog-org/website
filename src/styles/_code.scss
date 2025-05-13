@@ -1,0 +1,111 @@
+@import "variables";
+@import "bootstrap/scss/variables";
+
+code {
+  color: var(--bs-link-color);
+}
+
+pre {
+  position: relative;
+  display: block;
+  padding: 1rem 1.5rem 0.75rem;
+  border: $border-width $border-style $dark;
+  border-radius: $border-radius;
+  background-color: $light;
+
+  > code {
+    display: block;
+    overflow: auto;
+    padding-bottom: 0.25rem;
+
+    > .line:first-child {
+      padding-right: 2rem;
+    }
+  }
+
+  > .copy-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    border: 0;
+    margin: 0.5rem 1.5rem;
+    background-color: inherit;
+    background-image: svg-load('../../node_modules/bootstrap-icons/icons/clipboard.svg' fill=$body-color);
+    background-position: center;
+    background-repeat: no-repeat;
+
+    &:hover {
+      background-image: svg-load('../../node_modules/bootstrap-icons/icons/clipboard.svg' fill=$primary);
+    }
+
+    &.success {
+      background-image: svg-load('../../node_modules/bootstrap-icons/icons/clipboard-check.svg' fill=$body-color);
+
+      &:hover {
+        background-image: svg-load('../../node_modules/bootstrap-icons/icons/clipboard-check.svg' fill=$primary);
+      }
+    }
+
+    &.failed {
+      background-image: svg-load('../../node_modules/bootstrap-icons/icons/clipboard-x.svg' fill=$body-color);
+
+      &:hover {
+        background-image: svg-load('../../node_modules/bootstrap-icons/icons/clipboard-x.svg' fill=$primary);
+      }
+    }
+  }
+}
+
+code.language-java,
+code.language-gradle,
+code.language-kotlin,
+code.language-properties,
+code.language-scala,
+code.language-xml {
+  .token.keyword {
+    color: $primary;
+    font-weight: $font-weight-bold;
+  }
+
+  .token.tag,
+  .token.string,
+  .token.string-interpolation,
+  .token.string-literal {
+    color: $primary;
+
+    .interpolation {
+      font-weight: $font-weight-bold;
+    }
+  }
+
+  .token.attr-equals,
+  .token.attr-name {
+     color: $body-color;
+   }
+
+   .token.comment {
+     color: $gray-600;
+   }
+}
+
+code.language-json {
+  .token.property,
+  .token.string {
+     color: $primary;
+   }
+}
+
+code.language-properties {
+  .token.attr-name,
+  .token.punctuation {
+     color: $primary;
+  }
+
+  .token.attr-value .comment {
+    color: $gray-600;
+  }
+}

@@ -1,0 +1,13 @@
+---
+import { readFileSync } from 'fs'
+
+interface Props {
+    name: string
+}
+
+const { name } = Astro.props
+const content = readFileSync(`node_modules/bootstrap-icons/icons/${name}.svg`)
+    .toString()
+    .replace(/class="([^"]*)"/, 'class="icon $1"')
+---
+<Fragment set:html={content} />

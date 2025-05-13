@@ -1,6 +1,0 @@
----
-title: New documentation is online
-date: 2013-06-02
----
-
-The new [documentation](documentation) is much more comprehensive than the old user manual and is now on the current state of tinylog 0.8. Due to the size the new documentation is divided into five chapters and discusses also the extensibility of tinylog, e.g. how to create an own writer.

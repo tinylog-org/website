@@ -1,0 +1,5 @@
+---
+title: Update for second milestone
+---
+
+tinylog 2.5.0-M2.1 fixes a `java.lang.VerifyError` while loading the configuration on legacy Android versions. This issue was discovered on Android 4.4 and occurred only on very old and unsupported Android versions. Additionally, tinylog's Kotlin API is now compiled with Kotlin 1.4.21 due to [CVE-2020-29582](https://nvd.nist.gov/vuln/detail/CVE-2020-29582). Nevertheless, Kotlin 1.3 - 1.7 are still supported.

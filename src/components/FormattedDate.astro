@@ -1,0 +1,16 @@
+---
+interface Props {
+    year: string
+    month: string
+    day: string
+}
+
+const { year, month, day } = Astro.props
+const date = new Date(Number(year), Number(month) - 1, Number(day))
+---
+
+<p class="date">
+    <time datetime={`${year}-${month}-${day}`}>
+        {date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+    </time>
+</p>

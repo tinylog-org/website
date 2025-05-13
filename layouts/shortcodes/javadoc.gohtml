@@ -1,9 +1,0 @@
-{{- $classFile := .Get 0 | replaceRE `^([^#]*).*` `$1` | replaceRE `\.` `/` -}}
-{{- $anchor := .Get 0 | replaceRE `[^#]*(#.*)?` `$1` -}}
-{{- if strings.HasPrefix $classFile "org/tinylog" -}}
-    {{ printf "javadoc/%s.html%s" $classFile $anchor }}
-{{- else if strings.HasPrefix $classFile "java/sql" -}}
-    {{ printf "https://docs.oracle.com/en/java/javase/17/docs/api/java.sql/%s.html%s" $classFile $anchor }}
-{{- else -}}
-    {{ printf "https://docs.oracle.com/en/java/javase/17/docs/api/java.base/%s.html%s" $classFile $anchor }}
-{{- end -}}

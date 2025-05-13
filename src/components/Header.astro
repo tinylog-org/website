@@ -1,0 +1,38 @@
+---
+import Navigation from './Navigation.astro'
+
+interface Props {
+    headings: boolean
+}
+
+const { headings } = Astro.props
+---
+
+<header class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <nav aria-label="Navigation Menu">
+        <button
+            class:list={['navbar-toggler', { invisible: !headings }]}
+            type="button"
+            data-bs-toggle={headings ? 'offcanvas' : undefined}
+            data-bs-target={headings ? '#toc-navbar' : undefined}
+            aria-label={headings ? 'Table of Contents' : undefined}
+        >
+            <span class="navbar-toc-icon"></span>
+        </button>
+        <a class="navbar-brand" href="/" aria-hidden="true">
+            tinylog
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#main-navbar" aria-label="Main Menu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="offcanvas offcanvas-lg offcanvas-end flex-grow-1 bg-dark" id="main-navbar">
+            <div class="offcanvas-header text-white">
+                <h5 class="offcanvas-title">tinylog</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body pt-0">
+                <Navigation />
+            </div>
+        </div>
+    </nav>
+</header>

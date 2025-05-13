@@ -1,5 +1,0 @@
-{{- $params  := $.Site.Params                                                                     -}}
-{{- $version := cond (eq (.Get `version`) `preview`) $params.previewVersion $params.stableVersion -}}
-{{- $file    := .Get `file`                                                                       -}}
-
-{{- partial "download/file-link.gohtml" (dict "version" $version "file" $file) -}}

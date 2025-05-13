@@ -1,9 +1,0 @@
-{{- $fileName := printf `%s-%s.zip` .file .version                                                   -}}
-{{- $url      := printf "https://api.github.com/repos/tinylog-org/tinylog/releases/tags/%s" .version -}}
-{{- $json     := resources.GetRemote $url | transform.Unmarshal                                      -}}
-
-{{- range $json.assets -}}
-    {{- if eq .name $fileName -}}
-        [{{ .name }}]({{ .browser_download_url }}) ({{ partial "file-size.gohtml" .size }})
-    {{- end -}}
-{{- end -}}

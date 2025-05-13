@@ -13,8 +13,13 @@ jobs:
 
     steps:
 
-      - name: Check Broken Links
-        uses: ruzickap/action-my-broken-link-checker@v2
+
+      - name: Load Pages from Sitemap
+        run: |
+          echo "PAGES=$(curl -s -f https://tinylog.org/sitemap.xml | grep -oE 'https://[^<>]+' | tr '\n' ' ')" >> $GITHUB_ENV
+
+      - name: Check Links
+        uses: lycheeverse/lychee-action@v2
         with:
-          url: https://tinylog.org/
-          cmd_params: "--max-connections-per-host=1 --rate-limit=2 --accepted-status-codes=200,403 --buffer-size=8192 --color=always"
+          args: --no-progress --include-fragments --max-concurrency 2 --accept '100..=103,200..=299,403,429' --exclude '^https://github.com\/tinylog-org\/website\/blob\/(\w+)/src/(pages|posts)/' ${{ env.PAGES }}
+          token: ${{ secrets.LINK_CHECK_TOKEN }}

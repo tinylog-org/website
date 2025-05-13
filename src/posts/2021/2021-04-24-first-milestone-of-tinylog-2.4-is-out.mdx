@@ -1,0 +1,19 @@
+---
+title: First milestone of tinylog 2.4 is out
+---
+
+The SLF4J binding of tinylog supports SLF4J 2.0 now. This means that apart from SLF4J 1.6 and 1.7, the latest alpha version of SLF4J 2.0 can be used with tinylog as logging implementation. Special thanks to [f4lco](https://github.com/f4lco), who made the necessary modifications to the SLF4J binding.
+
+For the first time since the release of tinylog 2.0, there is a new writer. The new JSON writer can write log entries in the JSON format to log files.
+
+```json
+[
+   {
+      "level" : "INFO" ,
+      "source" : "Application.main()" ,
+      "message" : "Hello World!" 
+   }
+]
+```
+
+Detailed information and all configuration parameters for the new JSON writer can be found on the [configuration page](/configuration/#json-writer). Many thanks to [Direnc Timur](https://github.com/proohit), who developed the new writer.

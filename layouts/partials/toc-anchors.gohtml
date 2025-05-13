@@ -1,8 +1,0 @@
-{{
-    .TableOfContents
-        | replaceRE `<\/?nav[^>]*>` ``
-        | replaceRE `<ul([^>]*)>` `<ul class="navbar-toc"$1>`
-        | replaceRE `<li([^>]*)>` `<li class="toc-item"$1>`
-        | replaceRE `<a([^>]*)>` `<a class="toc-link"$1>`
-        | safeHTML
-}}

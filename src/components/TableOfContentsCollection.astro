@@ -1,0 +1,14 @@
+---
+import TableOfContentsItem from './TableOfContentsItem.astro'
+import type { NestedHeading } from '../types/headings'
+
+interface Props {
+    headings: NestedHeading[]
+}
+
+const { headings } = Astro.props
+---
+
+<ul class="navbar-toc">
+    {headings.map(heading => <TableOfContentsItem heading={heading} />)}
+</ul>

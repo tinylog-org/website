@@ -6,23 +6,10 @@ on:
 
 jobs:
 
-  pre-checks:
-
-    name: Resolve Pre-Checks
-    runs-on: ubuntu-24.04
-    if: ${{ github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.event.pull_request.base.repo.full_name }}
-
-    steps:
-
-      - name: Print Info
-        run: |
-          echo "Branch push or external pull request detected"
-
   build:
 
     name: Build Website
     runs-on: ubuntu-24.04
-    needs: pre-checks
 
     outputs:
       timestamp: ${{ steps.timestamp.outputs.timestamp }}
@@ -31,13 +18,18 @@ jobs:
 
       - name: Checkout Website Repository
         uses: actions/checkout@v4
-        with:
-          submodules: true
 
       - name: Resolve tinylog Version
         run: |
-          pip3 install yq
-          echo "TINYLOG_VERSION=$(yq -r '.params.stableVersion' config.yaml)" >> $GITHUB_ENV
+          pip3 install jq
+          echo "TINYLOG_VERSION=$(jq -r '.versions.v2.current' tinylog.json)" >> $GITHUB_ENV
+
+      - name: Checkout tinylog Repository
+        uses: actions/checkout@v4
+        with:
+          repository: tinylog-org/tinylog
+          ref: ${{ env.TINYLOG_VERSION }}
+          path: tinylog
 
       - name: Install Node.js
         uses: actions/setup-node@v4
@@ -54,26 +46,33 @@ jobs:
         run: npm install
 
       - name: Build Website
-        run: npm run build:prod
+        run: npm run astro:build
 
-      - name: Checkout tinylog Repository
-        uses: actions/checkout@v4
-        with:
-          repository: tinylog-org/tinylog
-          ref: ${{ env.TINYLOG_VERSION }}
-          path: tinylog
-
-      - name: Generate API documentation
+      - name: Generate API Documentation
         run: |
           cd tinylog/tinylog-api
           mvn -P release --no-transfer-progress --batch-mode javadoc:javadoc
 
-      - name: Copy API documentation
+      - name: Copy API Documentation
         run: |
-          rm -r public/javadoc/*
-          cp -R tinylog/tinylog-api/target/site/apidocs/* public/javadoc
+          rm -r dist/javadoc/*
+          cp -R tinylog/tinylog-api/target/site/apidocs/* dist/javadoc
 
-      - name: Generate timestamp
+      - name: Generate sitemap
+        uses: cicirello/generate-sitemap@v1
+        with:
+          path-to-root: dist
+          base-url-path: https://tinylog.org
+          exclude-paths: /404 /google179accde67aec4e2.html
+
+      - name: Compress files
+        uses: stefh/ghaction-CompressFiles@v2
+        with:
+          path: dist
+          depth: 10
+          extensions: .css,.html,.js,.svg,.xml
+
+      - name: Generate Timestamp
         id: timestamp
         run: echo "timestamp=$(date +'%Y%m%d-%H%M')" >> $GITHUB_OUTPUT
 
@@ -81,13 +80,12 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: website-${{ steps.timestamp.outputs.timestamp }}
-          path: public/
+          path: dist
 
-  lint-sass:
+  astro-check:
 
-    name: Lint SASS
+    name: Run Astro check
     runs-on: ubuntu-24.04
-    needs: pre-checks
 
     steps:
 
@@ -102,14 +100,13 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Run Stylelint
-        run: npm run stylelint:check
+      - name: Run Astro
+        run: npm run astro:check
 
-  lint-typescript:
+  eslint:
 
-    name: Lint Typescript
+    name: Run ESLint
     runs-on: ubuntu-24.04
-    needs: pre-checks
 
     steps:
 
@@ -127,27 +124,52 @@ jobs:
       - name: Run ESLint
         run: npm run eslint:check
 
-  lint-markdown:
+  remark-lint:
 
-    name: Lint Markdown
+    name: Run remark-lint
     runs-on: ubuntu-24.04
-    needs: pre-checks
 
     steps:
 
       - name: Checkout Website Repository
         uses: actions/checkout@v4
 
-      - name: Check Markdown
-        uses: DavidAnson/markdownlint-cli2-action@v19
+      - name: Install Node.js
+        uses: actions/setup-node@v4
         with:
-          globs: "content/**/*.md"
+          node-version: 22
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run remark-lint
+        run: npm run remark:check
+
+  stylelint:
+
+    name: Run Stylelint
+    runs-on: ubuntu-24.04
+
+    steps:
+
+      - name: Checkout Website Repository
+        uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Stylelint
+        run: npm run stylelint:check
 
   check-spelling:
 
     name: Check Spelling
     runs-on: ubuntu-24.04
-    needs: pre-checks
 
     steps:
 
@@ -177,15 +199,15 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: website-${{ needs.build.outputs.timestamp }}
-          path: public/
+          path: dist
 
       - name: Validate HTML
         uses: Cyb3r-Jak3/html5validator-action@v7.2.0
         with:
           log_level: INFO
           skip_git_check: true
-          root: public/
-          blacklist: javadoc google179accde67aec4e2.html
+          root: dist
+          blacklist: google179accde67aec4e2.html javadoc
 
   check-links:
 
@@ -195,15 +217,35 @@ jobs:
 
     steps:
 
+      - name: Checkout Website Repository
+        uses: actions/checkout@v4
+
       - name: Download Generated Files
         uses: actions/download-artifact@v4
         with:
           name: website-${{ needs.build.outputs.timestamp }}
-          path: public/
+          path: dist
+
+      - name: Generate sitemap
+        uses: cicirello/generate-sitemap@v1
+        with:
+          path-to-root: dist
+          base-url-path: http://localhost:8080
+
+      - name: Load Pages from Sitemap
+        run: |
+          echo "PAGES=$(cat ./dist/sitemap.xml | grep -oE 'http://localhost:8080/[^<>]*' | tr '\n' ' ')" >> $GITHUB_ENV
+
+      - name: Start HTTP Server
+        uses: Eun/http-server-action@v1
+        with:
+          directory: dist
+          index-files: |
+            ["index.html"]
+          port: 8080
 
       - name: Check Links
-        uses: ruzickap/action-my-broken-link-checker@v2
+        uses: lycheeverse/lychee-action@v2
         with:
-          url: https://tinylog.org
-          pages_path: public
-          cmd_params: "\"--exclude=(tinylog.org/p2-repository/|github.com/tinylog-org/website/edit/)\" --max-connections-per-host=1 --rate-limit=2 --accepted-status-codes=200,403 --buffer-size=8192 --color=always"
+          args: --no-progress --include-fragments --accept '100..=103,200..=299,403,429' --exclude '^https://github.com\/tinylog-org\/website\/blob\/(\w+)/src/(pages|posts)/' ${{ env.PAGES }}
+          token: ${{ secrets.LINK_CHECK_TOKEN }}

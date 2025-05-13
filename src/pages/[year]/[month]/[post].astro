@@ -1,0 +1,35 @@
+---
+import FormattedDate from '../../../components/FormattedDate.astro'
+import { loadPosts } from '../../../composables/posts'
+import PageLayout from '../../../layouts/PageLayout.astro'
+
+export async function getStaticPaths() {
+    const posts = loadPosts()
+
+    return posts.map(post => ({
+        params: {
+            year: post.year,
+            month: post.month,
+            post: post.name,
+        },
+        props: {
+            year: post.year,
+            month: post.month,
+            day: post.day,
+            content: {
+                ...post.frontmatter,
+                navigationParent: 'news',
+                file: post.file,
+            },
+            Element: post.Content,
+        },
+    }))
+}
+
+const { year, month, day, content, Element } = Astro.props
+---
+
+<PageLayout content={content}>
+    <FormattedDate year={year} month={month} day={day} />
+    <Element />
+</PageLayout>

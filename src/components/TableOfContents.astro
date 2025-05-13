@@ -1,0 +1,44 @@
+---
+import TableOfContentsCollection from './TableOfContentsCollection.astro'
+import VersionSwitch from './VersionSwitch.astro'
+import { nestHeadings } from '../composables/headings'
+import { loadSameChildLevelNavigation } from '../composables/navigation'
+import { findVersionedPagePair } from '../composables/preview'
+import type { SlugHeading } from '../types/headings'
+
+interface Props {
+    title: string | undefined
+    headings: SlugHeading[]
+}
+
+const { url, props } = Astro
+const { title, headings } = props
+
+const navigation = loadSameChildLevelNavigation(url)
+const nestedHeadings = navigation
+    ? navigation.map(entry => ({
+        link: entry.url,
+        text: entry.title || entry.url,
+        children: url.pathname === entry.url ? nestHeadings(headings) : [],
+    }))
+    : nestHeadings(headings)
+
+const [currentPage, previewPage] = findVersionedPagePair(url)
+const versionSwitchPages = currentPage && previewPage && currentPage.version !== previewPage.version ? [currentPage, previewPage] : undefined
+---
+
+<aside class="toc navbar navbar-dark">
+    <nav aria-label="Table of Contents">
+        <div class="offcanvas offcanvas-lg offcanvas-start flex-grow-1 bg-dark" id="toc-navbar">
+            <div class="offcanvas-header text-white">
+                <h5 class="offcanvas-title">{title || 'Table of Contents'}</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close" />
+            </div>
+            <div class="offcanvas-body pt-0">
+                <TableOfContentsCollection headings={nestedHeadings} />
+                {versionSwitchPages && <hr class="d-lg-none text-white-50" />}
+                {versionSwitchPages && <VersionSwitch pages={versionSwitchPages} />}
+            </div>
+        </div>
+    </nav>
+</aside>

@@ -1,0 +1,64 @@
+---
+import Code from './Code.astro'
+import type { TabItems } from '../types/tabs'
+
+interface Props {
+    type: string
+    items: TabItems
+    defaultIndex?: number
+}
+
+const { type, items, defaultIndex = 0 } = Astro.props
+const current = items[defaultIndex] || items[0]
+---
+
+<table class="tabs" data-tab-group={type}>
+    <thead>
+        <tr class="nav">
+            <th class="dropdown">
+                <a class="dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" tabindex="0">
+                    {current.title}
+                </a>
+                <ul class="dropdown-menu">
+                    {items.map(item => (
+                        <li>
+                            <a
+                                class:list={['dropdown-item', { active: item.identifier === current.identifier }]}
+                                data-tab-item={item.identifier}
+                                tabindex="0"
+                            >
+                                {item.title}
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+            </th>
+        </tr>
+        <tr class="nav nav-tabs" role="tablist">
+            {items.map(item => (
+                <th
+                    class:list={['nav-link', { active: item.identifier === current.identifier }]}
+                    data-tab-item={item.identifier}
+                    role="tab"
+                    aria-selected={item.identifier === current.identifier}
+                    tabindex="0"
+                >
+                    {item.title}
+                </th>
+            ))}
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="tab-content">
+            {items.map(item => (
+                <td
+                    class:list={['tab-pane', { active: item.identifier === current.identifier }]}
+                    data-tab-item={item.identifier}
+                    role="tabpanel"
+                >
+                    {item.language ? <Code language={item.language} code={item.content} /> : item.content}
+                </td>
+            ))}
+        </tr>
+    </tbody>
+</table>

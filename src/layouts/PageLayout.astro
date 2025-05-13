@@ -1,0 +1,35 @@
+---
+import '../styles/index.scss'
+
+import Body from './Body.astro'
+import Head from './Head.astro'
+import type { Frontmatter } from '../types/frontmatter'
+import type { SlugHeading } from '../types/headings'
+
+interface Props {
+    content: Frontmatter & {
+        file: string
+    }
+    headings?: SlugHeading[]
+}
+
+const { content, headings = [] } = Astro.props
+const { file, title, description, showDefaultTitle = true, tableOfContents = false, styleClass } = content
+const filename = file.replace(/.*\/(src\/.*)/, '$1')
+---
+
+<!DOCTYPE html>
+<html lang={Astro.currentLocale}>
+    <Head
+        title={title}
+        description={description}
+    />
+    <Body
+        file={filename}
+        title={showDefaultTitle ? title : undefined}
+        headings={tableOfContents ? headings : undefined}
+        styleClass={styleClass}
+    >
+        <slot />
+    </Body>
+</html>

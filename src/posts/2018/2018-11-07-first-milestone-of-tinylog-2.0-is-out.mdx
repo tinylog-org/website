@@ -1,0 +1,65 @@
+---
+title: First milestone of tinylog 2.0 is out
+---
+
+import JavadocLink from '../../components/JavadocLink.astro'
+
+Today, after two years of development, it is time to release the [first milestone of tinylog 2.0](/download/). All planned features are already implemented for tinylog itself. Third party logging APIs and implementations for web and application servers are scheduled for the coming milestones. Version 2.0 is a complete redevelopment with a modern architecture. API and implementation are now divided into two different JARs. tinylog will remain a lightweight and easy-to-use logging framework. tinylog will remain a lightweight and easy-to-use logging framework, with rarely used features replaced by new features requested by the community.
+
+## Tags for Log Entries
+
+One of the most requested features was the support of tagged log entries. Tags can be output as part of the log entry, or used to output log entries via different writers. An instance of a tagged logger can be fetched from the static logger class. Depending on how often a tag is used, it is recommended to keep the tagged logger as a (member) variable, or to use the inline variant.
+
+```java
+TaggedLogger logger = Logger.tag("SYSTEM"); // Get an instance of the tagged logger
+logger.debug("Hello World!");
+logger.error("An urgent problem occurred");
+```
+
+```java
+Logger.tag("SYSTEM").info("Hello World!"); // Fluent API inline use
+```
+
+Tags are configured as self-explanatory via the property "tag". As in the previous version, tinylog 2 can be configured via `tinylog.properties`. However, the prefix "tinylog." is omitted to shorten the number of keystrokes in the new version.
+
+```properties
+writer        = console
+writer.tag    = SYSTEM
+writer.format = {date} - {tag} - {message}
+```
+
+## File Writer Improvements
+
+By default, tinylog use the default charset of the current operating system for writing log entries to files. In tinylog 2, the charset is configurable, and every charset supported by the current JVM can be used.
+
+```properties
+writer         = file
+writer.file    = test.txt
+writer.charset = UTF-8
+```
+
+The [rolling file writer](/configuration/#rolling-file-writer) is used if a new log file should be started after defined events. For example, when a certain file size is reached or at a fixed time. In tinylog 2, the rolling file writer supports patterns for the file names of log files.
+
+```properties
+writer          = rolling file
+writer.file     = logs/{date:yyyy}/{date:MM}/myapp-{count}.log
+writer.policies = daily
+```
+
+## Further Minor Changes
+
+The base package name of tinylog has now been shortened from `org.pmw.tinylog` to just `org.tinylog`, and the severity level `WARNING` is just `WARN`. The new names are easy to remember and save some typing time. To make the API of the <JavadocLink class="org.tinylog.Logger">logger class</JavadocLink> clearer, all public methods not related to logging have been removed. Now tinylog 2 is compiled with debug information (as is common nowadays), which simplifies debugging significantly.
+
+The previous version of tinylog could only support system properties and environment variables for resolving file names in the properties file. tinylog 2 supports both in all values, and uses a distinct syntax to distinguish between [system properties](/configuration/#system-properties) and [environment variables](/configuration/#environment-variables).
+
+```properties
+writer          = file
+writer.file     = ${HOME}/application.log  # Environment variable
+writer.format   = #{user.name}: {message}  # System property
+```
+
+## Dropped Features
+
+The recommended way to configure tinylog is using properties files. The fluent API for configuration has been dropped, as it was rarely used in real world projects. Configuration can still be set at runtime by using the <JavadocLink class="org.tinylog.configuration.Configuration">configuration class</JavadocLink>. This can be done property based by using the same keys and values as for `tinylog.properties`.
+
+For [performance reasons](/benchmark/), the configuration in tinylog 2 is immutable, as opposed to the previous version of tinylog. As soon as the first logging method is called, the configuration cannot be changed.

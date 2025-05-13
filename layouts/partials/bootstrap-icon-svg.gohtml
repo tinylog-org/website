@@ -1,7 +1,0 @@
-{{- $filename := printf `node_modules/bootstrap-icons/icons/%s.svg` .file                                     -}}
-{{- $svg      := readFile $filename                                                                           -}}
-{{- $svg      := replaceRE `<svg (.*)>` `<svg $1 aria-hidden="true">` $svg                                    -}}
-{{- $svg      := cond (eq .color nil) $svg (replaceRE `currentColor` .color $svg)                             -}}
-{{- $svg      := cond (eq .class nil) $svg (replaceRE `class="([^"]*)"` (printf `class="%s $1"` .class) $svg) -}}
-
-{{- $svg | safeHTML -}}

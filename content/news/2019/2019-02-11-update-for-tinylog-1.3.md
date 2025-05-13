@@ -1,6 +1,0 @@
----
-title: Update for tinylog 1.3
-date: 2019-02-11
----
-
-tinylog 1.3.6 fixes a `ConcurrentModificationException` that can occur, if system properties change while loading the configuration. Thanks to [trebouillon](https://github.com/trebouillon) for finding this [issue](https://github.com/tinylog-org/tinylog/issues/93).

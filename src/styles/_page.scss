@@ -1,0 +1,68 @@
+@import "variables";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/variables";
+
+.page {
+  max-width: calc(#{$main-max-width} - #{$sidebar-width} - var(--bs-gutter-x) * 3 / 2);
+  box-sizing: content-box;
+  padding: 1rem 0;
+  margin-right: auto;
+  margin-left: auto;
+
+  @include media-breakpoint-up(xl) {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  aside ~ & {
+    @include media-breakpoint-up(lg) {
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+      padding-left: calc(#{$sidebar-width} + var(--bs-gutter-x) / 2);
+    }
+  }
+
+  article + article {
+    margin-top: 3rem;
+  }
+
+  .date {
+    position: relative;
+    font-style: italic;
+
+    &::before {
+      position: absolute;
+      display: block;
+      width: 1.5em;
+      height: 1.5em;
+      background-image: svg-load('../../node_modules/bootstrap-icons/icons/calendar-event.svg' fill=$dark);
+      background-repeat: no-repeat;
+      background-size: 100%;
+      content: "";
+    }
+
+    > :first-child {
+      padding-left: 2em;
+    }
+  }
+
+  .tuple {
+    display: flex;
+    flex-direction: column;
+    margin: 3rem;
+    gap: 3rem;
+
+    @include media-breakpoint-up(md) {
+      flex-direction: row;
+      margin-top: 5rem;
+    }
+
+    > * {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+  }
+}

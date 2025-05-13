@@ -1,0 +1,19 @@
+---
+title: Second release candidate of tinylog 2.1 is out
+---
+
+In previous versions, tinylog replaced not only plain "`{}`" placeholders, but also curly brackets with any text between, when using third-party logging API. This caused incompatibilities with SLF4J, for example. Now, tinylog replaces only placeholders that are explicitly supported by the used third-party logging API.
+
+In the new release candidate, it is possible to [escape curly brackets or entire phrases](/logging/#text-with-arguments) by using single quotes, when issuing log entries with arguments via tinylog's logging API.
+
+```java
+Logger.info("Curly brackets as placeholder {} or escaped '{}'", value);
+```
+
+However, this feature has to be [explicitly enabled](/configuration/#escaping) in the configuration file for compatibility reasons.
+
+```properties
+escaping.enabled = true # default: false
+```
+
+Additionally, there is a class loader fix. If tinylog is initialized in a thread without a context class loader, tinylog can use the class loader from configuration class to avoid a `NullPointerException`. This fallback mechanism fixes an issue that was initially reported when using the Poynt SDK with tinylog.

@@ -1,0 +1,17 @@
+---
+title: Second milestone of tinylog 2.4 is out
+---
+
+tinylog now supports multiple tags for log entries. Besides `Logger.tag("foo")`, there is now an additional method `Logger.tags("foo", "bar", "baz")` for getting a tagged logger with multiple tags. Each issued log entry will be output with each assigned tag.
+
+Already since the first version of tinylog 2, it is possible to define a minimum size for format pattern placeholders. With the new milestone, it is also possible to define a fixed or maximum size. tinylog will add spaces at the end of a placeholder value, if the value is too short. However, if a placeholder value is too large, the characters at the beginning of the value are truncated. For example, the class name `com.foo.MyClass` would be formatted as `.foo.MyClass` in the example below.
+
+```text
+{level|min-size=7} - {thread|size=6} - {class|max-size=12} - {message}
+```
+
+To avoid invisible configuration errors, tinylog now automatically trims white space at the end of configuration values. For example, `writer.charset = UTF-8··` (two spaces at the end) has caused an invalid charset error in previous tinylog versions. Now, tinylog trims such trailing white space and can correctly parse the configuration value in this example as "UTF-8". By the way, leading white space in front of configuration values has never been a problem, because Java already trims such white space automatically in properties files.
+
+In Android apps with shared user IDs, tinylog 2.3 and earlier versions could not find and load their service files. This was due to an issue with the class loader and is fixed in the current milestone. In addition, all bug fixes from tinylog 2.3.1 and 2.3.2 are now also part of tinylog 2.4.
+
+Special thanks to [kropp](https://github.com/kropp) and [kahgoh](https://github.com/kahgoh) for their pull requests that made this big release possible.

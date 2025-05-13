@@ -1,0 +1,10 @@
+{
+  "defaultVersion": "v2",
+  "versions": {
+    "v2": {
+      "current": "2.7.0",
+      "preview": "2.8.0-M1",
+      "size": 200036
+    }
+  }
+}

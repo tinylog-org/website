@@ -1,0 +1,14 @@
+---
+import type { CurrentPage, PreviewPage } from '../types/version'
+
+interface Props {
+    page: CurrentPage | PreviewPage
+}
+
+const { url, props } = Astro
+const { page } = props
+
+const current = page.url === url.pathname
+---
+
+<a href={page.url} class:list={['toc-link', { active: current }]}>{page.version}</a>

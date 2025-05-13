@@ -1,0 +1,17 @@
+---
+import Link from '../components/Link.astro'
+
+interface Props {
+    file: string
+}
+
+const { file } = Astro.props
+const url = `https://github.com/tinylog-org/website/blob/main/${file}`
+const type = file.startsWith('src/posts/') ? 'post' : 'page'
+---
+
+<div class="edit">
+    You can
+    <Link href={url}>edit this {type}</Link>
+    on GitHub
+</div>

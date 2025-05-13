@@ -1,0 +1,13 @@
+---
+title: First milestone of tinylog 2.3 is out
+---
+
+Already since version 2.2, multiple tags can be bound to a single writer. With the first milestone of tinylog 2.3, it is even possible to define a different severity level for each tag. For example: `writer.tag=BACKEND@warn,FRONTEND@debug`. Details about the usage can be found in the [configuration documentation](/configuration/#tags).
+
+The console writer can write log entries to the standard error stream and the standard output stream. By default, tinylog writes log entries with the severity levels INFO, WARN, and ERROR to the standard error stream and all log entries with the severity levels TRACE and DEBUG to the standard output stream. Now, it is possible to configure the severity level threshold for using the standard error stream. For example. the configuration property `writer.stream=err@INFO` would also write log entries with the severity level INFO to the standard error stream instead to the standard output stream. As always, further detail can be found in the [configuration documentation](/configuration/#console-writer).
+
+Typically, tinylog is configured via properties files. However, the configuration loader is extendable now, which allows implementing custom configuration loaders for other file formats. Great examples for [JSON](https://github.com/Git5000/tinylog_extra_stuff/blob/main/tinylog-extra/src/main/java/org/tinylog/extra/configuration/JsonConfigurationLoader.java) and [YAML](https://github.com/Git5000/tinylog_extra_stuff/blob/main/tinylog-extra/src/main/java/org/tinylog/extra/configuration/YamlConfigurationLoader.java) can be found on [github.com/Git5000/tinylog\_extra\_stuff](https://github.com/Git5000/tinylog_extra_stuff).
+
+tinylog supports [choice format patterns](/logging/#text-with-arguments) for formatting log messages. With the first milestone of tinylog 2.3, it is possible to use multiple placeholders in a single choice format pattern. tinylog 2.2 and earlier support only a single placeholder.
+
+Special thanks to [Git5000](https://github.com/Git5000), who is the main committer of most of the new features in this milestone!
