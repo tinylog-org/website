@@ -1,5 +1,7 @@
-DirectoryIndex index.html
+RewriteEngine On
+RewriteBase /
 
+DirectoryIndex index.html
 ErrorDocument 404 /404.html
 
 RewriteRule ^v1/(.*)$ / [R=301,L]
@@ -10,7 +12,7 @@ RewriteRule ^count-php$ /matomo/matomo.php [L]
 
 RewriteCond %{HTTP:Accept-encoding} br
 RewriteCond %{REQUEST_URI} .*\.(css|html|js|svg|xml)
-RewriteCond %{DOCUMENT_ROOT}%{REQUEST_FILENAME}\.br -s
+RewriteCond %{REQUEST_FILENAME}\.br -s
 RewriteRule ^(.+) $1.br
 RewriteRule \.css\.br$ - [T=text/css,E=no-brotli:1,E=no-gzip:1]
 RewriteRule \.html\.br$ - [T=text/html,E=no-brotli:1,E=no-gzip:1]
@@ -25,7 +27,7 @@ RewriteRule \.xml\.br$ - [T=application/xml,E=no-brotli:1,E=no-gzip:1]
 
 RewriteCond %{HTTP:Accept-Encoding} gzip
 RewriteCond %{REQUEST_URI} .*\.(css|html|js|svg|xml)
-RewriteCond %{DOCUMENT_ROOT}%{REQUEST_FILENAME}\.gz -s
+RewriteCond %{REQUEST_FILENAME}\.gz -s
 RewriteRule ^(.+) $1.gz
 RewriteRule \.css\.gz$ - [T=text/css,E=no-brotli:1,E=no-gzip:1]
 RewriteRule \.html\.gz$ - [T=text/html,E=no-brotli:1,E=no-gzip:1]
