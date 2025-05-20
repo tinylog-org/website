@@ -2,6 +2,6 @@
 title: tinylog 2.0.1 released
 ---
 
-tinylog 2.0.1 includes a workaround for ProGuard to avoid incorrect removal of tinylog classes. Thus, tinylog can be used again without the rule "-dontshrink" with ProGuard. The required ProGuard rules for tinylog are documented on the [configuration page](/configuration/#proguard). Many thanks to [grill2010](https://github.com/grill2010) for reporting this [issue](https://github.com/tinylog-org/tinylog/issues/126) and great support with developing a workaround.
+tinylog 2.0.1 includes a workaround for ProGuard to avoid incorrect removal of tinylog classes. Thus, tinylog can be used again without the rule "-dontshrink" with ProGuard. The required ProGuard rules for tinylog are documented on the [configuration page](/v2/configuration/#proguard). Many thanks to [grill2010](https://github.com/grill2010) for reporting this [issue](https://github.com/tinylog-org/tinylog/issues/126) and great support with developing a workaround.
 
 Additionally, all tinylog services (logging providers, writers, and policies) have default constructors now. This solves an [issue](https://github.com/tinylog-org/tinylog/issues/127) with generating native images via GraalVM. Many thanks to [MarkusKramer](https://github.com/MarkusKramer) for reporting this problem. However, there still seem to be a few problems on GraalVM side to make native images really work.

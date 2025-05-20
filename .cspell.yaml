@@ -21,5 +21,5 @@ languageSettings:
       - java
 
 overrides:
-  - filename: src/pages/external-resources.mdx
+  - filename: src/pages/v2/external-resources.mdx
     language: en-US,de-DE

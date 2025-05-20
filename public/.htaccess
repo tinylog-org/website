@@ -5,7 +5,7 @@ DirectoryIndex index.html
 ErrorDocument 404 /404.html
 
 RewriteRule ^v1/(.*)$ / [R=301,L]
-RewriteRule ^v2/(.*)$ /$1 [R=301,L]
+RewriteRule ^v2/(configuration|documentation|download(-preview)?|extending|external-resources|getting-started|logging)/$ /$1 [R=301,L]
 
 RewriteRule ^count-js$ /matomo/matomo.js [L]
 RewriteRule ^count-php$ /matomo/matomo.php [L]

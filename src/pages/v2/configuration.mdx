@@ -1,12 +1,12 @@
 ---
 title: Configuration
-description: 'Learn to configure tinylog: Set up severity levels, writers, format patterns, and asynchronous writing thread via tinylog.properties or programmatically.'
+description: 'Learn to configure tinylog 2: Set up severity levels, writers, format patterns, and asynchronous writing thread via tinylog.properties or programmatically.'
 tableOfContents: true
-navigationParent: documentation
+navigationParent: v2/documentation
 navigationIndex: 2
 ---
 
-import JavadocLink from '../components/JavadocLink.astro'
+import JavadocLink from '../../components/JavadocLink.astro'
 
 Typically, tinylog 2 is configured via a properties file. The properties file should be located directly in the resource directory under the name `tinylog.properties`, so that tinylog can find the properties file automatically. In Maven or Gradle projects, the resource directory is usually `src/main/resources`. Plain IDE projects without any build tools usually have no dedicated resource directory. In this case, `tinylog.properties` can be placed directly in the source directory. For example, in plain Eclipse projects the source directory is usually just `src`.
 
@@ -79,7 +79,7 @@ writer.file = ${HOME:/tmp}/log.txt
 
 ## Escaping
 
-Since tinylog 2.1, it is possible to enable [escaping of curly brackets or entire phrases by single quotes](/logging/#text-with-arguments). For compatibility reasons, this feature has to be enabled explicitly:
+Since tinylog 2.1, it is possible to enable [escaping of curly brackets or entire phrases by single quotes](/v2/logging/#text-with-arguments). For compatibility reasons, this feature has to be enabled explicitly:
 
 ```properties
 escaping.enabled = true  # default: false
@@ -87,7 +87,7 @@ escaping.enabled = true  # default: false
 
 ## Exceptions
 
-Since tinylog 2.1, exceptions and other throwables can be filtered and transformed to get a clearer and more readable output. There are four built-in throwable filters, which should cover the most common use cases. However, it is also possible to implement a [custom throwable filter](/extending/#custom-throwable-filter).
+Since tinylog 2.1, exceptions and other throwables can be filtered and transformed to get a clearer and more readable output. There are four built-in throwable filters, which should cover the most common use cases. However, it is also possible to implement a [custom throwable filter](/v2/extending/#custom-throwable-filter).
 
 Throwable filters can either be registered globally (property `exception`) or directly on a writer (property `writer.exception`). Multiple throwable filters can be combined, separated by commas.
 
@@ -276,7 +276,7 @@ A format pattern describes the format for outputting log entries. The default fo
  \{closing-curly-bracket\} | Closing curly bracket: "\}"
  \{class\}                 | Fully-qualified name of the class in which the log entry was issued
  \{class-name\}            | Name of the class (without package) in which the log entry was issued
- \{context: key\}          | Value from [thread-based context](/logging/#context-values) ("key" should be replaced by a real key). If the key is omitted, all keys and their values are output since tinylog 2.8.
+ \{context: key\}          | Value from [thread-based context](/v2/logging/#context-values) ("key" should be replaced by a real key). If the key is omitted, all keys and their values are output since tinylog 2.8.
  \{date\}                  | Date and time of issuing the log entry. Optionally there can be a custom date format pattern such as `{date: HH:mm:ss.SSS}`. The date format pattern is compatible with <JavadocLink class="java.text.SimpleDateFormat">SimpleDateFormat</JavadocLink> and on Java 9 (or higher), also with <JavadocLink class="java.time.format.DateTimeFormatter">DateTimeFormatter</JavadocLink> that supports milliseconds and nanoseconds. The default date format pattern is "yyyy-MM-dd HH:mm:ss".
  \{exception\}             | Logged exception including stack trace
  \{file\}                  | Filename of the source file in which the log entry was issued
@@ -290,7 +290,7 @@ A format pattern describes the format for outputting log entries. The default fo
  \{package\}               | Package in which the log entry was issued
  \{pid\}                   | Process ID of the application
  \{pipe\}                  | Pipe / vertical bar: "\|"
- \{tag\}                   | [Tag](/logging/#tags) of log entry. By default, nothing will be output for untagged log entries. However, a default text can be output if explicitly configured, as in \{tag: none\} for example.
+ \{tag\}                   | [Tag](/v2/logging/#tags) of log entry. By default, nothing will be output for untagged log entries. However, a default text can be output if explicitly configured, as in \{tag: none\} for example.
  \{thread\}                | Name of the thread in which the log entry was issued
  \{thread-id\}             | ID of the thread in which the log entry was issued
  \{timestamp\}             | UNIX timestamp of issuing the log entry. By default, the timestamp is output in seconds. `{timestamp: milliseconds}` outputs the timestamp in milliseconds.
@@ -464,7 +464,7 @@ writer.format = #{user.name:anonymous}: {message}
 
 ## Tags
 
-Writers can be bound to a tag for only outputting log entries with a defined [tag](/logging/#tags). If a writer is bound to a tag, all untagged log entries (and log entries with other tags) will be ignored by this writer.
+Writers can be bound to a tag for only outputting log entries with a defined [tag](/v2/logging/#tags). If a writer is bound to a tag, all untagged log entries (and log entries with other tags) will be ignored by this writer.
 
 Example:
 
@@ -512,7 +512,7 @@ Logger.info("Hello World!");               // Output
 
 ## Writers
 
-A writer outputs issued log entries (for example to a log file or to the console). By default, all log entries will be written to the console if no other writer is configured. Out of the box, tinylog contains six different writers. However, it is also possible to implement a [custom writer](/extending/#custom-writer).
+A writer outputs issued log entries (for example to a log file or to the console). By default, all log entries will be written to the console if no other writer is configured. Out of the box, tinylog contains six different writers. However, it is also possible to implement a [custom writer](/v2/extending/#custom-writer).
 
  Writer                                      | Property     | Description
 :--------------------------------------------|:-------------|:------------
@@ -683,7 +683,7 @@ Multiple placeholders can be combined in a file pattern, for example in `writer.
 
 Since tinylog 2.2, the rolling file writer can create a link that always points to the latest log file. The path and file name of the link can be set via the property `writer.latest`, for example `writer.latest = logs/latest.log`.
 
-When a new log file has to be started, it can be defined via policies. This can happen daily, after a specified file size and/or at startup. Multiple policies can be combined comma-separated with each other. The default is at startup. Out of the box, tinylog contains three different policies. However, it is also possible to implement a [custom policy](/extending/#custom-policy).
+When a new log file has to be started, it can be defined via policies. This can happen daily, after a specified file size and/or at startup. Multiple policies can be combined comma-separated with each other. The default is at startup. Out of the box, tinylog contains three different policies. However, it is also possible to implement a [custom policy](/v2/extending/#custom-policy).
 
 #### Policies
 

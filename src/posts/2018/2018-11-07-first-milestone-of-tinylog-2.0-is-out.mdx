@@ -4,7 +4,7 @@ title: First milestone of tinylog 2.0 is out
 
 import JavadocLink from '../../components/JavadocLink.astro'
 
-Today, after two years of development, it is time to release the [first milestone of tinylog 2.0](/download/). All planned features are already implemented for tinylog itself. Third party logging APIs and implementations for web and application servers are scheduled for the coming milestones. Version 2.0 is a complete redevelopment with a modern architecture. API and implementation are now divided into two different JARs. tinylog will remain a lightweight and easy-to-use logging framework. tinylog will remain a lightweight and easy-to-use logging framework, with rarely used features replaced by new features requested by the community.
+Today, after two years of development, it is time to release the [first milestone of tinylog 2.0](/v2/download/). All planned features are already implemented for tinylog itself. Third party logging APIs and implementations for web and application servers are scheduled for the coming milestones. Version 2.0 is a complete redevelopment with a modern architecture. API and implementation are now divided into two different JARs. tinylog will remain a lightweight and easy-to-use logging framework. tinylog will remain a lightweight and easy-to-use logging framework, with rarely used features replaced by new features requested by the community.
 
 ## Tags for Log Entries
 
@@ -38,7 +38,7 @@ writer.file    = test.txt
 writer.charset = UTF-8
 ```
 
-The [rolling file writer](/configuration/#rolling-file-writer) is used if a new log file should be started after defined events. For example, when a certain file size is reached or at a fixed time. In tinylog 2, the rolling file writer supports patterns for the file names of log files.
+The [rolling file writer](/v2/configuration/#rolling-file-writer) is used if a new log file should be started after defined events. For example, when a certain file size is reached or at a fixed time. In tinylog 2, the rolling file writer supports patterns for the file names of log files.
 
 ```properties
 writer          = rolling file
@@ -50,7 +50,7 @@ writer.policies = daily
 
 The base package name of tinylog has now been shortened from `org.pmw.tinylog` to just `org.tinylog`, and the severity level `WARNING` is just `WARN`. The new names are easy to remember and save some typing time. To make the API of the <JavadocLink class="org.tinylog.Logger">logger class</JavadocLink> clearer, all public methods not related to logging have been removed. Now tinylog 2 is compiled with debug information (as is common nowadays), which simplifies debugging significantly.
 
-The previous version of tinylog could only support system properties and environment variables for resolving file names in the properties file. tinylog 2 supports both in all values, and uses a distinct syntax to distinguish between [system properties](/configuration/#system-properties) and [environment variables](/configuration/#environment-variables).
+The previous version of tinylog could only support system properties and environment variables for resolving file names in the properties file. tinylog 2 supports both in all values, and uses a distinct syntax to distinguish between [system properties](/v2/configuration/#system-properties) and [environment variables](/v2/configuration/#environment-variables).
 
 ```properties
 writer          = file

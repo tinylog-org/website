@@ -2,7 +2,7 @@
 title: Second milestone of tinylog 2.3 is out
 ---
 
-The monthly policy for the [rolling file writer](/configuration/#rolling-file-writer) is back! With this policy, it is possible to start a new log file on the first day of each month. As for the daily policy, the rollover time can be configured and is midnight by default. The monthly policy was part of tinylog 1, but was never migrated to tinylog 2 until now.
+The monthly policy for the [rolling file writer](/v2/configuration/#rolling-file-writer) is back! With this policy, it is possible to start a new log file on the first day of each month. As for the daily policy, the rollover time can be configured and is midnight by default. The monthly policy was part of tinylog 1, but was never migrated to tinylog 2 until now.
 
 If a count placeholder is used after a date or PID placeholder in log file names, the count is never restarted during runtime rollovers in previous tinylog versions. Now, tinylog restarts the count correctly, if the file path in front of the count placeholder is changed. For example, let's assume that `{date: yyyy}_{count}.log` has been set as the file name. Before tinylog 2.3, the log files "2020\_0.log" and "2020\_1.log" were followed by the log file "2021\_2.log" at the turn of the year. In the new version, the log file "2021\_0.log" would follow instead.
 

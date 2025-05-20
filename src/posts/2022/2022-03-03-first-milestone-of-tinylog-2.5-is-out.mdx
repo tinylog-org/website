@@ -2,7 +2,7 @@
 title: First milestone of tinylog 2.5 is out
 ---
 
-tinylog 2.5 has a new binding for `System.Logger`. Java introduced `System.Logger` as a generic logging API with version 9. The optional binding can be found on the [download page](/download-preview/#java-system-logger) and outputs all log entries that are issued via `System.Logger` via the logging back-end of tinylog. Special thanks to [Trig](https://github.com/Trigtrig), who has developed the new binding.
+tinylog 2.5 has a new binding for `System.Logger`. Java introduced `System.Logger` as a generic logging API with version 9. The optional binding can be found on the [download page](/v2/download-preview/#java-system-logger) and outputs all log entries that are issued via `System.Logger` via the logging back-end of tinylog. Special thanks to [Trig](https://github.com/Trigtrig), who has developed the new binding.
 
 For the rolling file writer, there is a new dynamic placeholder and a new dynamic policy. The dynamic placeholder can be used for setting and changing a part of the path to the log file dynamically in Java by calling the static method `DynamicSegment.setText()`. The initial text can be set as `{dynamic: initial text}`. Setting a new text triggers a rollover event for the dynamic policy. Additionally, a rollover event can be triggered directly by calling the static method `DynamicPolicy.setReset()`.
 

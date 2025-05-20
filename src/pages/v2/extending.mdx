@@ -1,13 +1,13 @@
 ---
 title: Extending
-description: 'Learn to extend tinylog: Develop custom writers, policies, logging APIs, and other custom extensions. Enhance tinylog with your own powerful features.'
+description: 'Learn to extend tinylog 2: Develop custom writers, policies, logging APIs, and other custom extensions. Enhance tinylog with your own powerful features.'
 tableOfContents: true
-navigationParent: documentation
+navigationParent: v2/documentation
 navigationIndex: 3
 ---
 
-import GitHubLink from '../components/GitHubLink.astro'
-import JavadocLink from '../components/JavadocLink.astro'
+import GitHubLink from '../../components/GitHubLink.astro'
+import JavadocLink from '../../components/JavadocLink.astro'
 
 tinylog is extendable. It is possible to develop custom configuration loaders, file converters, logging APIs, logging providers, throwable filters, writers, and policies. How this works, what has to be considered, and what are the possibilities, are explained by means of examples.
 
@@ -130,7 +130,7 @@ writer.convert = cipher
 
 ## Custom Logging API
 
-Log entries can be provided by any logging API to tinylog's logging back-end. There are already multiple [third-party logging APIs](/download/#third-party-logging-apis) for tinylog, and a good and easy real world example of a custom logging API is <GitHubLink path="jcl-tinylog/src/main">jcl-tinylog</GitHubLink> in tinylog's GitHub repository.
+Log entries can be provided by any logging API to tinylog's logging back-end. There are already multiple [third-party logging APIs](/v2/download/#third-party-logging-apis) for tinylog, and a good and easy real world example of a custom logging API is <GitHubLink path="jcl-tinylog/src/main">jcl-tinylog</GitHubLink> in tinylog's GitHub repository.
 
 A custom logger can pass log entries to tinylog's logging back-end via <JavadocLink class="org.tinylog.provider.LoggingProvider" anchor="log-int-java.lang.String-org.tinylog.Level-java.lang.Throwable-org.tinylog.format.MessageFormatter-java.lang.Object-java.lang.Object...-">LoggingProvider.log()</JavadocLink>. The `log()` method accepts the following parameters:
 
@@ -293,7 +293,7 @@ public class SystemOutLoggingProvider implements LoggingProvider {
 }
 ```
 
-The first method `getContextProvider()` returns a provider for the thread-based [mapped diagnostic context values](/logging/#context-values). In the above example, a `NopContextProvider` is registered, which is part of tinylog's API artifact and simply ignores all registered context values.
+The first method `getContextProvider()` returns a provider for the thread-based [mapped diagnostic context values](/v2/logging/#context-values). In the above example, a `NopContextProvider` is registered, which is part of tinylog's API artifact and simply ignores all registered context values.
 
 The method `getMinimumLevel()` returns the lowest supported severity level (regardless if tagged or not) and `getMinimumLevel(String tag)` returns the lowest supported severity level for each tag. Both methods are called only once. The returned values are cached and used for internal optimization. If a logging provider cannot guarantee a defined minimum lifetime severity level, `Level.TRACE` can be returned instead.
 

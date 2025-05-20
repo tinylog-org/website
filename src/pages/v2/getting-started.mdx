@@ -1,15 +1,15 @@
 ---
 title: Getting Started
-description: 'Get started with tinylog! Learn to quickly set up this lightweight Java logging framework, add log statements, and do some basic configuration.'
+description: 'Get started with tinylog 2! Learn to quickly set up this lightweight Java logging framework, add log statements, and do some basic configuration.'
 tableOfContents: true
-navigationParent: documentation
+navigationParent: v2/documentation
 navigationIndex: 0
 ---
 
-import Link from '../components/Link.astro'
-import Version from '../components/Version.astro'
+import Link from '../../components/Link.astro'
+import Version from '../../components/Version.astro'
 
-1. Download <Link href="/download/">tinylog <Version /></Link> and add `tinylog-api.jar` and `tinylog-impl.jar` to your classpath. If you use a build tool such as Maven or Gradle, you can add both JAR files as [dependencies](/download/).
+1. Download <Link href="/v2/download/">tinylog <Version /></Link> and add `tinylog-api.jar` and `tinylog-impl.jar` to your classpath. If you use a build tool such as Maven or Gradle, you can add both JAR files as [dependencies](/v2/download/).
 
 2. Add a logging statement to your application:
 
@@ -49,4 +49,4 @@ writer.format = {date: HH:mm:ss.SSS} {level}: {message}
 18:29:57.382 INFO: Hello World!
 ```
 
-For a detailed documentation of all configuration parameters, see the [configuration page](/configuration/), and for all logging methods, see the [logging page](/logging/).
+For a detailed documentation of all configuration parameters, see the [configuration page](/v2/configuration/), and for all logging methods, see the [logging page](/v2/logging/).

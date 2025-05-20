@@ -55,8 +55,8 @@ jobs:
 
       - name: Copy API Documentation
         run: |
-          rm -r dist/javadoc/*
-          cp -R tinylog/tinylog-api/target/site/apidocs/* dist/javadoc
+          rm -r dist/v2/javadoc/*
+          cp -R tinylog/tinylog-api/target/site/apidocs/* dist/v2/javadoc
 
       - name: Generate sitemap
         uses: cicirello/generate-sitemap@v1

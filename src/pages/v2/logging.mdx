@@ -1,14 +1,14 @@
 ---
 title: Logging
-description: 'Discover how to log with tinylog: Master severity levels, argument passing and formatting, exception logging, and lazy logging.'
+description: 'Discover how to log with tinylog 2: Master severity levels, argument passing and formatting, exception logging, and lazy logging.'
 tableOfContents: true
-navigationParent: documentation
+navigationParent: v2/documentation
 navigationIndex: 1
 ---
 
-import JavadocLink from '../components/JavadocLink.astro'
+import JavadocLink from '../../components/JavadocLink.astro'
 
-Unlike other logging frameworks, tinylog has a static logger. Thus, the logger class can be used directly without creating an instance of the logger. tinylog supports five different severity levels: trace, debug, info, warn, and error. The logging methods are named according to the severity levels (for example, `Logger.trace()` for trace). Which severity levels should be output is [configurable](/configuration/#severity-level).
+Unlike other logging frameworks, tinylog has a static logger. Thus, the logger class can be used directly without creating an instance of the logger. tinylog supports five different severity levels: trace, debug, info, warn, and error. The logging methods are named according to the severity levels (for example, `Logger.trace()` for trace). Which severity levels should be output is [configurable](/v2/configuration/#severity-level).
 
 The class name of tinylog's static logger is `org.tinylog.Logger`. Additionally, there are `org.tinylog.kotlin.Logger` for Kotlin and `org.tinylog.scala.Logger` for Scala respectively. Both loggers are re-implementations of `org.tinylog.Logger` for supporting enhanced features of both languages.
 
@@ -76,7 +76,7 @@ Logger.warn("There {0#are no files|1#is one file|1<are {} files}", count);
 Logger.error("There {0#are no files|1#is one file|1<are {} files}", count);
 ```
 
-Since tinylog 2.1, it is possible to escape curly brackets or entire phrases by using single quotes. However, this feature has to be [explicitly enabled](/configuration/#escaping) in the configuration file for compatibility reasons. Escaping in tinylog works exactly as for <JavadocLink class="java.text.MessageFormat">MessageFormat</JavadocLink>. Doubled single quotes will be output as one single quote.
+Since tinylog 2.1, it is possible to escape curly brackets or entire phrases by using single quotes. However, this feature has to be [explicitly enabled](/v2/configuration/#escaping) in the configuration file for compatibility reasons. Escaping in tinylog works exactly as for <JavadocLink class="java.text.MessageFormat">MessageFormat</JavadocLink>. Doubled single quotes will be output as one single quote.
 
 ```java
 Logger.trace("Curly brackets as placeholder {} or escaped '{}'", value);
@@ -184,7 +184,7 @@ Logger.error("Expensive computation: {}", () => compute())
 
 ## Tags
 
-tinylog supports tags for categorizing log entries. For example, tags can be output as part of the [format pattern](/configuration/#format-pattern), or used to forward log entries to [different writers](/configuration/#tags).
+tinylog supports tags for categorizing log entries. For example, tags can be output as part of the [format pattern](/v2/configuration/#format-pattern), or used to forward log entries to [different writers](/v2/configuration/#tags).
 
 ```java
 Logger.tag("SYSTEM").trace("Hello World!");
@@ -214,7 +214,7 @@ TaggedLogger logger = Logger.tag(null);
 
 ## Context Values
 
-tinylog has a thread-based context for enriching log entries with additional values. Context values can be output as part of the [format pattern](/configuration/#format-pattern). Stored values are only visible for the thread in which a value has been set, and its child threads.
+tinylog has a thread-based context for enriching log entries with additional values. Context values can be output as part of the [format pattern](/v2/configuration/#format-pattern). Stored values are only visible for the thread in which a value has been set, and its child threads.
 
  ```java
 ThreadContext.put("user", name);
