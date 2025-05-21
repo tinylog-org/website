@@ -4,12 +4,14 @@ import { findVersionedPagePair, isPreview } from '../composables/preview'
 interface Props {
     title: string | undefined
     description: string | undefined
+    robots: string | undefined
 }
 
 const { url, props } = Astro
 
 const title = props.title ? `tinylog - ${props.title}` : 'tinylog'
 const description = props.description
+const robots = props.robots
 const canonicalLink = generateCanonicalLink()
 
 function generateCanonicalLink() {
@@ -29,6 +31,7 @@ function generateCanonicalLink() {
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    {robots && <meta name="robots" content={robots} />}
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png" />
     <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png" />

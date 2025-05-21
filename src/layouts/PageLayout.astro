@@ -14,7 +14,7 @@ interface Props {
 }
 
 const { content, headings = [] } = Astro.props
-const { file, title, description, showDefaultTitle = true, tableOfContents = false, styleClass } = content
+const { file, title, description, showDefaultTitle = true, tableOfContents = false, styleClass, robots } = content
 const filename = file.replace(/.*\/(src\/.*)/, '$1')
 ---
 
@@ -23,6 +23,7 @@ const filename = file.replace(/.*\/(src\/.*)/, '$1')
     <Head
         title={title}
         description={description}
+        robots={robots}
     />
     <Body
         file={filename}

@@ -230,7 +230,7 @@ jobs:
         uses: cicirello/generate-sitemap@v1
         with:
           path-to-root: dist
-          base-url-path: http://localhost:8080
+          base-url-path: http://localhost:8080/
 
       - name: Load Pages from Sitemap
         run: |

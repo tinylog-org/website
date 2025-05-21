@@ -7,4 +7,5 @@ export type Frontmatter = {
     navigationTitle?: string
     navigationParent?: string
     navigationIndex?: number
+    robots?: string
 }
