@@ -7,6 +7,10 @@ export function getDefaultVersion(url: URL) {
     return pathVersion || config.defaultVersion as Version
 }
 
+export function getAllVersions() {
+    return Object.keys(config.versions)
+}
+
 export function resolveVersion(version: Version, type: Type) {
     return config.versions[version][type]
 }

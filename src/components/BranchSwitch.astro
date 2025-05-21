@@ -1,0 +1,28 @@
+---
+import { getAllVersions, getDefaultVersion } from '../composables/version'
+
+const currentVersion = getDefaultVersion(Astro.url).replace('v', '')
+const allVersions = getAllVersions().map(version => version.replace('v', ''))
+---
+
+<ul class="navbar-nav ms-lg-auto">
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" href={Astro.url.pathname}>
+            <span class="d-lg-none">tinylog</span>
+            <span class="d-none d-lg-inline">v</span><span class="current-version">{currentVersion}</span>
+        </a>
+        <ul class="dropdown-menu">
+            <li>
+                {allVersions.map(version => (
+                    <a
+                        class:list={['available-version', 'dropdown-item', { active: version === currentVersion }]}
+                        href={Astro.url.pathname.replace(/^\/v\d+\//, `/v${version}/`)}
+                        onclick={`sessionStorage.setItem('branch', 'v${version}')`}
+                    >
+                        tinylog {version}
+                    </a>
+                ))}
+            </li>
+        </ul>
+    </li>
+</ul>
