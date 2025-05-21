@@ -1,8 +1,8 @@
 import { create } from 'flat-cache'
 
 const fetchCache = new Map<string, Promise<Response>>()
-const fileCache = create({ cacheDir: './.cache', cacheId: 'file-cache', ttl: 10_000 })
-const jsonCache = create({ cacheDir: './.cache', cacheId: 'json-cache', ttl: 10_000 })
+const fileCache = create({ cacheDir: './.cache', cacheId: 'file-cache', ttl: 5 * 60 * 1000 })
+const jsonCache = create({ cacheDir: './.cache', cacheId: 'json-cache', ttl: 5 * 60 * 1000 })
 
 export async function fetchFile(url: string) {
     const storedPromise = fetchCache.get(url)
