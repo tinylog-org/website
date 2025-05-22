@@ -81,16 +81,16 @@
 
   display: flex;
   align-items: center;
-  gap: 0.5rem;
   color: var(--bs-navbar-color);
+  gap: 0.5rem;
 
   @include media-breakpoint-down(lg) {
     .btn-outline-primary {
-      border: 0;
       padding-left: 0;
-      font-size: 1rem;
-      color: var(--bs-navbar-color);
+      border: 0;
       background: none !important;
+      color: var(--bs-navbar-color);
+      font-size: 1rem;
 
       &:hover {
         color: white;
