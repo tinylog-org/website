@@ -1,4 +1,4 @@
-import { getDefaultVersion, resolveVersion } from './version.ts'
+import { getDefaultVersion, resolveFullVersion } from './version.ts'
 import type { CurrentPage, PreviewPage, VersionedPagePair } from '../types/version.ts'
 import type { Page } from 'astro'
 
@@ -21,13 +21,13 @@ export function findVersionedPagePair(url: URL): [undefined, undefined] | Versio
 
     const currentPage: CurrentPage = {
         url: currentUrl,
-        version: resolveVersion(version, 'current'),
+        version: resolveFullVersion(version, 'current'),
         type: 'current',
     }
 
     const previewPage: PreviewPage = {
         url: previewUrl,
-        version: resolveVersion(version, 'preview'),
+        version: resolveFullVersion(version, 'preview'),
         type: 'preview',
     }
 

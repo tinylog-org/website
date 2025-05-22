@@ -8,6 +8,12 @@ export type Type = CurrentType | PreviewType
 
 export type Version = keyof typeof config.versions
 
+export type MappedVersion = {
+    version: string
+    branch: Version
+    type: CurrentType | PreviewType
+}
+
 export type CurrentPage = {
     url: string
     version: string

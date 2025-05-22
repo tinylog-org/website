@@ -1,8 +1,8 @@
 ---
-import { getAllVersions, getDefaultVersion } from '../composables/version'
+import { getAllMajorVersions, getDefaultVersion } from '../composables/version'
 
 const currentVersion = getDefaultVersion(Astro.url).replace('v', '')
-const allVersions = getAllVersions().map(version => version.replace('v', ''))
+const allVersions = getAllMajorVersions()
 ---
 
 <ul class="navbar-nav ms-lg-auto">

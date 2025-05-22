@@ -3,7 +3,7 @@ import Link from './Link.astro'
 import Tabs from './Tabs.astro'
 import { gradleGroovy, gradleKotlin, ivy, maven, p2, sbt } from '../composables/artifacts'
 import { fetchJson, formatFileSize } from '../composables/io'
-import { getDefaultVersion, resolveVersion } from '../composables/version'
+import { getDefaultVersion, resolveFullVersion } from '../composables/version'
 import type { TabItems } from '../types/tabs'
 import type { Type } from '../types/version'
 
@@ -26,7 +26,7 @@ interface ReleaseAsset {
 
 const { file, artifacts = '', bundles = '', type = 'current' } = Astro.props
 
-const version = resolveVersion(getDefaultVersion(Astro.url), type)
+const version = resolveFullVersion(getDefaultVersion(Astro.url), type)
 const fileName = `${file}-${version}.zip`
 
 const tabItems: TabItems = [

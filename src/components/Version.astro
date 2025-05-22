@@ -1,14 +1,14 @@
 ---
-import { getDefaultVersion, resolveVersion } from '../composables/version'
+import { getDefaultVersion, resolveFullVersion } from '../composables/version'
 import type { Type, Version } from '../types/version.ts'
 
 interface Props {
-    type: Type
-    version: Version
+    type?: Type
+    version?: Version
 }
 
 const { type = 'current', version = getDefaultVersion(Astro.url) } = Astro.props
-const fullVersion = resolveVersion(version, type)
+const fullVersion = resolveFullVersion(version, type)
 ---
 
 {fullVersion}

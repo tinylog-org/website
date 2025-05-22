@@ -77,27 +77,29 @@
 }
 
 .toc-version-switch {
-  @extend .navbar-toc;
+  @extend .navbar-dark;
 
-  display: block;
-  color: $white;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--bs-navbar-color);
+
+  @include media-breakpoint-down(lg) {
+    .btn-outline-primary {
+      border: 0;
+      padding-left: 0;
+      font-size: 1rem;
+      color: var(--bs-navbar-color);
+      background: none !important;
+
+      &:hover {
+        color: white;
+      }
+    }
+  }
 
   @include media-breakpoint-up(lg) {
     color: $gray-700;
     font-size: $font-size-sm;
-  }
-
-  .toc-link {
-    display: inline-block;
-
-    &:first-child {
-      padding-left: 0.25ch;
-    }
-
-    &:not(:last-child)::after {
-      padding: 0 0.75ch;
-      content: "|";
-      font-weight: normal;
-    }
   }
 }

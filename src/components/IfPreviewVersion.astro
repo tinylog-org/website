@@ -1,5 +1,5 @@
 ---
-import { getDefaultVersion, resolveVersion } from '../composables/version'
+import { getDefaultVersion, resolveFullVersion } from '../composables/version'
 import type { Version } from '../types/version.ts'
 
 interface Props {
@@ -7,8 +7,8 @@ interface Props {
 }
 
 const { version = getDefaultVersion(Astro.url) } = Astro.props
-const currentVersion = resolveVersion(version, 'current')
-const previewVersion = resolveVersion(version, 'preview')
+const currentVersion = resolveFullVersion(version, 'current')
+const previewVersion = resolveFullVersion(version, 'preview')
 ---
 
 {currentVersion && previewVersion && currentVersion !== previewVersion && <slot />}

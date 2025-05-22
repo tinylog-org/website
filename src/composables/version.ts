@@ -1,16 +1,24 @@
 import config from '../../tinylog.json'
-import type { Type, Version } from '../types/version.ts'
+import type { MappedVersion, Type, Version } from '../types/version.ts'
 
-export function getDefaultVersion(url: URL) {
+export function getDefaultVersion(url: URL): Version {
     const versions = Object.keys(config.versions) as Version[]
     const pathVersion = versions.find(version => url.pathname.startsWith(`/${version}/`))
     return pathVersion || config.defaultVersion as Version
 }
 
-export function getAllVersions() {
-    return Object.keys(config.versions)
+export function getAllMajorVersions(): string[] {
+    return Object.keys(config.versions).map(version => version.replace('v', ''))
 }
 
-export function resolveVersion(version: Version, type: Type) {
+export function getAllFullVersions(): MappedVersion[] {
+    return Object.entries(config.versions)
+        .flatMap(([key, { current, preview }]) => ([
+            { version: current, branch: key as Version, type: 'current' as Type },
+            ...current === preview ? [] : [{ version: preview, branch: key as Version, type: 'preview' as Type }],
+        ]))
+}
+
+export function resolveFullVersion(version: Version, type: Type): string {
     return config.versions[version][type]
 }

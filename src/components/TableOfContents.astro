@@ -1,9 +1,9 @@
 ---
+import DownloadVersionDropdown from './DownloadVersionDropdown.astro'
 import TableOfContentsCollection from './TableOfContentsCollection.astro'
-import VersionSwitch from './VersionSwitch.astro'
 import { nestHeadings } from '../composables/headings'
 import { loadSameChildLevelNavigation } from '../composables/navigation'
-import { findVersionedPagePair } from '../composables/preview'
+import { getAllFullVersions } from '../composables/version'
 import type { SlugHeading } from '../types/headings'
 
 interface Props {
@@ -23,8 +23,7 @@ const nestedHeadings = navigation
     }))
     : nestHeadings(headings)
 
-const [currentPage, previewPage] = findVersionedPagePair(url)
-const versionSwitchPages = currentPage && previewPage && currentPage.version !== previewPage.version ? [currentPage, previewPage] : undefined
+const versions = getAllFullVersions()
 ---
 
 <aside class="toc navbar navbar-dark">
@@ -36,8 +35,8 @@ const versionSwitchPages = currentPage && previewPage && currentPage.version !==
             </div>
             <div class="offcanvas-body pt-0">
                 <TableOfContentsCollection headings={nestedHeadings} />
-                {versionSwitchPages && <hr class="d-lg-none text-white-50" />}
-                {versionSwitchPages && <VersionSwitch pages={versionSwitchPages} />}
+                {versions?.length >= 2 && <hr class="d-lg-none text-white-50" />}
+                {versions?.length >= 2 && <DownloadVersionDropdown versions={versions} />}
             </div>
         </div>
     </nav>

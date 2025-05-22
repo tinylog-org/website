@@ -1,0 +1,35 @@
+---
+import Version from './Version.astro'
+import type { MappedVersion, Type } from '../types/version'
+
+interface Props {
+    versions: MappedVersion[]
+}
+
+const pathname = Astro.url.pathname
+const versions = Astro.props.versions
+    .map(({ version, branch, type }) => ({
+        version,
+        url: `/${branch}/download${type === 'preview' ? '-preview' : ''}/`,
+    }))
+---
+
+<div class="toc-version-switch">
+    <div>
+        Version:
+    </div>
+    <div class="dropdown">
+        <button class="btn btn-sm btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <Version type={pathname.endsWith('-preview/') ? 'preview' as Type : 'current' as Type} />
+        </button>
+        <ul class="dropdown-menu">
+            {versions.map(({ version, url }) => (
+                <li>
+                    <a class:list={['dropdown-item', { active: pathname === url }]} href={url}>
+                        {version}
+                    </a>
+                </li>
+            ))}
+        </ul>
+    </div>
+</div>
