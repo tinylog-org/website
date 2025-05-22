@@ -1,4 +1,4 @@
-import type { NestedHeading, SlugHeading } from '../types/headings.ts'
+import type { NestedHeading, SlugHeading } from '../types/headings'
 
 const MAX_DEPTH: number = 3
 

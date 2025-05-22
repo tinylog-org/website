@@ -1,5 +1,5 @@
-import type { Frontmatter } from '../types/frontmatter.ts'
-import type { NavigationEntry } from '../types/navigation.ts'
+import type { Frontmatter } from '../types/frontmatter'
+import type { NavigationEntry } from '../types/navigation'
 import type { MDXInstance } from 'astro'
 
 export type FlatEntry = {

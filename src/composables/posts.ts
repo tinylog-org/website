@@ -1,4 +1,4 @@
-import type { Frontmatter } from '../types/frontmatter.ts'
+import type { Frontmatter } from '../types/frontmatter'
 import type { MDXInstance } from 'astro'
 
 export type Post = MDXInstance<Frontmatter> & {

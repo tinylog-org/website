@@ -1,5 +1,5 @@
 import config from '../../tinylog.json'
-import type { MappedVersion, Type, Version } from '../types/version.ts'
+import type { MappedVersion, Type, Version } from '../types/version'
 
 export function getDefaultVersion(url: URL): Version {
     const versions = Object.keys(config.versions) as Version[]

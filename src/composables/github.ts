@@ -1,6 +1,6 @@
-import { fetchFile } from './io.ts'
-import { resolveFullVersion } from './version.ts'
-import type { Type, Version } from '../types/version.ts'
+import { fetchFile } from './io'
+import { resolveFullVersion } from './version'
+import type { Type, Version } from '../types/version'
 
 export function resolveGitHubUrl(path: string, version: Version, type: Type) {
     const tag = resolveFullVersion(version, type)
