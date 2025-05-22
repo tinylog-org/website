@@ -1,3 +1,4 @@
+import { getDefaultVersion } from './version.ts'
 import type { Frontmatter } from '../types/frontmatter'
 import type { NavigationEntry } from '../types/navigation'
 import type { MDXInstance } from 'astro'
@@ -38,7 +39,7 @@ export function isInPathname(url: URL, entry: NavigationEntry): boolean {
     return false
 }
 
-export function loadSubNavigation(url: URL, entries = loadNavigation()): NavigationEntry[] | undefined {
+export function loadSubNavigation(url: URL, entries = loadNavigation(url)): NavigationEntry[] | undefined {
     for (const entry of entries) {
         if (url.pathname === entry.url) {
             return entry.children
@@ -53,7 +54,7 @@ export function loadSubNavigation(url: URL, entries = loadNavigation()): Navigat
     return undefined
 }
 
-export function loadSameChildLevelNavigation(url: URL, entries = loadNavigation()): NavigationEntry[] | undefined {
+export function loadSameChildLevelNavigation(url: URL, entries = loadNavigation(url)): NavigationEntry[] | undefined {
     for (const entry of entries) {
         if (url.pathname === entry.url) {
             return entry.parent ? entries : undefined
@@ -66,9 +67,16 @@ export function loadSameChildLevelNavigation(url: URL, entries = loadNavigation(
     return undefined
 }
 
-export function loadNavigation(): NavigationEntry[] {
+export function loadNavigation(url: URL): NavigationEntry[] {
+    const version = getDefaultVersion(url)
+    const prefix = `/${version}/`
+
     const pageRecords = import.meta.glob<MDXInstance<Frontmatter>>(['/src/pages/**/*'], { eager: true })
     const flatEntries: FlatEntry[] = Object.values(pageRecords)
+        .filter((page) => {
+            const path = `${page.url}`
+            return !path.match(/^\/v\d+\//) || path.startsWith(prefix)
+        })
         .map(page => ({
             url: `${page.url}` || '/',
             title: page.frontmatter?.navigationTitle || page.frontmatter?.title,

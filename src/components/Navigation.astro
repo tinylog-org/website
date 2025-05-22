@@ -4,7 +4,7 @@ import NavigationDropdown from './NavigationDropdown.astro'
 import NavigationLinkItem from './NavigationLinkItem.astro'
 import { isVisible, loadNavigation } from '../composables/navigation'
 
-const entries = loadNavigation()
+const entries = loadNavigation(Astro.url)
 ---
 
 <ul class="navbar-nav">

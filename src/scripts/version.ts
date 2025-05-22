@@ -6,9 +6,9 @@ export function init() {
     }
 
     const sessionBranch = sessionStorage.getItem('branch')
-    if (!sessionBranch) return
+    if (!sessionBranch?.match(/^v(\d+)$/)) return
 
-    const version = sessionBranch.replace(/^v(\d+)/, '$1')
+    const version = sessionBranch.replace(/^v(\d+)$/, '$1')
 
     document
         .querySelectorAll('.current-version')
@@ -27,6 +27,15 @@ export function init() {
                 } else {
                     element.classList.remove('active')
                 }
+            }
+        })
+
+    document
+        .querySelectorAll('#main-navbar a')
+        .forEach((element) => {
+            const href = element.getAttribute('href')
+            if (href) {
+                element.setAttribute('href', href.replace(/^\/v\d+\//, `/${sessionBranch}/`))
             }
         })
 }
