@@ -1,4 +1,4 @@
-import { Offcanvas } from 'bootstrap'
+import Offcanvas from 'bootstrap/js/dist/offcanvas'
 
 const tocLinks = document.querySelectorAll('.navbar-toc .toc-link')
 const headings = document.querySelectorAll('.page > h1, .page > h2, .page > h3')

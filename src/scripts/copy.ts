@@ -1,4 +1,4 @@
-import { Tooltip } from 'bootstrap'
+import Tooltip from 'bootstrap/js/dist/tooltip'
 
 function showSuccess(button: HTMLElement) {
     button.classList.remove('failed')
