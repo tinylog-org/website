@@ -2,6 +2,7 @@
 
 import mdx from '@astrojs/mdx'
 import { defineConfig } from 'astro/config'
+import purgecss from 'astro-purgecss'
 import { h } from 'hastscript'
 import { dirname, resolve } from 'path'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
@@ -21,6 +22,7 @@ export default defineConfig({
     },
     integrations: [
         mdx(),
+        purgecss(),
     ],
     markdown: {
         syntaxHighlight: 'prism',
