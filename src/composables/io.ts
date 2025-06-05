@@ -1,3 +1,4 @@
+import type { ReleaseJson } from '../types/release.ts'
 import { create } from 'flat-cache'
 
 const fetchCache = new Map<string, Promise<Response>>()
@@ -50,6 +51,20 @@ export async function fetchJson<T extends object>(url: string) {
     }
 
     return content as T
+}
+
+export async function fetchGitHubAssets(file: string, version: string) {
+    const fileName = `${file}-${version}.zip`
+
+    const jsonUrl = `https://api.github.com/repos/tinylog-org/tinylog/releases/tags/${version}`
+    const jsonContent = await fetchJson<ReleaseJson>(jsonUrl)
+    const asset = jsonContent.assets.find(asset => asset.name === fileName)
+
+    if (!asset) {
+        throw new Error(`Failed to fetch asset ${fileName}: ${jsonUrl}`)
+    }
+
+    return asset
 }
 
 export function formatFileSize(bytes: number) {

@@ -1,0 +1,17 @@
+---
+import Link from './Link.astro'
+import { fetchGitHubAssets, formatFileSize } from '../composables/io'
+import { getDefaultVersion, resolveFullVersion } from '../composables/version'
+import type { Type } from '../types/version'
+
+interface Props {
+    file: string
+    type: Type
+}
+
+const { file, type = 'current' } = Astro.props
+const version = resolveFullVersion(getDefaultVersion(Astro.url), type)
+const asset = await fetchGitHubAssets(file, version)
+---
+
+<Link href={asset.browser_download_url}>{asset.name}</Link> ({formatFileSize(asset.size)})

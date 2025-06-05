@@ -1,10 +1,6 @@
 ---
-import Link from './Link.astro'
-import Tabs from './Tabs.astro'
-import { gradleGroovy, gradleKotlin, ivy, maven, p2, sbt } from '../composables/artifacts'
-import { fetchJson, formatFileSize } from '../composables/io'
-import { getDefaultVersion, resolveFullVersion } from '../composables/version'
-import type { TabItems } from '../types/tabs'
+import DownloadArtifacts from './DownloadArtifacts.astro'
+import DownloadFile from './DownloadFile.astro'
 import type { Type } from '../types/version'
 
 interface Props {
@@ -14,72 +10,10 @@ interface Props {
     type: Type
 }
 
-interface ReleaseJson {
-    assets: ReleaseAsset[]
-}
-
-interface ReleaseAsset {
-    name: string
-    browser_download_url: string
-    size: number
-}
-
 const { file, artifacts = '', bundles = '', type = 'current' } = Astro.props
-
-const version = resolveFullVersion(getDefaultVersion(Astro.url), type)
-const fileName = `${file}-${version}.zip`
-
-const tabItems: TabItems = [
-    {
-        identifier: 'gradle-groovy',
-        title: 'Gradle (Groovy)',
-        language: 'gradle',
-        content: gradleGroovy(artifacts.split(' '), bundles.split(' '), version),
-    },
-    {
-        identifier: 'gradle-kotlin',
-        title: 'Gradle (Kotlin)',
-        language: 'kotlin',
-        content: gradleKotlin(artifacts.split(' '), bundles.split(' '), version),
-    },
-    {
-        identifier: 'ivy',
-        title: 'Ivy',
-        language: 'xml',
-        content: ivy(artifacts.split(' '), bundles.split(' '), version),
-    },
-    {
-        identifier: 'maven',
-        title: 'Maven',
-        language: 'xml',
-        content: maven(artifacts.split(' '), bundles.split(' '), version),
-    },
-    {
-        identifier: 'p2',
-        title: 'P2',
-        language: 'xml',
-        content: p2(artifacts.split(' '), bundles.split(' '), version),
-    },
-    {
-        identifier: 'sbt',
-        title: 'SBT',
-        language: 'scala',
-        content: sbt(artifacts.split(' '), bundles.split(' '), version),
-    },
-]
-
-const jsonUrl = `https://api.github.com/repos/tinylog-org/tinylog/releases/tags/${version}`
-const jsonContent = await fetchJson<ReleaseJson>(jsonUrl)
-const asset = jsonContent.assets.find(asset => asset.name === fileName)
-
-if (!asset) {
-    throw new Error(`Failed to fetch asset ${fileName}: ${jsonUrl}`)
-}
 ---
 
-<Tabs type="build-tools" items={tabItems} defaultIndex={3} />
+<DownloadArtifacts artifacts={artifacts} bundles={bundles} type={type} />
 <p>
-    Download:
-    <Link href={asset.browser_download_url}>{asset.name}</Link>
-    ({formatFileSize(asset.size)})
+    Download: <DownloadFile file={file} type={type} />
 </p>

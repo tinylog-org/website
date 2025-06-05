@@ -1,0 +1,58 @@
+---
+import Tabs from './Tabs.astro'
+import { gradleGroovy, gradleKotlin, ivy, maven, p2, sbt } from '../composables/artifacts'
+import { getDefaultVersion, resolveFullVersion } from '../composables/version'
+import type { TabItems } from '../types/tabs'
+import type { Type } from '../types/version'
+
+interface Props {
+    artifacts: string
+    bundles: string
+    type: Type
+}
+
+const { artifacts = '', bundles = '', type = 'current' } = Astro.props
+
+const version = resolveFullVersion(getDefaultVersion(Astro.url), type)
+
+const tabItems: TabItems = [
+    {
+        identifier: 'gradle-groovy',
+        title: 'Gradle (Groovy)',
+        language: 'gradle',
+        content: gradleGroovy(artifacts.split(' '), bundles.split(' '), version),
+    },
+    {
+        identifier: 'gradle-kotlin',
+        title: 'Gradle (Kotlin)',
+        language: 'kotlin',
+        content: gradleKotlin(artifacts.split(' '), bundles.split(' '), version),
+    },
+    {
+        identifier: 'ivy',
+        title: 'Ivy',
+        language: 'xml',
+        content: ivy(artifacts.split(' '), bundles.split(' '), version),
+    },
+    {
+        identifier: 'maven',
+        title: 'Maven',
+        language: 'xml',
+        content: maven(artifacts.split(' '), bundles.split(' '), version),
+    },
+    {
+        identifier: 'p2',
+        title: 'P2',
+        language: 'xml',
+        content: p2(artifacts.split(' '), bundles.split(' '), version),
+    },
+    {
+        identifier: 'sbt',
+        title: 'SBT',
+        language: 'scala',
+        content: sbt(artifacts.split(' '), bundles.split(' '), version),
+    },
+]
+---
+
+<Tabs type="build-tools" items={tabItems} defaultIndex={3} />
