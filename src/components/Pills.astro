@@ -1,0 +1,25 @@
+---
+---
+
+<table class="tabs-simple" data-tab-group="programming-languages">
+    <thead>
+        <tr class="nav nav-pills" role="tablist">
+            <th class="nav-link active" data-tab-item="java" role="tab" aria-selected="true" tabindex="0">
+                Java
+            </th>
+            <th class="nav-link" data-tab-item="kotlin" role="tab" aria-selected="false" tabindex="0">
+                Kotlin
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="tab-content">
+            <td class="tab-pane active" data-tab-item="java" role="tabpanel">
+                <slot name="java" />
+            </td>
+            <td class="tab-pane" data-tab-item="kotlin" role="tabpanel">
+                <slot name="kotlin" />
+            </td>
+        </tr>
+    </tbody>
+</table>
