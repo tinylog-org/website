@@ -1,14 +1,17 @@
 ---
 import Link from './Link.astro'
 import { resolveJavadocUrl } from '../composables/javadoc'
+import { getDefaultVersion } from '../composables/version'
+import type { Version } from '../types/version'
 
 interface Props {
     class: string
     anchor?: string
+    version?: Version
 }
 
-const { class: className, anchor } = Astro.props
-const url = resolveJavadocUrl(className) + (anchor ? `#${anchor}` : '')
+const { class: className, anchor, version = getDefaultVersion(Astro.url) } = Astro.props
+const url = resolveJavadocUrl(className, version) + (anchor ? `#${anchor}` : '')
 ---
 
 <Link href={url}><slot /></Link>

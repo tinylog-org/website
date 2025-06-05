@@ -1,8 +1,8 @@
-export function resolveJavadocUrl(className: string) {
+export function resolveJavadocUrl(className: string, version: string) {
     const path = className.replace(/\./g, '/')
 
     if (className.startsWith('org.tinylog.')) {
-        return `https://tinylog.org/javadoc/${path}.html`
+        return `https://tinylog.org/${version}/javadoc/${path}.html`
     } else {
         const module = getJavaModule(className)
         return `https://docs.oracle.com/en/java/javase/17/docs/api/${module}/${path}.html`

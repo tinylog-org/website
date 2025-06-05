@@ -48,7 +48,7 @@ writer.policies = daily
 
 ## Further Minor Changes
 
-The base package name of tinylog has now been shortened from `org.pmw.tinylog` to just `org.tinylog`, and the severity level `WARNING` is just `WARN`. The new names are easy to remember and save some typing time. To make the API of the <JavadocLink class="org.tinylog.Logger">logger class</JavadocLink> clearer, all public methods not related to logging have been removed. Now tinylog 2 is compiled with debug information (as is common nowadays), which simplifies debugging significantly.
+The base package name of tinylog has now been shortened from `org.pmw.tinylog` to just `org.tinylog`, and the severity level `WARNING` is just `WARN`. The new names are easy to remember and save some typing time. To make the API of the <JavadocLink class="org.tinylog.Logger" branch="v2">logger class</JavadocLink> clearer, all public methods not related to logging have been removed. Now tinylog 2 is compiled with debug information (as is common nowadays), which simplifies debugging significantly.
 
 The previous version of tinylog could only support system properties and environment variables for resolving file names in the properties file. tinylog 2 supports both in all values, and uses a distinct syntax to distinguish between [system properties](/v2/configuration/#system-properties) and [environment variables](/v2/configuration/#environment-variables).
 
@@ -60,6 +60,6 @@ writer.format   = #{user.name}: {message}  # System property
 
 ## Dropped Features
 
-The recommended way to configure tinylog is using properties files. The fluent API for configuration has been dropped, as it was rarely used in real world projects. Configuration can still be set at runtime by using the <JavadocLink class="org.tinylog.configuration.Configuration">configuration class</JavadocLink>. This can be done property based by using the same keys and values as for `tinylog.properties`.
+The recommended way to configure tinylog is using properties files. The fluent API for configuration has been dropped, as it was rarely used in real world projects. Configuration can still be set at runtime by using the <JavadocLink class="org.tinylog.configuration.Configuration" branch="v2">configuration class</JavadocLink>. This can be done property based by using the same keys and values as for `tinylog.properties`.
 
 For [performance reasons](/benchmark/), the configuration in tinylog 2 is immutable, as opposed to the previous version of tinylog. As soon as the first logging method is called, the configuration cannot be changed.
