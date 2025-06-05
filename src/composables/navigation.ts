@@ -24,12 +24,6 @@ export function isInPathname(url: URL, entry: NavigationEntry): boolean {
         return true
     }
 
-    for (let parent = entry.parent; parent !== null; parent = parent.parent) {
-        if (parent.url === url.pathname) {
-            return true
-        }
-    }
-
     for (const child of entry.children) {
         if (isInPathname(url, child)) {
             return true
