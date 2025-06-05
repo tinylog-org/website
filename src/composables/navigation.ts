@@ -51,7 +51,7 @@ export function loadSubNavigation(url: URL, entries = loadNavigation(url)): Navi
 export function loadSameChildLevelNavigation(url: URL, entries = loadNavigation(url)): NavigationEntry[] | undefined {
     for (const entry of entries) {
         if (url.pathname === entry.url) {
-            const filteredEntries = entries.filter(entry => entry.index)
+            const filteredEntries = entries.filter(entry => entry.index !== undefined)
             return entry.parent && filteredEntries.length > 0 ? filteredEntries : undefined
         }
 
