@@ -22,7 +22,7 @@ const content = await fetchGitHubFile(
 const lines: Record<string, string>[] = parse(content, { columns: true })
 
 if (!lines?.length) {
-    throw Error('CSV benchmark file is empty')
+    throw new Error('CSV benchmark file is empty')
 }
 
 const entries = lines.map(record => ({
