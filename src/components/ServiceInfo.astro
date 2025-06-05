@@ -18,7 +18,7 @@ const implementations = split(Astro.props.implementations)
 
 function split(input: string | undefined): Entry[] {
     if (!input) return []
-    return input.split(',').map(element => convert(element.trim()))
+    return input.split(' ').map(element => convert(element.trim()))
 }
 
 function convert(input: string): Entry {
