@@ -1,0 +1,82 @@
+---
+import GitHubLink from './GitHubLink.astro'
+
+interface Props {
+    interfaces?: string
+    baseClasses?: string
+    implementations: string
+}
+
+type Entry = {
+    className: string
+    path: string
+}
+
+const interfaces = split(Astro.props.interfaces)
+const baseClasses = split(Astro.props.baseClasses)
+const implementations = split(Astro.props.implementations)
+
+function split(input: string | undefined): Entry[] {
+    if (!input) return []
+    return input.split(',').map(element => convert(element.trim()))
+}
+
+function convert(input: string): Entry {
+    const [artifact, className] = input.split('/', 2)
+    if (!artifact || !className) throw Error(`Incomplete service info entry: ${input}`)
+    const file = className.replaceAll('.', '/')
+    const path = artifact.includes('kotlin') ? `${artifact}/src/main/kotlin/${file}.kt` : `${artifact}/src/main/java/${file}.java`
+    return { className, path }
+}
+---
+
+<table class="table service-info">
+    <thead>
+        <tr>
+            <th>Category</th>
+            <th>Info</th>
+        </tr>
+    </thead>
+    <tbody>
+        {interfaces[0] && (
+            <tr>
+                <td>
+                    Service File
+                </td>
+                <td>
+                    <code>META-INF/services/{interfaces[0].className}</code>
+                </td>
+            </tr>
+        )}
+        {!!interfaces.length && (
+            <tr>
+                <td>
+                    {interfaces.length === 1 ? 'Interface' : 'Interfaces' }
+                </td>
+                <td>
+                    {interfaces.map(entry => <GitHubLink path={entry.path}>{entry.className}</GitHubLink><br />)}
+                </td>
+            </tr>
+        )}
+        {!!baseClasses.length && (
+            <tr>
+                <td>
+                    {baseClasses.length === 1 ? 'Useful Base Class' : 'Useful Base Classes' }
+                </td>
+                <td>
+                    {baseClasses.map(entry => <GitHubLink path={entry.path}>{entry.className}</GitHubLink><br />)}
+                </td>
+            </tr>
+        )}
+        {!!implementations.length && (
+            <tr>
+                <td>
+                    {implementations.length === 1 ? 'Implementation' : 'Implementations' }
+                </td>
+                <td>
+                    {implementations.map(entry => <GitHubLink path={entry.path}>{entry.className}</GitHubLink><br />)}
+                </td>
+            </tr>
+        )}
+    </tbody>
+</table>
