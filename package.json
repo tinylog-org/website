@@ -17,7 +17,7 @@
     "@astrojs/mdx": "4.3.0",
     "@astrojs/prism": "3.3.0",
     "@astrojs/ts-plugin": "1.10.4",
-    "astro": "5.9.3",
+    "astro": "5.9.4",
     "bootstrap": "5.3.6",
     "bootstrap-icons": "1.13.1",
     "cssnano": "7.0.7",
