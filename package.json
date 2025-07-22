@@ -21,7 +21,7 @@
     "bootstrap": "5.3.7",
     "bootstrap-icons": "1.13.1",
     "cssnano": "7.1.0",
-    "csv-parse": "5.6.0",
+    "csv-parse": "6.1.0",
     "flat-cache": "6.1.11",
     "hastscript": "9.0.1",
     "postcss-inline-svg": "6.0.0",
