@@ -16,7 +16,7 @@ jobs:
     steps:
 
       - name: Checkout Website Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Resolve tinylog Version
         run: |
@@ -41,7 +41,7 @@ jobs:
         run: npm run astro:build
 
       - name: Checkout tinylog Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: tinylog-org/tinylog
           ref: ${{ env.TINYLOG_VERSION }}
