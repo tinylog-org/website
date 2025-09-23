@@ -20,7 +20,7 @@
     "astro": "5.12.9",
     "bootstrap": "5.3.8",
     "bootstrap-icons": "1.13.1",
-    "cssnano": "7.1.0",
+    "cssnano": "7.1.1",
     "csv-parse": "6.1.0",
     "flat-cache": "6.1.14",
     "hastscript": "9.0.1",
