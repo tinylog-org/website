@@ -14,10 +14,10 @@
   },
   "dependencies": {
     "@astrojs/check": "0.9.4",
-    "@astrojs/mdx": "4.3.3",
+    "@astrojs/mdx": "4.3.6",
     "@astrojs/prism": "3.3.0",
     "@astrojs/ts-plugin": "1.10.4",
-    "astro": "5.12.9",
+    "astro": "5.13.10",
     "bootstrap": "5.3.8",
     "bootstrap-icons": "1.13.1",
     "cssnano": "7.1.1",
