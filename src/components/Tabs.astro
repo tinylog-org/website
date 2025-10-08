@@ -12,7 +12,7 @@ const { type, items, defaultIndex = 0 } = Astro.props
 const current = items[defaultIndex] || items[0]
 ---
 
-<table class="tabs" data-tab-group={type}>
+<table class="tabs" data-tab-group={type} role="presentation">
     <thead>
         <tr class="nav">
             <th class="dropdown">
