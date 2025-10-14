@@ -24,7 +24,7 @@ jobs:
           echo "TINYLOG_VERSION=$(jq -r '.versions.v2.current' tinylog.json)" >> $GITHUB_ENV
 
       - name: Install Node.js
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v6
         with:
           node-version: 22
 
