@@ -17,7 +17,7 @@ jobs:
     steps:
 
       - name: Checkout Website Repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Resolve tinylog Version
         run: |
@@ -25,7 +25,7 @@ jobs:
           echo "TINYLOG_VERSION=$(jq -r '.versions.v2.current' tinylog.json)" >> $GITHUB_ENV
 
       - name: Checkout tinylog Repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           repository: tinylog-org/tinylog
           ref: ${{ env.TINYLOG_VERSION }}
@@ -90,7 +90,7 @@ jobs:
     steps:
 
       - name: Checkout Website Repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Install Node.js
         uses: actions/setup-node@v6
@@ -111,7 +111,7 @@ jobs:
     steps:
 
       - name: Checkout Website Repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Install Node.js
         uses: actions/setup-node@v6
@@ -132,7 +132,7 @@ jobs:
     steps:
 
       - name: Checkout Website Repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Install Node.js
         uses: actions/setup-node@v6
@@ -153,7 +153,7 @@ jobs:
     steps:
 
       - name: Checkout Website Repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Install Node.js
         uses: actions/setup-node@v6
@@ -174,7 +174,7 @@ jobs:
     steps:
 
       - name: Checkout Website Repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Install Node.js
         uses: actions/setup-node@v6
@@ -218,7 +218,7 @@ jobs:
     steps:
 
       - name: Checkout Website Repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Download Generated Files
         uses: actions/download-artifact@v6
