@@ -13,11 +13,11 @@
     "stylelint:fix": "stylelint \"src/**/*.scss\" --fix"
   },
   "dependencies": {
-    "@astrojs/check": "0.9.5",
+    "@astrojs/check": "0.9.6",
     "@astrojs/mdx": "4.3.12",
     "@astrojs/prism": "3.3.0",
-    "@astrojs/ts-plugin": "1.10.5",
-    "astro": "5.16.0",
+    "@astrojs/ts-plugin": "1.10.6",
+    "astro": "5.16.1",
     "bootstrap": "5.3.8",
     "bootstrap-icons": "1.13.1",
     "cssnano": "7.1.2",
