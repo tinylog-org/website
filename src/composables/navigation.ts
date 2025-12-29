@@ -53,17 +53,17 @@ export function loadSubNavigation(url: URL, entries = loadNavigation()): Navigat
     return undefined
 }
 
-export function loadSameChildLevelNavigation(url: URL, entries = loadNavigation()): NavigationEntry[] | undefined {
+export function loadSameChildLevelNavigation(url: URL, entries = loadNavigation()): NavigationEntry[] {
     for (const entry of entries) {
         if (url.pathname === entry.url) {
-            return entry.parent ? entries : undefined
+            return entry.parent ? entries : []
         }
 
         const result = loadSameChildLevelNavigation(url, entry.children)
-        if (result) return result
+        if (result.length) return result
     }
 
-    return undefined
+    return []
 }
 
 export function loadNavigation(): NavigationEntry[] {

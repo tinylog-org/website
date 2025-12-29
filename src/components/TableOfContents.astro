@@ -15,7 +15,7 @@ const { url, props } = Astro
 const { title, headings } = props
 
 const navigation = loadSameChildLevelNavigation(url)
-const nestedHeadings = navigation
+const nestedHeadings = navigation?.length > 1
     ? navigation.map(entry => ({
         link: entry.url,
         text: entry.title || entry.url,
