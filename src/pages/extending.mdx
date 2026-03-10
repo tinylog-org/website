@@ -299,7 +299,7 @@ The method `getMinimumLevel()` returns the lowest supported severity level (rega
 
 Almost all logging APIs have getters to check whether a defined severity level is currently enabled or disabled. These checks are routed to the `isEnabled()` method. Unlike the two `getMinimumLevel()` methods, return values are not cached.
 
-There are two different `log()` methods. The only difference is that the first one accepts the depth of the caller in the stack trace (e.g., "1" if there is only one method between the caller and this method in the stack trace), and the second method accepts the fully-qualified class name of the logger class instead. Which of the two methods is called depends on the logging API. Therefor, both `log()` method must be supported.
+There are two different `log()` methods. The only difference is that the first one accepts the depth of the caller in the stack trace (e.g., "1" if there is only one method between the caller and this method in the stack trace), and the second method accepts the fully-qualified class name of the logger class instead. Which of the two methods is called depends on the logging API. Therefore, both `log()` method must be supported.
 
 Finally, there is a `shutdown()` method, which is called when the logging framework is shut down, as the method name suggests.
 
