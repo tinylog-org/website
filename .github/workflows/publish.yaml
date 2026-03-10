@@ -76,7 +76,7 @@ jobs:
         run: echo "timestamp=$(date +'%Y%m%d-%H%M')" >> $GITHUB_OUTPUT
 
       - name: Upload Generated Files
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: website-${{ steps.timestamp.outputs.timestamp }}
           path: dist
