@@ -16,7 +16,7 @@ jobs:
     steps:
 
       - name: Checkout Website Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Resolve tinylog Version
         run: |
@@ -24,12 +24,12 @@ jobs:
           echo "TINYLOG_VERSION=$(jq -r '.versions.v2.current' tinylog.json)" >> $GITHUB_ENV
 
       - name: Install Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: 22
+          node-version: 24
 
       - name: Install Java
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           java-version: 8
           distribution: zulu
@@ -41,7 +41,7 @@ jobs:
         run: npm run astro:build
 
       - name: Checkout tinylog Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: tinylog-org/tinylog
           ref: ${{ env.TINYLOG_VERSION }}
@@ -76,7 +76,7 @@ jobs:
         run: echo "timestamp=$(date +'%Y%m%d-%H%M')" >> $GITHUB_OUTPUT
 
       - name: Upload Generated Files
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: website-${{ steps.timestamp.outputs.timestamp }}
           path: dist

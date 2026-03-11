@@ -48,18 +48,18 @@ export function loadSubNavigation(url: URL, entries = loadNavigation(url)): Navi
     return undefined
 }
 
-export function loadSameChildLevelNavigation(url: URL, entries = loadNavigation(url)): NavigationEntry[] | undefined {
+export function loadSameChildLevelNavigation(url: URL, entries = loadNavigation(url)): NavigationEntry[] {
     for (const entry of entries) {
         if (url.pathname === entry.url) {
             const filteredEntries = entries.filter(entry => entry.index !== undefined)
-            return entry.parent && filteredEntries.length > 0 ? filteredEntries : undefined
+            return entry.parent && filteredEntries.length > 0 ? filteredEntries : []
         }
 
         const result = loadSameChildLevelNavigation(url, entry.children)
         if (result) return result
     }
 
-    return undefined
+    return []
 }
 
 export function loadNavigation(url: URL): NavigationEntry[] {

@@ -13,7 +13,6 @@ jobs:
 
     steps:
 
-
       - name: Load Pages from Sitemap
         run: |
           echo "PAGES=$(curl -s -f https://tinylog.org/sitemap.xml | grep -oE 'https://[^<>]+' | tr '\n' ' ')" >> $GITHUB_ENV
