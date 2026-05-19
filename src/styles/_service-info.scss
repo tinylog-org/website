@@ -14,9 +14,9 @@
   @include media-breakpoint-down(lg) {
     tr td {
       &:first-child {
-        color: inherit;
         font-family: inherit;
         font-size: inherit;
+        color: inherit;
 
         :last-child::after {
           content: ":";

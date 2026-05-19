@@ -1,4 +1,5 @@
 @use "sass:map";
+
 @import "variables";
 @import "bootstrap/scss/mixins";
 @import "bootstrap/scss/variables";
@@ -9,8 +10,8 @@
   padding-bottom: 0;
 
   h1 {
-    padding: calc(2rem + 3vw) 0;
     margin: 0;
+    padding: calc(2rem + 3vw) 0;
 
     @include media-breakpoint-up(xl) {
       padding: calc(2rem + 36px) 0;
@@ -18,15 +19,15 @@
   }
 
   h2 {
-    color: $primary;
     font-weight: 300;
+    color: $primary;
   }
 
   pre {
     margin: 0;
-    background-color: $body-bg;
     line-height: var(--bs-body-line-height);
     text-align: left;
+    background-color: $body-bg;
   }
 
   .btn {
@@ -34,8 +35,8 @@
   }
 
   .display-3 {
-    color: $primary;
     font-size: 4rem;
+    color: $primary;
   }
 
   .lead {
@@ -63,8 +64,8 @@
   .detail {
     display: flex;
     flex-direction: column;
-    padding: 3rem 1.5rem;
     gap: 3rem;
+    padding: 3rem 1.5rem;
 
     &:nth-child(odd) {
       background-color: $light;
@@ -104,6 +105,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+
     line-height: 1;
     text-align: center;
   }

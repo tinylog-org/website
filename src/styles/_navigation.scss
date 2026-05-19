@@ -13,13 +13,13 @@ header.navbar {
 }
 
 .navbar-brand {
-  padding: 0;
   margin: 0;
+  padding: 0;
   color: $light;
 
   @include media-breakpoint-up(lg) {
-    padding-bottom: var(--bs-navbar-brand-padding-y);
     margin-right: var(--bs-navbar-brand-margin-end);
+    padding-bottom: var(--bs-navbar-brand-padding-y);
   }
 
   &:hover,

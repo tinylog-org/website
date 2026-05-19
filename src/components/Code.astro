@@ -7,7 +7,7 @@ interface Props {
 }
 
 const { language, code } = Astro.props
-const { classLanguage, html } = runHighlighterWithAstro(language, code)
+const { classLanguage, html } = await runHighlighterWithAstro(language, code)
 ---
 
 <pre data-language={language}><code class={classLanguage} data-language={language} set:html={html} /><button class="copy-button" type="button" title="Copy to clipboard" data-bs-toggle="tooltip" /></pre>

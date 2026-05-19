@@ -6,15 +6,15 @@
   padding-right: 4rem;
 
   &.active {
-    background: inherit;
-    color: inherit;
     font-weight: $font-weight-semibold;
+    color: inherit;
+    background: inherit;
   }
 
   &:hover,
   &:focus,
   &:active {
-    background: $light;
     color: $primary;
+    background: $light;
   }
 }
