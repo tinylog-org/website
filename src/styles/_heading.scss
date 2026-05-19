@@ -36,9 +36,10 @@ main:not(.home) .page {
   h4,
   h5,
   h6 {
+    margin-top: calc((#{$navbar-content-height} + #{$navbar-padding-y} * 2 + 1rem) * -1);
+
     /* Workaround for anchors: https://stackoverflow.com/a/11842865/5899171 */
     padding-top: calc(#{$navbar-content-height} + #{$navbar-padding-y} * 2 + 1.5rem);
-    margin-top: calc((#{$navbar-content-height} + #{$navbar-padding-y} * 2 + 1rem) * -1);
 
     &:first-child {
       padding-top: calc(#{$navbar-content-height} + #{$navbar-padding-y} * 2 + 1rem);
@@ -53,12 +54,16 @@ main:not(.home) .page {
       }
 
       > .anchor-link {
-        display: inline;
-        margin-left: 0.6ch;
-        color: $gray-400;
-        font-weight: $font-weight-normal;
-        opacity: 0;
         transform: translateY(0.1rem);
+
+        display: inline;
+
+        margin-left: 0.6ch;
+
+        font-weight: $font-weight-normal;
+        color: $gray-400;
+
+        opacity: 0;
 
         &::before {
           content: "#";

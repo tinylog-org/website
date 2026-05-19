@@ -63,15 +63,18 @@
           border-color: $dark;
 
           &:first-child::after {
+            content: "";
+
             position: absolute;
             bottom: calc(#{$border-radius} * -1);
             left: calc(#{$border-width} * -1);
+
             width: $border-radius;
             height: $border-radius;
             border-top: $border-width $border-style $dark;
             border-left: $border-width $border-style $dark;
+
             background-color: $light;
-            content: "";
           }
         }
 
@@ -88,8 +91,8 @@
     border-radius: $border-radius;
 
     > pre:only-child {
-      border: none;
       margin: 0;
+      border: none;
     }
 
     @include media-breakpoint-up(md) {

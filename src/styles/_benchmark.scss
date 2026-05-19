@@ -5,10 +5,10 @@
 .benchmark.table {
   tr {
     > td {
-      color: inherit !important;
       font-family: inherit !important;
       font-size: inherit !important;
       font-weight: inherit !important;
+      color: inherit !important;
     }
 
     > td:first-child {
@@ -52,6 +52,7 @@
     top: 0;
     right: 0;
     bottom: 0;
+
     padding: $table-cell-padding-y $table-cell-padding-x;
 
     @include media-breakpoint-down(lg) {

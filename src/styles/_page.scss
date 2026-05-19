@@ -3,11 +3,11 @@
 @import "bootstrap/scss/variables";
 
 .page {
-  max-width: calc(#{$main-max-width} - #{$sidebar-width} - var(--bs-gutter-x) * 3 / 2);
   box-sizing: content-box;
-  padding: 1rem 0;
+  max-width: calc(#{$main-max-width} - #{$sidebar-width} - var(--bs-gutter-x) * 3 / 2);
   margin-right: auto;
   margin-left: auto;
+  padding: 1rem 0;
 
   @include media-breakpoint-up(xl) {
     padding-top: 2rem;
@@ -31,14 +31,18 @@
     font-style: italic;
 
     &::before {
+      content: "";
+
       position: absolute;
+
       display: block;
+
       width: 1.5em;
       height: 1.5em;
+
       background-image: svg-load('../../node_modules/bootstrap-icons/icons/calendar-event.svg' fill=$dark);
       background-repeat: no-repeat;
       background-size: 100%;
-      content: "";
     }
 
     > :first-child {
@@ -49,8 +53,8 @@
   .tuple {
     display: flex;
     flex-direction: column;
-    margin: 3rem;
     gap: 3rem;
+    margin: 3rem;
 
     @include media-breakpoint-up(md) {
       flex-direction: row;
@@ -61,8 +65,8 @@
       display: flex;
       flex: 1;
       flex-direction: column;
-      align-items: center;
       gap: 1.5rem;
+      align-items: center;
     }
   }
 }
