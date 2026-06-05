@@ -1,5 +1,6 @@
 // @ts-check
 
+import { unified } from '@astrojs/markdown-remark'
 import mdx from '@astrojs/mdx'
 import { defineConfig } from 'astro/config'
 import { h } from 'hastscript'
@@ -24,19 +25,21 @@ export default defineConfig({
     ],
     markdown: {
         syntaxHighlight: 'prism',
-        remarkPlugins: [
-            useDefaultLayout,
-            remarkCustomHeaderId,
-        ],
-        rehypePlugins: [
-            applyCopyButtons,
-            highlightPropertiesComments,
-            removeForbiddenIsRawAttributes,
-            rehypeSlug,
-            [rehypeAutolinkHeadings, { behavior: 'append', content: h('span.anchor-link') }],
-            [rehypeClassNames, { table: 'table' }],
-            [rehypeExternalLinks, { protocols: ['http', 'https', 'mailto'], target: '_blank', rel: ['noopener'] }],
-        ],
+        processor: unified({
+            remarkPlugins: [
+                useDefaultLayout,
+                remarkCustomHeaderId,
+            ],
+            rehypePlugins: [
+                applyCopyButtons,
+                highlightPropertiesComments,
+                removeForbiddenIsRawAttributes,
+                rehypeSlug,
+                [rehypeAutolinkHeadings, { behavior: 'append', content: h('span.anchor-link') }],
+                [rehypeClassNames, { table: 'table' }],
+                [rehypeExternalLinks, { protocols: ['http', 'https', 'mailto'], target: '_blank', rel: ['noopener'] }],
+            ],
+        }),
     },
     build: {
         assets: 'assets',
