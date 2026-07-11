@@ -36,7 +36,7 @@
   "devDependencies": {
     "@cspell/dict-de-de": "4.1.2",
     "@cspell/dict-java": "5.0.12",
-    "@eslint/eslintrc": "3.3.5",
+    "@eslint/eslintrc": "3.3.6",
     "@eslint/js": "10.0.1",
     "@stylistic/eslint-plugin": "5.10.0",
     "@types/bootstrap": "5.2.11",
