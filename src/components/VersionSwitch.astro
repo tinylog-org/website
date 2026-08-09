@@ -10,6 +10,5 @@ const { pages } = Astro.props
 ---
 
 <div class="toc-version-switch">
-    Version:
-    {pages.map(page => <VersionSwitchItem page={page} />)}
+    Version: {pages.map(page => <VersionSwitchItem page={page} />)}
 </div>

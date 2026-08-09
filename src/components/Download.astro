@@ -79,7 +79,5 @@ if (!asset) {
 
 <Tabs type="build-tools" items={tabItems} defaultIndex={3} />
 <p>
-    Download:
-    <Link href={asset.browser_download_url}>{asset.name}</Link>
-    ({formatFileSize(asset.size)})
+    Download: <Link href={asset.browser_download_url}>{asset.name}</Link> ({formatFileSize(asset.size)})
 </p>
