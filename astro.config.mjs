@@ -15,6 +15,7 @@ import { fileURLToPath } from 'url'
 
 export default defineConfig({
     site: 'https://tinylog.org',
+    compressHTML: false,
     trailingSlash: 'always',
     i18n: {
         defaultLocale: 'en',

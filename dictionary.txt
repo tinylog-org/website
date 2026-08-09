@@ -17,6 +17,7 @@ f4lco
 gabrielnasser
 gelf
 Glassfish
+Hakaze
 Hanneken
 humio
 JCL
