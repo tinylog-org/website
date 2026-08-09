@@ -56,7 +56,7 @@ export function loadSameChildLevelNavigation(url: URL, entries = loadNavigation(
         }
 
         const result = loadSameChildLevelNavigation(url, entry.children)
-        if (result) return result
+        if (result?.length) return result
     }
 
     return []
