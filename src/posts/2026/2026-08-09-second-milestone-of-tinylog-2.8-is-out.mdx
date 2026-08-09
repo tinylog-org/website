@@ -1,0 +1,24 @@
+---
+title: Second milestone of tinylog 2.8 is out
+---
+
+Until now, tinylog did not output suppressed exceptions. Starting with this release, tinylog supports outputting suppressed exceptions in addition to causes, which should be very helpful for analyzing the underlying issues behind exceptions. A big thank you to [dev_Hakaze](https://github.com/arimu1) for implementing this feature!
+
+Before:
+
+```text
+java.lang.RuntimeException: Failed to process document data
+    at com.example.service.DocumentProcessor.process(DocumentProcessor.java:42)
+    at com.example.Application.main(Application.java:18)
+```
+
+Now:
+
+```text
+java.lang.RuntimeException: Failed to process document data
+    at com.example.service.DocumentProcessor.process(DocumentProcessor.java:42)
+    at com.example.Application.main(Application.java:18)
+Suppressed: java.io.IOException: Failed to close file resource safely
+    at com.example.io.FileReader.close(FileReader.java:102)
+    at com.example.service.DocumentProcessor.process(DocumentProcessor.java:40)
+```
