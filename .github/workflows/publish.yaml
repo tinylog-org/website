@@ -29,7 +29,7 @@ jobs:
           node-version: 24
 
       - name: Install Java
-        uses: actions/setup-java@v5
+        uses: actions/setup-java@v6
         with:
           java-version: 8
           distribution: zulu
@@ -55,7 +55,7 @@ jobs:
       - name: Copy API Documentation
         run: |
           rm -r dist/v2/javadoc/*
-          cp -R tinylog/tinylog-api/target/site/apidocs/* dist/v2/javadoc
+          cp -R tinylog/tinylog-api/target/reports/apidocs/* dist/v2/javadoc
 
       - name: Generate sitemap
         uses: cicirello/generate-sitemap@v1

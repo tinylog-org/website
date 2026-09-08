@@ -2,9 +2,9 @@
   "defaultVersion": "v2",
   "versions": {
     "v2": {
-      "current": "2.7.0",
-      "preview": "2.8.0-M2",
-      "size": 200036
+      "current": "2.8.0",
+      "preview": "2.8.0",
+      "size": 202203
     }
   }
 }
