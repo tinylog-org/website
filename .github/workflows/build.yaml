@@ -9,7 +9,7 @@ jobs:
   build:
 
     name: Build Website
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
 
     outputs:
       timestamp: ${{ steps.timestamp.outputs.timestamp }}
@@ -85,7 +85,7 @@ jobs:
   astro-check:
 
     name: Run Astro check
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
 
     steps:
 
@@ -106,7 +106,7 @@ jobs:
   eslint:
 
     name: Run ESLint
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
 
     steps:
 
@@ -127,7 +127,7 @@ jobs:
   remark-lint:
 
     name: Run remark-lint
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
 
     steps:
 
@@ -148,7 +148,7 @@ jobs:
   stylelint:
 
     name: Run Stylelint
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
 
     steps:
 
@@ -169,7 +169,7 @@ jobs:
   check-spelling:
 
     name: Check Spelling
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
 
     steps:
 
@@ -190,7 +190,7 @@ jobs:
   validate-html:
 
     name: Validate HTML
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     needs: build
 
     steps:
