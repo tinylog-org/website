@@ -21,7 +21,7 @@
     "astro": "7.3.5",
     "bootstrap": "5.3.8",
     "bootstrap-icons": "1.13.1",
-    "cssnano": "9.2.0",
+    "cssnano": "9.2.1",
     "csv-parse": "7.0.3",
     "flat-cache": "6.1.23",
     "hastscript": "9.0.1",
