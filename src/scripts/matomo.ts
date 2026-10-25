@@ -8,6 +8,7 @@ const parameters = window._paq = window._paq || []
 parameters.push(['setRequestMethod', 'GET'])
 parameters.push(['setTrackerUrl', `/count-php`])
 parameters.push(['setSiteId', '2'])
+parameters.push(['disableCookies'])
 parameters.push(['trackPageView'])
 parameters.push(['enableLinkTracking'])
 
