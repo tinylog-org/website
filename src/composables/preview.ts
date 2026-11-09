@@ -1,5 +1,5 @@
-import { getDefaultVersion, resolveVersion } from './version.ts'
 import type { CurrentPage, PreviewPage, VersionedPagePair } from '../types/version.ts'
+import { getDefaultVersion, resolveVersion } from './version.ts'
 import type { Page } from 'astro'
 
 export function isPreview(url: URL) {

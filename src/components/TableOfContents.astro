@@ -1,10 +1,10 @@
 ---
-import TableOfContentsCollection from './TableOfContentsCollection.astro'
-import VersionSwitch from './VersionSwitch.astro'
 import { nestHeadings } from '../composables/headings'
 import { loadSameChildLevelNavigation } from '../composables/navigation'
 import { findVersionedPagePair } from '../composables/preview'
 import type { SlugHeading } from '../types/headings'
+import TableOfContentsCollection from './TableOfContentsCollection.astro'
+import VersionSwitch from './VersionSwitch.astro'
 
 interface Props {
     title: string | undefined
