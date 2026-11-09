@@ -1,8 +1,8 @@
 ---
+import { loadPosts } from '../composables/posts'
 import EditLink from './EditLink.astro'
 import FormattedDate from './FormattedDate.astro'
 import Link from './Link.astro'
-import { loadPosts } from '../composables/posts'
 
 const posts = loadPosts()
 ---

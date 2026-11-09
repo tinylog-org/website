@@ -1,11 +1,11 @@
 ---
-import Link from './Link.astro'
-import Tabs from './Tabs.astro'
 import { gradleGroovy, gradleKotlin, ivy, maven, p2, sbt } from '../composables/artifacts'
 import { fetchJson, formatFileSize } from '../composables/io'
 import { getDefaultVersion, resolveVersion } from '../composables/version'
 import type { TabItems } from '../types/tabs'
 import type { Type } from '../types/version'
+import Link from './Link.astro'
+import Tabs from './Tabs.astro'
 
 interface Props {
     file: string
