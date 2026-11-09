@@ -54,10 +54,20 @@ export default defineConfig({
                 },
             },
         },
+        environments: {
+            client: {
+                build: {
+                    rollupOptions: {
+                        output: {
+                            entryFileNames: 'assets/[hash:20].js',
+                        },
+                    },
+                },
+            },
+        },
         build: {
             rollupOptions: {
                 output: {
-                    entryFileNames: 'assets/[hash:20].js',
                     assetFileNames: 'assets/[hash:20][extname]',
                 },
             },

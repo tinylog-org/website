@@ -1,6 +1,6 @@
-import { getDefaultVersion } from './version.ts'
 import type { Frontmatter } from '../types/frontmatter'
 import type { NavigationEntry } from '../types/navigation'
+import { getDefaultVersion } from './version.ts'
 import type { MDXInstance } from 'astro'
 
 export type FlatEntry = {

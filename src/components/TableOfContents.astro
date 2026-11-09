@@ -1,10 +1,10 @@
 ---
-import DownloadVersionDropdown from './DownloadVersionDropdown.astro'
-import TableOfContentsCollection from './TableOfContentsCollection.astro'
 import { nestHeadings } from '../composables/headings'
 import { loadSameChildLevelNavigation } from '../composables/navigation'
 import { getAllFullVersions } from '../composables/version'
 import type { SlugHeading } from '../types/headings'
+import DownloadVersionDropdown from './DownloadVersionDropdown.astro'
+import TableOfContentsCollection from './TableOfContentsCollection.astro'
 
 interface Props {
     title: string | undefined

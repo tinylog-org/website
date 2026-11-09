@@ -1,8 +1,8 @@
 ---
-import Link from './Link.astro'
 import { fetchGitHubAssets, formatFileSize } from '../composables/io'
 import { getDefaultVersion, resolveFullVersion } from '../composables/version'
 import type { Type } from '../types/version'
+import Link from './Link.astro'
 
 interface Props {
     file: string

@@ -1,8 +1,8 @@
 ---
+import { isVisible, loadNavigation } from '../composables/navigation'
 import BranchSwitch from './BranchSwitch.astro'
 import NavigationDropdown from './NavigationDropdown.astro'
 import NavigationLinkItem from './NavigationLinkItem.astro'
-import { isVisible, loadNavigation } from '../composables/navigation'
 
 const entries = loadNavigation(Astro.url)
 ---

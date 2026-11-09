@@ -1,9 +1,9 @@
 ---
-import Tabs from './Tabs.astro'
 import { gradleGroovy, gradleKotlin, ivy, maven, p2, sbt } from '../composables/artifacts'
 import { getDefaultVersion, resolveFullVersion } from '../composables/version'
 import type { TabItems } from '../types/tabs'
 import type { Type } from '../types/version'
+import Tabs from './Tabs.astro'
 
 interface Props {
     artifacts: string
