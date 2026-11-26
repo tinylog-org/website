@@ -26,7 +26,7 @@ export function nestHeadings(headings: SlugHeading[]): NestedHeading[] {
     return roots
 }
 
-function findParent(heading: SlugHeading, parents: NestedHeading[]): [ undefined, -1 ] | [ NestedHeading, number ] {
+function findParent(heading: SlugHeading, parents: NestedHeading[]): [undefined, -1] | [NestedHeading, number] {
     for (let index = heading.depth - 1; index >= 0; index = index - 1) {
         const parent = parents[index]
         if (parent) return [parent, index]
