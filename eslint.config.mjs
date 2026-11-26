@@ -2,15 +2,16 @@
 
 import eslint from '@eslint/js'
 import stylistic from '@stylistic/eslint-plugin'
+import { defineConfig } from 'eslint/config'
 import astro from 'eslint-plugin-astro'
 import importX from 'eslint-plugin-import-x'
 import typescript from 'typescript-eslint'
 
-export default typescript.config(
+export default defineConfig(
     eslint.configs.recommended,
     stylistic.configs['recommended'],
-    ...typescript.configs.strict,
-    ...astro.configs.recommended,
+    typescript.configs.strict,
+    astro.configs.recommended,
     {
         plugins: {
             'import-x': importX,
